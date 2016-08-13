@@ -1,20 +1,27 @@
 .text-title {
-    margin-left: 10vw;
-    margin-top: 5vh;
+    color: white;
+    letter-spacing: .1em;
 }
 
-.text-teal {
+.text-body {
     color: white;
+    letter-spacing: .08em;
 }
 
 .text-red {
     color: #F44333;
 }
 
-.text-purple{
-    color: #673AB7;
+.text-purple {
+    color: #673Ab7;
 }
 
 .text-blue {
     color: #03A9F4;
+}
+
+.text-alert {
+    font-weight: bold;
+    letter-spacing: .08em;
+    font-size: 110%;
 }

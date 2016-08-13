@@ -1,18 +1,24 @@
 .text-title {
-  margin-left: 10vw;
-  margin-top: 5vh; }
+  color: white;
+  letter-spacing: .1em; }
 
-.text-teal {
-  color: white; }
+.text-body {
+  color: white;
+  letter-spacing: .08em; }
 
 .text-red {
   color: #F44333; }
 
 .text-purple {
-  color: #673AB7; }
+  color: #673Ab7; }
 
 .text-blue {
   color: #03A9F4; }
+
+.text-alert {
+  font-weight: bold;
+  letter-spacing: .08em;
+  font-size: 110%; }
 
 body, html {
   background: black; }
@@ -32,39 +38,38 @@ body, html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  transition: .2s ease-out;
-  width: 25%; }
+  transition: .2s ease-out; }
   .btn-mode-active {
     background: black;
     color: white; }
     .btn-mode-active:hover {
       color: black;
-      background: white;
+      background: black;
       border-bottom: 2px solid black; }
   .btn-mode-teal {
     background: #004D40;
     color: white; }
     .btn-mode-teal:hover {
       color: #004D40;
-      background: white;
+      background: black;
       border-bottom: 2px solid #004D40; }
   .btn-mode-red {
     background: #F44333; }
     .btn-mode-red:hover {
       color: #F44333;
-      background: white;
+      background: black;
       border-bottom: 2px solid #F44333; }
   .btn-mode-purple {
     background: #673AB7; }
     .btn-mode-purple:hover {
       color: #673AB7;
-      background: white;
+      background: black;
       border-bottom: 2px solid #673AB7; }
   .btn-mode-blue {
     background: #03A9F4; }
     .btn-mode-blue:hover {
       color: #03A9F4;
-      background: white;
+      background: black;
       border-bottom: 2px solid #03A9F4; }
   .btn-mode:hover {
     text-decoration: none;
@@ -73,3 +78,5 @@ body, html {
 .btn-container {
   margin: 0px;
   padding: 0px; }
+  .btn-container * {
+    width: 33.33333%; }

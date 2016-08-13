@@ -14,7 +14,6 @@
   -ms-user-select: none;
   user-select: none;
   transition: .2s ease-out;
-  width: 25%;
 
   &-active {
       background: black;
@@ -22,7 +21,7 @@
 
       &:hover{
 	color: black;
-	background: white;
+	background: black;
 	border-bottom: 2px solid black;
       }
   }
@@ -33,7 +32,7 @@
 
       &:hover{
 	color: #004D40;
-	background: white;
+	background: black;
 	border-bottom: 2px solid #004D40;
       }
   }
@@ -42,7 +41,7 @@
 
       &:hover {
 	color: #F44333;
-	background: white;
+	background: black;
 	border-bottom: 2px solid #F44333;
       }
   }
@@ -52,7 +51,7 @@
 
       &:hover {
         color: #673AB7;
-	background: white;
+	background: black;
 	border-bottom: 2px solid #673AB7;
       }
   }
@@ -61,7 +60,7 @@
       background: #03A9F4;
       &:hover {
 	  color: #03A9F4;
-	  background: white;
+	  background: black;
 	  border-bottom: 2px solid #03A9F4;
       }
   }

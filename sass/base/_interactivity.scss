@@ -1,0 +1,12 @@
+.interactive-element {
+    transition-duration: .2s;
+}
+
+.inactive {
+    height: 0%;
+    transform: scale(0, 0);
+}
+
+.active {
+    transform: scale(1, 1);
+}

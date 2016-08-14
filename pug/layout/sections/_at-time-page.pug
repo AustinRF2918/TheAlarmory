@@ -1,0 +1,44 @@
+.container
+  .m-t-3
+    .row
+      h1.text-title.header <strong>At Time<strong>
+    .row
+      .col-md-6.p-x-0
+        h4.text-body Set a time and the alarm will wake you up then!
+      .col-md-4.col-md-push-2.text-xs-center.p-x-0
+        h3.text-body At <span id="hour"></span>:<span id="minute"></span> <span id="when"></span></strong>
+        h5.text-body In 3 hours.
+        h5.text-body Current Time: <span id="currhour"></span>:<span id="currminute"></span> <span id="currwhen"></span>
+  .row
+    h3.text-body Hours
+  .row
+    .square-container
+      div(id="hour-0" class="btn-square-hours btn-square-hours-active")
+        a=0
+      each i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+        div(id="hour-"+i class="btn-square-hours")
+          a=i
+  .row
+    h3.text-body Minutes
+  .row
+    .square-container
+      div(id="minute-0" class="btn-square-minutes btn-square-minutes-active")
+        a=0
+      each i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59]
+        div(id="minute-"+i class="btn-square-minutes")
+          a=i
+  .row
+    h3.text-body AM/PM
+  .row
+    .square-container
+      div(id="type-0" class="btn-square-types btn-square-types-active")
+        a="AM"
+      div(id="type1")
+      div(id="type-1" class="btn-square-types")
+        a="PM"
+    h3.text-body Lock
+  .row
+    .square-container
+      div(id="hour")
+        a.btn-rectangle Lock
+    .col-md-12

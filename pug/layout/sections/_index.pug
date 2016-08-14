@@ -1,5 +1,12 @@
 body 
-  .col-md-4.col-md-push-8
-    include _app-navigation.pug
-  .col-xs-12
-    include _page-header.pug
+  .intro
+    .col-lg-4.col-lg-push-8.footer-container
+      include _app-navigation.pug
+    .col-xs-12#help-content.active.interactive-element
+      include _information-page.pug
+    .col-xs-12#in-content.inactive.interactive-element
+      include _in-hours-page.pug
+    .col-xs-12#at-content.inactive.interactive-element
+      include _at-time-page.pug
+  .col-lg-8.footer-container
+    include _page-footer.pug

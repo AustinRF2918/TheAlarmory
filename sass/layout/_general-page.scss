@@ -1,3 +1,16 @@
 body, html {
     background: black;
+    display: flex;
+    flex-flow: column;
+    main-height: 100vh;
+    * {
+	font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    .header {
+	font-family: 'Montserrat', sans-serif;
+	* {
+	  font-family: 'Montserrat', sans-serif;
+	}
+    }
 }

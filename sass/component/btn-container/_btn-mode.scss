@@ -1,4 +1,5 @@
 .btn-mode {
+  font-weight: bold;
   border-radius: 0px;
   padding-left: 15px;
   padding-right: 15px;
@@ -15,22 +16,12 @@
   user-select: none;
   transition: .2s ease-out;
 
-  &-active {
-      background: black;
-      color: white;
-
-      &:hover{
-	color: black;
-	background: black;
-	border-bottom: 2px solid black;
-      }
-  }
-
   &-teal {
       background: #004D40;
       color: white;
 
-      &:hover{
+
+      &:hover, &-active{
 	color: #004D40;
 	background: black;
 	border-bottom: 2px solid #004D40;
@@ -39,17 +30,20 @@
   &-red {
       background: #F44333;
 
-      &:hover {
+      &:hover, &-active {
 	color: #F44333;
 	background: black;
 	border-bottom: 2px solid #F44333;
+	@media screen and (min-width: 768px) {
+	  border-left: 1px solid #F44333;
+	}
       }
   }
 
   &-purple {
       background: #673AB7;
 
-      &:hover {
+      &:hover, &-active {
         color: #673AB7;
 	background: black;
 	border-bottom: 2px solid #673AB7;
@@ -58,10 +52,13 @@
 
   &-blue {
       background: #03A9F4;
-      &:hover {
+      &:hover, &-active {
 	  color: #03A9F4;
 	  background: black;
 	  border-bottom: 2px solid #03A9F4;
+	  @media screen and (min-width: 768px) {
+	    border-right: 1px solid #03A9F4;
+	  }
       }
   }
 

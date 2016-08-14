@@ -1,3 +1,8 @@
+
+a {
+    text-decoration: none !important;
+}
+
 .text-title {
     color: white;
     letter-spacing: .1em;
@@ -10,18 +15,50 @@
 
 .text-red {
     color: #F44333;
+
+    &-hover {
+	&:hover{
+	  color: darken(#F44333, 10%);
+	  text-decoration-color: darken(#F44333, 10%);
+	}
+    }
 }
 
 .text-purple {
     color: #673Ab7;
+    &-hover {
+	&:hover, &:active{
+  	  color: darken(#673AB7, 10%);
+	  text-decoration-color: darken(#673AB7, 10%);
+	}
+    }
 }
 
 .text-blue {
     color: #03A9F4;
+    &-hover {
+	&:hover, &:active{
+          color: darken(#03A9F4, 10%);
+	  text-decoration-color: darken(#03A9F4, 10%);
+	}
+    }
 }
 
 .text-alert {
+    transition: all 0.2s cubic-bezier(.05, .025, .1, .025);
     font-weight: bold;
     letter-spacing: .08em;
     font-size: 110%;
+    position: relative;
+    transform: scaleX(1.8);
+
+    &:hover{
+	text-decoration: underline;
+	font-size: 130%;
+    }
+
+    &:active, &:visited, &:link, {
+	text-decoration: none !important;
+    }
 }
+

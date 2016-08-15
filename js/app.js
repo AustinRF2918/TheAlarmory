@@ -119,7 +119,6 @@ var synchronizeClock = function(){
 
 var generateJQuery = function(i, type, cName){
     var x = $("#"+type+"-"+i);
-    console.log(x);
     x.click(function(){
 	$('.' + cName).removeClass(cName);
 	x.addClass(cName);

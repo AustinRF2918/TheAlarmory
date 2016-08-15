@@ -95,5 +95,5 @@ gulp.task('default', function()
     console.log(getNetworkInformation());
     startExpress();
     startLiveReload();
-    gulp.watch(['index.html', 'css/app.css', 'js/app.js'], notifyLivereload);
+    gulp.watch(['index.html', 'js/td.js', 'css/app.css', 'js/app.js'], notifyLivereload);
 });

@@ -1,56 +1,13 @@
 alarmAudio = new Audio("../sounds/alarm.ogg");
 
-var clearActivePages = function(coll){
-    coll.forEach(function(element, index, array) {
-	setInactive(array[index]);
-    });
-};
-
-var setActive = function($jElem) {
-    if ($jElem.hasClass("inactive")){
-	$jElem.addClass("active");
-	$jElem.removeClass("inactive");
-    };
-};
-
-var setInactive = function($jElem) {
-    if ($jElem.hasClass("active")){
-	$jElem.addClass("inactive");
-	$jElem.removeClass("active");
-    };
-};
-var formatHour = function(hour) {
-    if (hour === "0") {
-	return "12";
-    }
-
-    if (hour.length != 2) {
-	return "0" + hour;
-    }
-
-
-    return "" + hour;
-};
-
-var formatMinute = function(minute) {
-    if (minute.length != 2) {
-	return "0" + minute;
-    }
-
-    return minute;
-};
-
 var synchronizeClock = function(){
     var sHours = $(".btn-square-hours-active").text();
     var sMinutes = $(".btn-square-minutes-active").text();
     var sWhen = $(".btn-square-types-active").text();
 
-    $("#hour-alarm").html(formatHour(sHours));
-    $("#minute-alarm").html(formatMinute(sMinutes));
+    $("#hour-alarm").html(TimeFormatter.formatHour(sHours, "American"));
+    $("#minute-alarm").html(TimeFormatter.formatMinute(sMinutes, "American"));
     $("#when-alarm").html(sWhen);
-
-    
-
 
     var cDate = new Date();
 

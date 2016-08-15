@@ -1,5 +1,3 @@
-console.log("Initialized button library.");
-
 /**
  * Takes a JQuery selector and questions if it has a class,
  * if it does, it adds classOne and removes classTwo.
@@ -33,7 +31,6 @@ function swapInCase($jElem, condition, classOne, classTwo) {
 function setActive( $jElem ) {
     swapInCase($jElem, "inactive", "active", "inactive");
 };
-
 
 /**
  * A wrapper around swapInCase: basically questions if our 
@@ -71,7 +68,6 @@ function Button($selector, name, isActive, activeClass) {
     this.name = name;
     this.activeClass = activeClass;
 };
-
 
 /**
  * Toggles the internal active class that is hooked to 
@@ -113,7 +109,6 @@ function ButtonCollection() {
     this.pageCollection = [];
 }
 
-
 /**
  * An abstraction for passing buttons into our collection:
  * functions by allowing a Button object to be passed and
@@ -127,7 +122,6 @@ function ButtonCollection() {
  * that we are appending to our collection.
  */
 ButtonCollection.prototype.appendButton = function(btn, $pe) {
-
     //Note that this looks redundant: It is not: the isActive
     //is a semantically construct meaning the entire button is
     //active from the programming side: it still, from the

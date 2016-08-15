@@ -1,3 +1,5 @@
+alarmAudio = new Audio("../sounds/alarm.ogg");
+
 function Button($selector, name, isActive, activeClass) {
     this.isActive = isActive;
     this.selector = $selector;
@@ -97,23 +99,58 @@ var formatMinute = function(minute) {
 };
 
 var synchronizeClock = function(){
-    $("#hour-alarm").html(formatHour($(".btn-square-hours-active").text()));
-    $("#minute-alarm").html(formatMinute($(".btn-square-minutes-active").text()));
-    $("#when-alarm").html($(".btn-square-types-active").text());
+    var sHours = $(".btn-square-hours-active").text();
+    var sMinutes = $(".btn-square-minutes-active").text();
+    var sWhen = $(".btn-square-types-active").text();
+
+    $("#hour-alarm").html(formatHour(sHours));
+    $("#minute-alarm").html(formatHour(sMinutes));
+    $("#when-alarm").html(sWhen);
+
+    
 
 
     var cDate = new Date();
-    var cYear = cDate.getFullYear();
+
     var cHours = cDate.getHours();
     var cMinutes = cDate.getMinutes();
+
+
     var cWhen = cHours >= 12 ? 'PM' : 'AM';
-    var sDate = new Date(cYear, cDate.getMonth(), cDate.getDay())
+
+
+    if (sWhen == "PM") {
+	var twentyFourHoursUser = Number(sHours) + 12;
+    } else {
+	var twentyFourHoursUser = Number(sHours);
+    };
+
+    if (twentyFourHoursUser < cHours) {
+	var timeDelta = 24 - (Number(cHours) - twentyFourHoursUser);
+    } else {
+	var timeDelta = twentyFourHoursUser - Number(cHours);
+    }
+
+    $("#delta").html(timeDelta);
+
 
     cHours = cHours % 12;
+
+    if (sHours == cHours && sMinutes == cMinutes && sWhen == cWhen) {
+	console.log("Playing");
+	alarmAudio.addEventListener('ended', function() {
+	}, false);
+	alarmAudio.play();
+    }
+
+    if (cMinutes.toString().length == 1) {
+	cMinutes = "0" + cMinutes;
+    }
 
     $("#current-hour-alarm").html(cHours);
     $("#current-minute-alarm").html(cMinutes);
     $("#current-when-alarm").html(cWhen);
+
 
 };
 

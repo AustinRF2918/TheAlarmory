@@ -97,9 +97,10 @@ var formatMinute = function(minute) {
 };
 
 var synchronizeClock = function(){
-    $("#hour").html(formatHour($(".btn-square-hours-active").text()));
-    $("#minute").html(formatMinute($(".btn-square-minutes-active").text()));
-    $("#when").html($(".btn-square-types-active").text());
+    $("#hour-alarm").html(formatHour($(".btn-square-hours-active").text()));
+    $("#minute-alarm").html(formatMinute($(".btn-square-minutes-active").text()));
+    $("#when-alarm").html($(".btn-square-types-active").text());
+
 
     var cDate = new Date();
     var cYear = cDate.getFullYear();
@@ -107,10 +108,12 @@ var synchronizeClock = function(){
     var cMinutes = cDate.getMinutes();
     var cWhen = cHours >= 12 ? 'PM' : 'AM';
     var sDate = new Date(cYear, cDate.getMonth(), cDate.getDay())
+
     cHours = cHours % 12;
-    $("#currhour").html(cHours);
-    $("#currminute").html(cMinutes);
-    $("#currwhen").html(cWhen);
+
+    $("#current-hour-alarm").html(cHours);
+    $("#current-minute-alarm").html(cMinutes);
+    $("#current-when-alarm").html(cWhen);
 
 };
 
@@ -127,9 +130,8 @@ var generateJQuery = function(i, type, cName){
 $(document).ready(function(){
     var navigationButtons = new ButtonCollection();
 
-    navigationButtons.appendButton(new Button($("#btn-at"), "atTimeButton", false, "btn-mode-red-active"), $('#at-content'));
+    navigationButtons.appendButton(new Button($("#btn-at"), "atTimeButton", true, "btn-mode-red-active"), $('#at-content'));
     navigationButtons.appendButton(new Button($("#btn-in"), "inTimeButton", false, "btn-mode-purple-active"), $('#in-content'));
-    navigationButtons.appendButton(new Button($("#btn-info"), "informationButton", true, "btn-mode-blue-active"), $('#help-content'));
 
     for (var i = 0; i < 60; i++) {
 	generateJQuery(i, "minute", "btn-square-minutes-active");

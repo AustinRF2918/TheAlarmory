@@ -17,50 +17,22 @@
   <body> 
     <div class="intro">
       <div class="col-lg-4 col-lg-push-8 footer-container">
-        <div class="btn-container"><a class="btn btn-mode btn-mode-red" id="btn-at">At Time</a><a class="btn btn-mode btn-mode-purple" id="btn-in">In Time</a><a class="btn btn-mode btn-mode-blue" id="btn-info">Info</a></div>
-      </div>
-      <div class="col-xs-12 active interactive-element" id="help-content">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4 m-t-3">
-              <h1 class="text-title header"><strong>Welcome!</strong></h1>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 m-b-3">
-              <h4 class="text-body">Greetings from Alarm Clock Buddy, we thought that most alarm clock web applications were both ugly and unintuitive to use, so we built our own alarm clock that is your buddy, not your enemy. The <a href="#"><span class="text-red text-red-hover text-alert">at time</span></a> button allows you to set a <strong>time at which the alarm will ring</strong>, <a href="#"><span class="text-purple text-purple-hover text-alert"><strong>in hours</strong></span></a> will allow to set how many hours you wish for the alarm to <strong>run until it is triggered.</strong></h4>
-            </div>
-          </div>
-        </div>
+        <div class="btn-container"><a class="btn btn-mode btn-mode-red" id="btn-at">Alarm Clock</a><a class="btn btn-mode btn-mode-purple" id="btn-in">Stopwatch</a></div>
       </div>
       <div class="col-xs-12 inactive interactive-element" id="in-content">
         <div class="container">
-          <div class="row">
-            <div class="col-md-4 m-t-3">
-              <h1 class="text-title header"><strong>Welcome!</strong></h1>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <h4 class="text-body">Greetings from Alarm Clock Buddy, we thought that most alarm clock web applications were both ugly and unintuitive to use, so we built our own alarm clock that is your buddy, not your enemy. The <a href="#"><span class="text-red text-red-hover text-alert">at time</span></a> button allows you to set a <strong>time at which the alarm will ring</strong>, <a href="#"><span class="text-purple text-purple-hover text-alert"><strong>in hours</strong></span></a> will allow to set how many hours you wish for the alarm to <strong>run until it is triggered.</strong></h4>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-12 inactive interactive-element" id="at-content">
-        <div class="container">
           <div class="m-t-3">
             <div class="row">
-              <h1 class="text-title header"><strong>At Time<strong></h1>
+              <h1 class="text-title header"><strong>Stopwatch<strong></h1>
             </div>
             <div class="row">
               <div class="col-md-6 p-x-0">
-                <h4 class="text-body">Set a time and the alarm will wake you up then!</h4>
+                <h4 class="text-body">Se an amount of time for the stopwatch to ring in!</h4>
               </div>
               <div class="col-md-4 col-md-push-2 text-xs-center p-x-0">
-                <h3 class="text-body">At <span id="hour"></span>:<span id="minute"></span> <span id="when"></span></strong></h3>
+                <h3 class="text-body">At <span id="stopwatch-hour"></span>:<span id="stopwatch-minute"></span> <span id="stopwatch-when"></span></strong></h3>
                 <h5 class="text-body">In 3 hours.</h5>
-                <h5 class="text-body">Current Time: <span id="currhour"></span>:<span id="currminute"></span> <span id="currwhen"></span></h5>
+                <h5 class="text-body">Current Time: <span id="current-hour-stopwatch"></span>:<span id="current-minute-stopwatch"></span> <span id="current-when-stopwatch"></span></h5>
               </div>
             </div>
           </div>
@@ -69,18 +41,18 @@
           </div>
           <div class="row">
             <div class="square-container">
-              <div class="btn-square-hours btn-square-hours-active" id="hour-0"><a>0</a></div>
-              <div class="btn-square-hours" id="hour-1"><a>1</a></div>
-              <div class="btn-square-hours" id="hour-2"><a>2</a></div>
-              <div class="btn-square-hours" id="hour-3"><a>3</a></div>
-              <div class="btn-square-hours" id="hour-4"><a>4</a></div>
-              <div class="btn-square-hours" id="hour-5"><a>5</a></div>
-              <div class="btn-square-hours" id="hour-6"><a>6</a></div>
-              <div class="btn-square-hours" id="hour-7"><a>7</a></div>
-              <div class="btn-square-hours" id="hour-8"><a>8</a></div>
-              <div class="btn-square-hours" id="hour-9"><a>9</a></div>
-              <div class="btn-square-hours" id="hour-10"><a>10</a></div>
-              <div class="btn-square-hours" id="hour-11"><a>11</a></div>
+              <div class="btn-stopwatch-square-hours btn-square-hours-active" id="hour-stopwatch-0"><a>0</a></div>
+              <div class="btn-stopwatch-square-hours" id="hour-stopwatch-1"><a>1</a></div>
+              <div class="btn-stopwatch-square-hours" id="hour-stopwatch-2"><a>2</a></div>
+              <div class="btn-stopwatch-square-hours" id="hour-stopwatch-3"><a>3</a></div>
+              <div class="btn-stopwatch-square-hours" id="hour-stopwatch-4"><a>4</a></div>
+              <div class="btn-stopwatch-square-hours" id="hour-stopwatch-5"><a>5</a></div>
+              <div class="btn-stopwatch-square-hours" id="hour-stopwatch-6"><a>6</a></div>
+              <div class="btn-stopwatch-square-hours" id="hour-stopwatch-7"><a>7</a></div>
+              <div class="btn-stopwatch-square-hours" id="hour-stopwatch-8"><a>8</a></div>
+              <div class="btn-stopwatch-square-hours" id="hour-stopwatch-9"><a>9</a></div>
+              <div class="btn-stopwatch-square-hours" id="hour-stopwatch-10"><a>10</a></div>
+              <div class="btn-stopwatch-square-hours" id="hour-stopwatch-11"><a>11</a></div>
             </div>
           </div>
           <div class="row">
@@ -88,66 +60,66 @@
           </div>
           <div class="row">
             <div class="square-container">
-              <div class="btn-square-minutes btn-square-minutes-active" id="minute-0"><a>0</a></div>
-              <div class="btn-square-minutes" id="minute-1"><a>1</a></div>
-              <div class="btn-square-minutes" id="minute-2"><a>2</a></div>
-              <div class="btn-square-minutes" id="minute-3"><a>3</a></div>
-              <div class="btn-square-minutes" id="minute-4"><a>4</a></div>
-              <div class="btn-square-minutes" id="minute-5"><a>5</a></div>
-              <div class="btn-square-minutes" id="minute-6"><a>6</a></div>
-              <div class="btn-square-minutes" id="minute-7"><a>7</a></div>
-              <div class="btn-square-minutes" id="minute-8"><a>8</a></div>
-              <div class="btn-square-minutes" id="minute-9"><a>9</a></div>
-              <div class="btn-square-minutes" id="minute-10"><a>10</a></div>
-              <div class="btn-square-minutes" id="minute-11"><a>11</a></div>
-              <div class="btn-square-minutes" id="minute-12"><a>12</a></div>
-              <div class="btn-square-minutes" id="minute-13"><a>13</a></div>
-              <div class="btn-square-minutes" id="minute-14"><a>14</a></div>
-              <div class="btn-square-minutes" id="minute-15"><a>15</a></div>
-              <div class="btn-square-minutes" id="minute-16"><a>16</a></div>
-              <div class="btn-square-minutes" id="minute-17"><a>17</a></div>
-              <div class="btn-square-minutes" id="minute-18"><a>18</a></div>
-              <div class="btn-square-minutes" id="minute-19"><a>19</a></div>
-              <div class="btn-square-minutes" id="minute-20"><a>20</a></div>
-              <div class="btn-square-minutes" id="minute-21"><a>21</a></div>
-              <div class="btn-square-minutes" id="minute-22"><a>22</a></div>
-              <div class="btn-square-minutes" id="minute-23"><a>23</a></div>
-              <div class="btn-square-minutes" id="minute-24"><a>24</a></div>
-              <div class="btn-square-minutes" id="minute-25"><a>25</a></div>
-              <div class="btn-square-minutes" id="minute-26"><a>26</a></div>
-              <div class="btn-square-minutes" id="minute-27"><a>27</a></div>
-              <div class="btn-square-minutes" id="minute-28"><a>28</a></div>
-              <div class="btn-square-minutes" id="minute-29"><a>29</a></div>
-              <div class="btn-square-minutes" id="minute-30"><a>30</a></div>
-              <div class="btn-square-minutes" id="minute-31"><a>31</a></div>
-              <div class="btn-square-minutes" id="minute-32"><a>32</a></div>
-              <div class="btn-square-minutes" id="minute-33"><a>33</a></div>
-              <div class="btn-square-minutes" id="minute-34"><a>34</a></div>
-              <div class="btn-square-minutes" id="minute-35"><a>35</a></div>
-              <div class="btn-square-minutes" id="minute-36"><a>36</a></div>
-              <div class="btn-square-minutes" id="minute-37"><a>37</a></div>
-              <div class="btn-square-minutes" id="minute-38"><a>38</a></div>
-              <div class="btn-square-minutes" id="minute-39"><a>39</a></div>
-              <div class="btn-square-minutes" id="minute-40"><a>40</a></div>
-              <div class="btn-square-minutes" id="minute-41"><a>41</a></div>
-              <div class="btn-square-minutes" id="minute-42"><a>42</a></div>
-              <div class="btn-square-minutes" id="minute-43"><a>43</a></div>
-              <div class="btn-square-minutes" id="minute-44"><a>44</a></div>
-              <div class="btn-square-minutes" id="minute-45"><a>45</a></div>
-              <div class="btn-square-minutes" id="minute-46"><a>46</a></div>
-              <div class="btn-square-minutes" id="minute-47"><a>47</a></div>
-              <div class="btn-square-minutes" id="minute-48"><a>48</a></div>
-              <div class="btn-square-minutes" id="minute-49"><a>49</a></div>
-              <div class="btn-square-minutes" id="minute-50"><a>50</a></div>
-              <div class="btn-square-minutes" id="minute-51"><a>51</a></div>
-              <div class="btn-square-minutes" id="minute-52"><a>52</a></div>
-              <div class="btn-square-minutes" id="minute-53"><a>53</a></div>
-              <div class="btn-square-minutes" id="minute-54"><a>54</a></div>
-              <div class="btn-square-minutes" id="minute-55"><a>55</a></div>
-              <div class="btn-square-minutes" id="minute-56"><a>56</a></div>
-              <div class="btn-square-minutes" id="minute-57"><a>57</a></div>
-              <div class="btn-square-minutes" id="minute-58"><a>58</a></div>
-              <div class="btn-square-minutes" id="minute-59"><a>59</a></div>
+              <div class="btn-stopwatch-square-minutes btn-square-minutes-active" id="minute-stopwatch-0"><a>0</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-1"><a>1</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-2"><a>2</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-3"><a>3</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-4"><a>4</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-5"><a>5</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-6"><a>6</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-7"><a>7</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-8"><a>8</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-9"><a>9</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-10"><a>10</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-11"><a>11</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-12"><a>12</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-13"><a>13</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-14"><a>14</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-15"><a>15</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-16"><a>16</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-17"><a>17</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-18"><a>18</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-19"><a>19</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-20"><a>20</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-21"><a>21</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-22"><a>22</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-23"><a>23</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-24"><a>24</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-25"><a>25</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-26"><a>26</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-27"><a>27</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-28"><a>28</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-29"><a>29</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-30"><a>30</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-31"><a>31</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-32"><a>32</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-33"><a>33</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-34"><a>34</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-35"><a>35</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-36"><a>36</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-37"><a>37</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-38"><a>38</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-39"><a>39</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-40"><a>40</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-41"><a>41</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-42"><a>42</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-43"><a>43</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-44"><a>44</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-45"><a>45</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-46"><a>46</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-47"><a>47</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-48"><a>48</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-49"><a>49</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-50"><a>50</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-51"><a>51</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-52"><a>52</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-53"><a>53</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-54"><a>54</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-55"><a>55</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-56"><a>56</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-57"><a>57</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-58"><a>58</a></div>
+              <div class="btn-stopwatch-square-minutes" id="minute-stopwatch-59"><a>59</a></div>
             </div>
           </div>
           <div class="row">
@@ -155,17 +127,140 @@
           </div>
           <div class="row">
             <div class="square-container">
-              <div class="btn-square-types btn-square-types-active" id="type-0"><a>AM</a></div>
-              <div id="type1"></div>
-              <div class="btn-square-types" id="type-1"><a>PM</a></div>
+              <div class="btn-square-types-stopwatch btn-square-types-active-stopwatch" id="type-stopwatch-0"><a>AM</a></div>
+              <div class="btn-stopwatch-square-types" id="type-stopwatch-1"><a>PM</a></div>
             </div>
-            <h3 class="text-body">Lock</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 active interactive-element" id="at-content">
+        <div class="container">
+          <div class="row m-b-2 m-t-3">
+            <div class="col-md-6">
+              <h1 class="text-title header text-xs-center text-md-left"><strong>Alarm Clock<strong></h1>
+              <h4 class="text-body">Set a time for the alarm will to you up at.</h4>
+            </div>
+            <div class="col-md-4 col-md-push-2 text-xs-center">
+              <h3 class="text-body">At <span id="hour-alarm"></span>:<span id="minute-alarm"></span> <span id="when-alarm"></span></strong></h3>
+              <h5 class="text-body">In 3 hours.</h5>
+              <h5 class="text-body">Current Time: <span id="current-hour-alarm"></span>:<span id="current-minute-alarm"></span> <span id="current-when-alarm"></span></h5>
+            </div>
           </div>
           <div class="row">
-            <div class="square-container">
-              <div id="hour"><a class="btn-rectangle">Lock</a></div>
+            <div class="col-md-12">
+              <h3 class="text-body">Hours</h3>
             </div>
-            <div class="col-md-12"></div>
+          </div>
+          <div class="row">
+            <div class="col-xs-8">
+              <div class="square-container">
+                <div class="btn-square-hours btn-square-hours-active" id="hour-0"><a>0</a></div>
+                <div class="btn-square-hours" id="hour-1"><a>1</a></div>
+                <div class="btn-square-hours" id="hour-2"><a>2</a></div>
+                <div class="btn-square-hours" id="hour-3"><a>3</a></div>
+                <div class="btn-square-hours" id="hour-4"><a>4</a></div>
+                <div class="btn-square-hours" id="hour-5"><a>5</a></div>
+                <div class="btn-square-hours" id="hour-6"><a>6</a></div>
+                <div class="btn-square-hours" id="hour-7"><a>7</a></div>
+                <div class="btn-square-hours" id="hour-8"><a>8</a></div>
+                <div class="btn-square-hours" id="hour-9"><a>9</a></div>
+                <div class="btn-square-hours" id="hour-10"><a>10</a></div>
+                <div class="btn-square-hours" id="hour-11"><a>11</a></div>
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <p class="text-body">Ad goes here.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <h3 class="text-body">Minutes</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-8">
+              <div class="square-container">
+                <div class="btn-square-minutes btn-square-minutes-active" id="minute-0"><a>0</a></div>
+                <div class="btn-square-minutes" id="minute-1"><a>1</a></div>
+                <div class="btn-square-minutes" id="minute-2"><a>2</a></div>
+                <div class="btn-square-minutes" id="minute-3"><a>3</a></div>
+                <div class="btn-square-minutes" id="minute-4"><a>4</a></div>
+                <div class="btn-square-minutes" id="minute-5"><a>5</a></div>
+                <div class="btn-square-minutes" id="minute-6"><a>6</a></div>
+                <div class="btn-square-minutes" id="minute-7"><a>7</a></div>
+                <div class="btn-square-minutes" id="minute-8"><a>8</a></div>
+                <div class="btn-square-minutes" id="minute-9"><a>9</a></div>
+                <div class="btn-square-minutes" id="minute-10"><a>10</a></div>
+                <div class="btn-square-minutes" id="minute-11"><a>11</a></div>
+                <div class="btn-square-minutes" id="minute-12"><a>12</a></div>
+                <div class="btn-square-minutes" id="minute-13"><a>13</a></div>
+                <div class="btn-square-minutes" id="minute-14"><a>14</a></div>
+                <div class="btn-square-minutes" id="minute-15"><a>15</a></div>
+                <div class="btn-square-minutes" id="minute-16"><a>16</a></div>
+                <div class="btn-square-minutes" id="minute-17"><a>17</a></div>
+                <div class="btn-square-minutes" id="minute-18"><a>18</a></div>
+                <div class="btn-square-minutes" id="minute-19"><a>19</a></div>
+                <div class="btn-square-minutes" id="minute-20"><a>20</a></div>
+                <div class="btn-square-minutes" id="minute-21"><a>21</a></div>
+                <div class="btn-square-minutes" id="minute-22"><a>22</a></div>
+                <div class="btn-square-minutes" id="minute-23"><a>23</a></div>
+                <div class="btn-square-minutes" id="minute-24"><a>24</a></div>
+                <div class="btn-square-minutes" id="minute-25"><a>25</a></div>
+                <div class="btn-square-minutes" id="minute-26"><a>26</a></div>
+                <div class="btn-square-minutes" id="minute-27"><a>27</a></div>
+                <div class="btn-square-minutes" id="minute-28"><a>28</a></div>
+                <div class="btn-square-minutes" id="minute-29"><a>29</a></div>
+                <div class="btn-square-minutes" id="minute-30"><a>30</a></div>
+                <div class="btn-square-minutes" id="minute-31"><a>31</a></div>
+                <div class="btn-square-minutes" id="minute-32"><a>32</a></div>
+                <div class="btn-square-minutes" id="minute-33"><a>33</a></div>
+                <div class="btn-square-minutes" id="minute-34"><a>34</a></div>
+                <div class="btn-square-minutes" id="minute-35"><a>35</a></div>
+                <div class="btn-square-minutes" id="minute-36"><a>36</a></div>
+                <div class="btn-square-minutes" id="minute-37"><a>37</a></div>
+                <div class="btn-square-minutes" id="minute-38"><a>38</a></div>
+                <div class="btn-square-minutes" id="minute-39"><a>39</a></div>
+                <div class="btn-square-minutes" id="minute-40"><a>40</a></div>
+                <div class="btn-square-minutes" id="minute-41"><a>41</a></div>
+                <div class="btn-square-minutes" id="minute-42"><a>42</a></div>
+                <div class="btn-square-minutes" id="minute-43"><a>43</a></div>
+                <div class="btn-square-minutes" id="minute-44"><a>44</a></div>
+                <div class="btn-square-minutes" id="minute-45"><a>45</a></div>
+                <div class="btn-square-minutes" id="minute-46"><a>46</a></div>
+                <div class="btn-square-minutes" id="minute-47"><a>47</a></div>
+                <div class="btn-square-minutes" id="minute-48"><a>48</a></div>
+                <div class="btn-square-minutes" id="minute-49"><a>49</a></div>
+                <div class="btn-square-minutes" id="minute-50"><a>50</a></div>
+                <div class="btn-square-minutes" id="minute-51"><a>51</a></div>
+                <div class="btn-square-minutes" id="minute-52"><a>52</a></div>
+                <div class="btn-square-minutes" id="minute-53"><a>53</a></div>
+                <div class="btn-square-minutes" id="minute-54"><a>54</a></div>
+                <div class="btn-square-minutes" id="minute-55"><a>55</a></div>
+                <div class="btn-square-minutes" id="minute-56"><a>56</a></div>
+                <div class="btn-square-minutes" id="minute-57"><a>57</a></div>
+                <div class="btn-square-minutes" id="minute-58"><a>58</a></div>
+                <div class="btn-square-minutes" id="minute-59"><a>59</a></div>
+              </div>
+            </div>
+            <div class="col-xs-4"> 
+              <p class="text-body">Ad goes here.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h3 class="text-body">AM/PM</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-8">
+              <div class="square-container">
+                <div class="btn-square-types btn-square-types-active" id="type-0"><a>AM</a></div>
+                <div class="btn-square-types" id="type-1"><a>PM</a></div>
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <p class="text-body">Ad goes here.</p>
+            </div>
           </div>
         </div>
       </div>

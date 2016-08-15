@@ -1,24 +1,6 @@
 alarmAudio = new Audio("../sounds/alarm.ogg");
 
-var clearActivePages = function(coll){
-    coll.forEach(function(element, index, array) {
-	setInactive(array[index]);
-    });
-};
 
-var setActive = function($jElem) {
-    if ($jElem.hasClass("inactive")){
-	$jElem.addClass("active");
-	$jElem.removeClass("inactive");
-    };
-};
-
-var setInactive = function($jElem) {
-    if ($jElem.hasClass("active")){
-	$jElem.addClass("inactive");
-	$jElem.removeClass("active");
-    };
-};
 var formatHour = function(hour) {
     if (hour === "0") {
 	return "12";

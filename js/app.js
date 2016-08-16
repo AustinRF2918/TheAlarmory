@@ -12,7 +12,8 @@ var synchronizeClock = function(){
     currentInterface.assignAIs(
 	$("#hour-alarm"),
 	$("#minute-alarm"),
-	$("#when-alarm")
+	$("#when-alarm"),
+	true
     );
 
     currentInterface.refresh();

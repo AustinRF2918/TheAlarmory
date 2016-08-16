@@ -28,7 +28,7 @@ a {
     text-decoration-color: #0286c2; }
 
 .text-alert {
-  transition: all 0.2s cubic-bezier(0.05, 0.025, 0.1, 0.025);
+  transition: all 0.5s cubic-bezier(0.05, 0.025, 0.1, 0.025);
   font-weight: bold;
   letter-spacing: .08em;
   font-size: 110%;
@@ -41,7 +41,7 @@ a {
     text-decoration: none !important; }
 
 .interactive-element {
-  transition-duration: .2s; }
+  transition-duration: .5s; }
 
 .inactive {
   height: 0%;
@@ -78,7 +78,7 @@ body, html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  transition: .2s ease-out; }
+  transition: .5s ease-out; }
   .btn-mode-teal {
     background: #004D40;
     color: white; }
@@ -144,7 +144,7 @@ body, html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  transition: .2s ease-out;
+  transition: .5s ease-out;
   background: black;
   border-bottom: 2px solid #03A9F4;
   color: #03A9F4; }

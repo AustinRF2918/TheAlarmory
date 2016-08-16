@@ -141,7 +141,7 @@ ButtonCollection.prototype.appendButton = function(btn, $pe) {
 	setTimeout(function(){
 	setActive($pe);
 	btn.toggleActiveClass();
-	}, 230);
+	}, 530);
     });
 
     this.buttonCollection.push(btn);

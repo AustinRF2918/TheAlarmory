@@ -56,19 +56,20 @@ var ClockInterface = function() {
 	* @param {JQuery Object} selectedPeriodSelector - The JQuery selector for whatever
 	* an active selected element that contains text cooresponding to the desired period is.
 	*/
+
+	var _debugDisplay = function() {
+	    console.log(selectedHours);
+	    console.log(selectedMinutes);
+	    console.log(selectedPeriod);
+	};
+
 	var _assignHMPs = function(selectedHoursSelector, selectedMinutesSelector, selectedPeriodSelector) {
-	    if (!selectedHoursID) {
-		selectedHoursID = $(selectedHoursSelector);
-	    }
+	    selectedHoursID = $(selectedHoursSelector);
+	    selectedMinutesID = $(selectedMinutesSelector);
+	    selectedPeriodID = $(selectedPeriodSelector);
 
-	    if (!selectedMinutesID) {
-		selectedMinutesID = $(selectedMinutesSelector);
-	    }
-
-	    if (!selectedPeriodID) {
-		selectedPeriodID = $(selectedPeriodSelector);
-	    }
-
+	    console.log(selectedHoursID);
+	    console.log(selectedHoursID.text());
 	    selectedHours = selectedHoursID.text();
 	    selectedMinutes = selectedMinutesID.text();
 	    selectedPeriod = selectedPeriodID.text();
@@ -128,7 +129,6 @@ var ClockInterface = function() {
 	    var tempMHours = TimeFormatter.convertNumericToMillitary(selectedHours, selectedPeriod);
 	    var tempDelta = TimeFormatter.calculateDelta(tempMHours, currentHour);
 	    $(deltaHoursIndicator).html(tempDelta);
-	    console.log(selectedPeriod);
 	};
 
 	//TODO: GIVE RUNDOWN ON THIS FOR DOCS.
@@ -161,6 +161,7 @@ var ClockInterface = function() {
 
 
 	return {
+	    debug: _debugDisplay,
 	    assignHMPs: _assignHMPs,
 	    assignAIs : _assignAIs,
 	    assignDelta: _assignDelta,

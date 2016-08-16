@@ -1,37 +1,39 @@
 alarmAudio = new Audio("../sounds/alarm.ogg");
 
 var synchronizeClock = function(){
-    var sHours = $(".btn-square-hours-active").text();
-    var sMinutes = $(".btn-square-minutes-active").text();
-    var sWhen = $(".btn-square-types-active").text();
+    var currentInterface = ClockInterface();
 
-    $("#hour-alarm").html(TimeFormatter.formatHour(sHours, "American"));
-    $("#minute-alarm").html(TimeFormatter.formatMinute(sMinutes, "American"));
-    $("#when-alarm").html(sWhen);
+    currentInterface.assignHMPs(
+	$(".btn-square-hours-active"),
+	$(".btn-square-minutes-active"),
+	$(".btn-square-types-active")
+    );
 
-    var cDate = new Date();
-    var cHours = cDate.getHours();
-    var cMinutes = cDate.getMinutes();
-    var cWhen = cHours >= 12 ? 'PM' : 'AM';
+    currentInterface.assignAIs(
+	$("#hour-alarm"),
+	$("#minute-alarm"),
+	$("#when-alarm")
+    );
 
-    var userMHours = TimeFormatter.convertNumericToMillitary(sHours, sWhen);
-    var timeDelta = TimeFormatter.calculateDelta(userMHours, cHours);
-    $("#delta").html(timeDelta);
+    currentInterface.refresh();
 
-    cHours = TimeFormatter.convertMillitaryToNumeric(cHours);
+    currentInterface.assignDelta($("#delta"));
 
-    if (sHours == cHours && sMinutes == cMinutes && sWhen == cWhen) {
+    if (currentInterface.isFiring()) {
 	console.log("Playing");
 	alarmAudio.addEventListener('ended', function() {
 	}, false);
 	alarmAudio.play();
     }
 
-    cMinutes = TimeFormatter.convertUnitToDigital(cMinutes);
+    currentInterface.hookCurrentSelectors(
+	$("#current-hour-alarm"),
+	$("#current-minute-alarm"),
+	$("#current-when-alarm")
+    );
 
-    $("#current-hour-alarm").html(cHours);
-    $("#current-minute-alarm").html(cMinutes);
-    $("#current-when-alarm").html(cWhen);
+    currentInterface.refresh();
+    currentInterface.displayCurrent();
 
 
 };

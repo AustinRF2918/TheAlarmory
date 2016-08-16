@@ -10,30 +10,15 @@ var synchronizeClock = function(){
     $("#when-alarm").html(sWhen);
 
     var cDate = new Date();
-
     var cHours = cDate.getHours();
     var cMinutes = cDate.getMinutes();
-
-
     var cWhen = cHours >= 12 ? 'PM' : 'AM';
 
-
-    if (sWhen == "PM") {
-	var twentyFourHoursUser = Number(sHours) + 12;
-    } else {
-	var twentyFourHoursUser = Number(sHours);
-    };
-
-    if (twentyFourHoursUser < cHours) {
-	var timeDelta = 24 - (Number(cHours) - twentyFourHoursUser);
-    } else {
-	var timeDelta = twentyFourHoursUser - Number(cHours);
-    }
-
+    var userMHours = TimeFormatter.convertNumericToMillitary(sHours, sWhen);
+    var timeDelta = TimeFormatter.calculateDelta(userMHours, cHours);
     $("#delta").html(timeDelta);
 
-
-    cHours = cHours % 12;
+    cHours = TimeFormatter.convertMillitaryToNumeric(cHours);
 
     if (sHours == cHours && sMinutes == cMinutes && sWhen == cWhen) {
 	console.log("Playing");
@@ -42,9 +27,7 @@ var synchronizeClock = function(){
 	alarmAudio.play();
     }
 
-    if (cMinutes.toString().length == 1) {
-	cMinutes = "0" + cMinutes;
-    }
+    cMinutes = TimeFormatter.convertUnitToDigital(cMinutes);
 
     $("#current-hour-alarm").html(cHours);
     $("#current-minute-alarm").html(cMinutes);

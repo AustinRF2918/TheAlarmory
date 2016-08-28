@@ -139,10 +139,8 @@ var ClockInterface = function() {
 	    if (currentHour.toString() === selectedHours.toString()
 		&& currentMinute.toString() === selectedMinutes.toString()
 		&& currentPeriod.toString() === selectedPeriod.toString()) {
-		console.log("True");
 		return true;
 	    } else {
-		console.log("False");
 		return false;
 	    }
 	};

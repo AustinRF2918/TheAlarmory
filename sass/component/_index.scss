@@ -1,3 +1,40 @@
 @import 'btn-container/index';
 @import 'footer/index';
 @import 'square-holder/index';
+
+.general-modal {
+    * {
+      font-family: 'Montserrat', sans-serif;
+    }
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 9999;
+    background: rgba( 0, 0, 0, 0.5);
+}
+
+.submodal {
+    position: fixed;
+    top: 50%;
+
+    border: 2px solid #F44333;
+
+    @media screen and (min-width: 768px) {
+	width: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+    }
+
+    @media screen and (max-width: 768px) {
+	width: 90%;
+	margin-left: 5%;
+	margin-right: 5%;
+	transform: translateY(-50%);
+    }
+
+    color: white;
+    background: black;
+    
+}
+

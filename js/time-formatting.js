@@ -163,10 +163,10 @@ var _convertUnitToDigital = function( timeUnit ) {
     return null;
 };
 
-var _calculateDelta = function( millitaryNumber, currentHours ) {
+var _calculateDelta = function( millitaryNumber, currentHours, cMinutes, sMinutes) {
     if (millitaryNumber < currentHours) {
 	return 24 - (Number(currentHours) - millitaryNumber);
-    } else if (millitaryNumber == currentHours) {
+    } else if (millitaryNumber === currentHours) {
 	if (Number(cMinutes) < Number(sMinutes)){
 	  return millitaryNumber - Number(currentHours);
 	} else {

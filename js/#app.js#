@@ -48,9 +48,6 @@ $(document).ready(function(){
     setInterval(function() {
 	hookAlarmClockTimer();
     }, 5000);
-
-    
-
 });
 
 

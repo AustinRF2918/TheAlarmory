@@ -58,9 +58,6 @@ var ClockInterface = function() {
 	*/
 
 	var _debugDisplay = function() {
-	    console.log(selectedHours);
-	    console.log(selectedMinutes);
-	    console.log(selectedPeriod);
 	};
 
 	var _assignHMPs = function(selectedHoursSelector, selectedMinutesSelector, selectedPeriodSelector) {
@@ -68,8 +65,6 @@ var ClockInterface = function() {
 	    selectedMinutesID = $(selectedMinutesSelector);
 	    selectedPeriodID = $(selectedPeriodSelector);
 
-	    console.log(selectedHoursID);
-	    console.log(selectedHoursID.text());
 	    selectedHours = selectedHoursID.text();
 	    selectedMinutes = selectedMinutesID.text();
 	    selectedPeriod = selectedPeriodID.text();
@@ -127,7 +122,7 @@ var ClockInterface = function() {
 	    }
 
 	    var tempMHours = TimeFormatter.convertNumericToMillitary(selectedHours, selectedPeriod);
-	    var tempDelta = TimeFormatter.calculateDelta(tempMHours, currentHour);
+	    var tempDelta = TimeFormatter.calculateDelta(tempMHours, currentHour, currentMinute, selectedMinutes);
 	    $(deltaHoursIndicator).html(tempDelta);
 	};
 
@@ -135,24 +130,26 @@ var ClockInterface = function() {
 	var _refresh = function() {
 	    var currentDate = new Date();
 	    currentHour = currentDate.getHours();
-	    currentMinutes = currentDate.getMinutes();
-	    currentPeriod= currentHour >= 12 ? 'PM' : 'AM';
+	    currentMinute = currentDate.getMinutes();
+	    currentPeriod = currentHour >= 12 ? 'PM' : 'AM';
 	};
 
 	//TODO: GIVE RUNDOWN ON THIS FOR DOCS.
 	var _isFiring = function() {
-	    if (currentHour == selectedHours
-		&& currentMinute == selectedMinutes
-		&& currentPeriod == selectedPeriod) {
+	    if (currentHour.toString() === selectedHours.toString()
+		&& currentMinute.toString() === selectedMinutes.toString()
+		&& currentPeriod.toString() === selectedPeriod.toString()) {
+		console.log("True");
 		return true;
 	    } else {
+		console.log("False");
 		return false;
 	    }
 	};
 
 	//TODO: GIVE RUNDOWN ON THIS FOR DOCS.
 	var _displayCurrent = function() {
-	    var tempMinutes = TimeFormatter.convertUnitToDigital(currentMinutes);
+	    var tempMinutes = TimeFormatter.convertUnitToDigital(currentMinute);
 	    
 	    currentHoursIndicator.html(TimeFormatter.convertMillitaryToNumeric(currentHour));
 	    currentMinutesIndicator.html(tempMinutes);

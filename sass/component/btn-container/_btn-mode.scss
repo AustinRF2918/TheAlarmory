@@ -35,8 +35,21 @@
 	background: black;
 	border-bottom: 2px solid #F44333;
 	@media screen and (min-width: 768px) {
+	  border-right: 1px solid #F44333;
 	  border-left: 1px solid #F44333;
 	}
+      }
+  }
+
+  &-red-surround {
+      background: #F44333;
+      width: 150px !important;
+      border: 1px solid #F44333;
+
+      &:hover, &-active {
+	color: #F44333;
+	background: black;
+	border: 1px solid #F44333;
       }
   }
 
@@ -50,6 +63,18 @@
       }
   }
 
+  &-purple-surround {
+      background: #673AB7;
+      width: 150px !important;
+      border: 1px solid #673AB7;
+
+      &:hover, &-active {
+        color: #673AB7;
+	background: black;
+	border: 1px solid #673AB7;
+      }
+  }
+
   &-blue {
       background: #03A9F4;
       &:hover, &-active {
@@ -58,6 +83,7 @@
 	  border-bottom: 2px solid #03A9F4;
 	  @media screen and (min-width: 768px) {
 	    border-right: 1px solid #03A9F4;
+	    border-left: 1px solid #03A9F4;
 	  }
       }
   }

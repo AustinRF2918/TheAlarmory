@@ -1,0 +1,17 @@
+.alarm-modal {
+    position: fixed;
+    background: black;
+    color: white;
+    @media screen and (min-width: 768px){
+      width: 33vw;
+      left: 33vw;
+    }
+
+    @media screen and (max-width: 767px) {
+	width: 90vw;
+	left: 4vw;
+    }
+    top: 33vh;
+    min-height: 11vw;
+    border: 2px solid lighten(#004D40, 15%);
+}

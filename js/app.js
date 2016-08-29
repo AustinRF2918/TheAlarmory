@@ -12,47 +12,6 @@ function generateMiniButton( numeric, type, cName, cb ) {
     });
 };
 
-var alarmContainer = new Modal('rgba(0, 0, 0, 0.7)', 'white', "general-modal");
-var alarmContent = new Modal('rgba(255, 255, 255, 1)', 'black', "submodal");
-alarmContent.el.addClass('p-y-2 text-xs-center');
-alarmContent.el.append(
-    $('<h1>').append('Time to wake up!'),
-    $('<div class="col-md-12 m-t-1">').append(
-	$('<a class="btn-wake-up btn btn-mode btn-mode-purple m-x-1">').append('Wake').click(function(){
-	    alarmAudio.pause();
-	    alarmSnoozeMode = false;
-	    alarmContainer.el.remove();
-	}),
-	$('<a class="btn-snooze btn btn-mode btn-mode-purple m-x-1">').append('Snooze').click(function(){
-	    alarmAudio.pause();
-	    alarmSnoozeMode = true;
-	    alarmContainer.el.remove();
-
-	    setTimeout(function(){
-		alarmAudio.play();
-	    } , 3000);
-
-	    setTimeout(function(){
-		$('.btn-snooze').click(function() {
-		    alarmAudio.pause();
-		    alarmSnoozeMode = true;
-		    alarmContainer.el.remove();
-		});
-
-		$('.btn-wake').click(function() {
-		    alarmAudio.pause();
-		    alarmSnoozeMode = false;
-		    alarmContainer.el.remove();
-		});
-
-		alarmContainer.show();
-	    } , 3000);
-	})
-    )
-);
-
-alarmContainer.append(alarmContent, 50, 50, 33, 20);
-
 
 $(document).ready(function(){
     //Page navigation.
@@ -74,11 +33,26 @@ $(document).ready(function(){
 	$("#current-when-alarm"),
 	true,
 	function(){
-		alarmContainer.show();
+	    $('.alarm-backdrop-hidden').removeClass('alarm-backdrop-hidden');
 		alarmAudio.play();
-		
 	    }
     )();};
+
+    $('#btn-wake').click(function() {
+	console.log("WAKE");
+	alarmAudio.pause();
+	$('.alarm-backdrop').addClass('alarm-backdrop-hidden');
+    });
+
+    $('#btn-snooze').click(function(){
+	alarmAudio.pause();
+	$('.alarm-backdrop').addClass('alarm-backdrop-hidden');
+
+	window.setTimeout(function(){
+	    $('.alarm-backdrop-hidden').removeClass('alarm-backdrop-hidden');
+		alarmAudio.play();
+	}, 1000 * 1 * 5);
+    });
 
     for (var i = 0; i < 60; i++) {
 	generateMiniButton(i, "minute", "btn-square-minutes-active", hookAlarmClockTimer);

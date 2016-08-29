@@ -94,13 +94,30 @@ body, html {
       border-bottom: 2px solid #F44333; }
       @media screen and (min-width: 768px) {
         .btn-mode-red:hover, .btn-mode-red-active {
+          border-right: 1px solid #F44333;
           border-left: 1px solid #F44333; } }
+  .btn-mode-red-surround {
+    background: #F44333;
+    width: 150px !important;
+    border: 1px solid #F44333; }
+    .btn-mode-red-surround:hover, .btn-mode-red-surround-active {
+      color: #F44333;
+      background: black;
+      border: 1px solid #F44333; }
   .btn-mode-purple {
     background: #673AB7; }
     .btn-mode-purple:hover, .btn-mode-purple-active {
       color: #673AB7;
       background: black;
       border-bottom: 2px solid #673AB7; }
+  .btn-mode-purple-surround {
+    background: #673AB7;
+    width: 150px !important;
+    border: 1px solid #673AB7; }
+    .btn-mode-purple-surround:hover, .btn-mode-purple-surround-active {
+      color: #673AB7;
+      background: black;
+      border: 1px solid #673AB7; }
   .btn-mode-blue {
     background: #03A9F4; }
     .btn-mode-blue:hover, .btn-mode-blue-active {
@@ -109,7 +126,8 @@ body, html {
       border-bottom: 2px solid #03A9F4; }
       @media screen and (min-width: 768px) {
         .btn-mode-blue:hover, .btn-mode-blue-active {
-          border-right: 1px solid #03A9F4; } }
+          border-right: 1px solid #03A9F4;
+          border-left: 1px solid #03A9F4; } }
   .btn-mode:hover {
     text-decoration: none;
     cursor: pointer; }
@@ -118,7 +136,7 @@ body, html {
   margin: 0px;
   padding: 0px; }
   .btn-container * {
-    width: 50%; }
+    width: 100%; }
 
 .intro {
   flex: 1; }
@@ -276,6 +294,31 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center; }
+
+.alarm-modal {
+  position: fixed;
+  background: black;
+  color: white;
+  top: 33vh;
+  min-height: 11vw;
+  border: 2px solid #009a80; }
+  @media screen and (min-width: 768px) {
+    .alarm-modal {
+      width: 33vw;
+      left: 33vw; } }
+  @media screen and (max-width: 767px) {
+    .alarm-modal {
+      width: 90vw;
+      left: 4vw; } }
+
+.alarm-backdrop {
+  top: 0px;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); }
+  .alarm-backdrop-hidden {
+    display: none; }
 
 .general-modal {
   top: 0;

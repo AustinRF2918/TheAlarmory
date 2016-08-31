@@ -204,6 +204,7 @@ body, html {
     .btn-square-hours:hover * {
       color: white; }
   .btn-square-hours-active {
+    transform: scale(1.3, 1.3);
     background: #f41400 !important; }
   .btn-square-hours * {
     color: white; }
@@ -230,6 +231,7 @@ body, html {
     .btn-square-minutes:hover * {
       color: white; }
   .btn-square-minutes-active {
+    transform: scale(1.3, 1.3);
     background: #4400be !important; }
   .btn-square-minutes * {
     color: white; }
@@ -256,6 +258,7 @@ body, html {
     .btn-square-types:hover * {
       color: white; }
   .btn-square-types-active {
+    transform: scale(1.3, 1.3);
     background: #0087c4 !important; }
   .btn-square-types * {
     color: white; }
@@ -282,6 +285,7 @@ body, html {
     .btn-square-lock:hover * {
       color: white; }
   .btn-square-lock-active {
+    transform: scale(1.3, 1.3);
     background: #0087c4 !important; }
   .btn-square-lock * {
     color: white; }

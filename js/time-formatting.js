@@ -40,6 +40,7 @@ var _formatHourAsNumber = function(hour, region) {
     if (hour === 0 && region === "American") {
 	return "12";
     }
+
     if (hour.asString().length != 2) {
 	return "0" + hour;
     }
@@ -56,6 +57,7 @@ var _formatHourAsNumber = function(hour, region) {
  * @param {string} region - The region which can be American or anything 
  * else.
  */
+
 var _formatHour = function(hour, region) {
     if (typeof hour === "string") {
 	return _formatHourAsString(hour, region);
@@ -165,12 +167,23 @@ var _convertUnitToDigital = function( timeUnit ) {
 
 var _calculateDelta = function( millitaryNumber, currentHours, cMinutes, sMinutes) {
     if (millitaryNumber < currentHours) {
+	console.log("Z");
 	return 24 - (Number(currentHours) - millitaryNumber);
     } else if (millitaryNumber === currentHours) {
 	if (Number(cMinutes) < Number(sMinutes)){
-	  return millitaryNumber - Number(currentHours);
+	  if (sMinutes - cMinutes < 30) {
+	    return millitaryNumber - Number(currentHours);
+	  } else {
+	    return 1;
+	  }
+
 	} else {
-	  return 24 - (Number(currentHours) - millitaryNumber);
+	    console.log("X");
+	    if (millitaryNumber - currentHours < 30 ) {
+		return 0;
+	    } else {
+		return 24 - (Number(currentHours) - millitaryNumber);
+	    }
 	}
     } else {
 	return millitaryNumber - Number(currentHours);

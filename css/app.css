@@ -191,6 +191,7 @@ body, html {
   align-items: center;
   justify-content: center;
   transition-duration: .2s;
+  text-decoration: none;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -206,6 +207,9 @@ body, html {
   .btn-square-hours-active {
     transform: scale(1.3, 1.3);
     background: #f41400 !important; }
+  .btn-square-hours-active:after {
+    transform: scale(1.5, 1.5);
+    background: #f41400 !important; }
   .btn-square-hours * {
     color: white; }
 
@@ -218,6 +222,7 @@ body, html {
   align-items: center;
   justify-content: center;
   transition-duration: .2s;
+  text-decoration: none;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -233,6 +238,9 @@ body, html {
   .btn-square-minutes-active {
     transform: scale(1.3, 1.3);
     background: #4400be !important; }
+  .btn-square-minutes-active:after {
+    transform: scale(1.5, 1.5);
+    background: #4400be !important; }
   .btn-square-minutes * {
     color: white; }
 
@@ -245,6 +253,7 @@ body, html {
   align-items: center;
   justify-content: center;
   transition-duration: .2s;
+  text-decoration: none;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -260,6 +269,9 @@ body, html {
   .btn-square-types-active {
     transform: scale(1.3, 1.3);
     background: #0087c4 !important; }
+  .btn-square-types-active:after {
+    transform: scale(1.5, 1.5);
+    background: #0087c4 !important; }
   .btn-square-types * {
     color: white; }
 
@@ -272,6 +284,7 @@ body, html {
   align-items: center;
   justify-content: center;
   transition-duration: .2s;
+  text-decoration: none;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -286,6 +299,9 @@ body, html {
       color: white; }
   .btn-square-lock-active {
     transform: scale(1.3, 1.3);
+    background: #0087c4 !important; }
+  .btn-square-lock-active:after {
+    transform: scale(1.5, 1.5);
     background: #0087c4 !important; }
   .btn-square-lock * {
     color: white; }

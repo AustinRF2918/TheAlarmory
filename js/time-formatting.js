@@ -41,11 +41,11 @@ var _formatHourAsNumber = function(hour, region) {
 	return "12";
     }
 
-    if (hour.asString().length != 2) {
+    if (hour.toString().length != 2) {
 	return "0" + hour;
     }
 
-    return hour.asString();
+    return hour.toString();
 };
 
 /**
@@ -112,7 +112,7 @@ var _formatMinute = function(minute) {
     if (typeof minute === "string") {
 	return _formatMinuteAsString(minute);
     } else if (typeof minute === "number") {
-	return _formatMinuteAsNumber(minute);
+	return _formatMinuteAsNumeric(minute);
     } else {
 	return null;
     }
@@ -167,7 +167,6 @@ var _convertUnitToDigital = function( timeUnit ) {
 
 var _calculateDelta = function( millitaryNumber, currentHours, cMinutes, sMinutes) {
     if (millitaryNumber < currentHours) {
-	console.log("Z");
 	return 24 - (Number(currentHours) - millitaryNumber);
     } else if (millitaryNumber === currentHours) {
 	if (Number(cMinutes) < Number(sMinutes)){
@@ -178,7 +177,6 @@ var _calculateDelta = function( millitaryNumber, currentHours, cMinutes, sMinute
 	  }
 
 	} else {
-	    console.log("X");
 	    if (millitaryNumber - currentHours < 30 ) {
 		return 0;
 	    } else {

@@ -12,6 +12,10 @@ function generateMiniButton( numeric, type, cName, cb ) {
     });
 };
 
+function applyButtonStyle( ) {
+    alarmAudio.pause();
+    $('.alarm-backdrop').addClass('alarm-backdrop-hidden');
+};
 
 $(document).ready(function(){
     //Page navigation.
@@ -39,14 +43,11 @@ $(document).ready(function(){
     )();};
 
     $('#btn-wake').click(function() {
-	console.log("WAKE");
-	alarmAudio.pause();
-	$('.alarm-backdrop').addClass('alarm-backdrop-hidden');
+	applyButtonStyle();
     });
 
     $('#btn-snooze').click(function(){
-	alarmAudio.pause();
-	$('.alarm-backdrop').addClass('alarm-backdrop-hidden');
+	applyButtonStyle();
 
 	window.setTimeout(function(){
 	    $('.alarm-backdrop-hidden').removeClass('alarm-backdrop-hidden');
@@ -68,9 +69,10 @@ $(document).ready(function(){
 
     hookAlarmClockTimer();
 
-        setInterval(function() {
+    (function() {
 	hookAlarmClockTimer();
-    }, 5000);
+	setTimeout(arguments.callee, 5000);
+    })();
 });
 
 

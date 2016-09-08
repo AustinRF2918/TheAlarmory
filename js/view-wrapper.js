@@ -123,6 +123,7 @@ var ClockInterface = function() {
 
 	    var tempMHours = TimeFormatter.convertNumericToMillitary(selectedHours, selectedPeriod);
 	    var tempDelta = TimeFormatter.calculateDelta(tempMHours, currentHour, currentMinute, selectedMinutes);
+	    console.log(tempDelta);
 	    $(deltaHoursIndicator).html(tempDelta);
 	};
 

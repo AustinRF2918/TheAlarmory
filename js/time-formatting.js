@@ -177,10 +177,10 @@ var _calculateDelta = function( millitaryNumber, currentHours, cMinutes, sMinute
 	  }
 
 	} else {
-	    if (millitaryNumber - currentHours < 30 ) {
-		return 0;
-	    } else {
+	    if (cMinutes - sMinutes < 30 ) {
 		return 24 - (Number(currentHours) - millitaryNumber);
+	    } else {
+		return 0;
 	    }
 	}
     } else {

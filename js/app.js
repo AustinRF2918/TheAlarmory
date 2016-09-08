@@ -52,7 +52,7 @@ $(document).ready(function(){
 	window.setTimeout(function(){
 	    $('.alarm-backdrop-hidden').removeClass('alarm-backdrop-hidden');
 		alarmAudio.play();
-	}, 1000 * 1 * 5);
+	}, 300000);
     });
 
     for (var i = 0; i < 60; i++) {

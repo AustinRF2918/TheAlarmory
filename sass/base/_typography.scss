@@ -13,6 +13,11 @@ a {
     letter-spacing: .08em;
 }
 
+.text-extra {
+    color: #673Ab7;
+    font-size: 2.4em;
+}
+
 .text-red {
     color: #F44333;
 
@@ -62,3 +67,8 @@ a {
     }
 }
 
+
+
+#hour-alarm, #minute-alarm, #exxtra {
+    color: darken(#F44333, 10%) !important;
+}

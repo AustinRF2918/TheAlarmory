@@ -9,6 +9,10 @@ a {
   color: white;
   letter-spacing: .08em; }
 
+.text-extra {
+  color: #673Ab7;
+  font-size: 2.4em; }
+
 .text-red {
   color: #F44333; }
   .text-red-hover:hover {
@@ -39,6 +43,9 @@ a {
     font-size: 130%; }
   .text-alert:active, .text-alert:visited, .text-alert:link {
     text-decoration: none !important; }
+
+#hour-alarm, #minute-alarm, #exxtra {
+  color: #e81f0c !important; }
 
 .interactive-element {
   transition-duration: .5s; }

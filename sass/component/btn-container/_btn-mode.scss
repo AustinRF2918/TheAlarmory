@@ -8,89 +8,29 @@
   color: white;
   text-decoration: none;
   border-bottom: 2px solid transparent;
+
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
   transition: .5s ease-out;
 
-  &-teal {
-      background: #004D40;
-      color: white;
-
-
-      &:hover, &-active{
-	color: #004D40;
-	background: black;
-	border-bottom: 2px solid #004D40;
-      }
-  }
   &-red {
       background: #F44333;
+      color: white;
 
-      &:hover, &-active {
-	color: #F44333;
+      &:hover {
 	background: black;
+	color: #F44333;
 	border-bottom: 2px solid #F44333;
 	@media screen and (min-width: 768px) {
-	  border-right: 1px solid #F44333;
-	  border-left: 1px solid #F44333;
+	    border-right: 1px solid #F44333;
+	    border-left: 1px solid #F44333;
 	}
       }
-  }
-
-  &-red-surround {
-      background: #F44333;
-      width: 150px !important;
-      border: 1px solid #F44333;
-
-      &:hover, &-active {
-	color: #F44333;
-	background: black;
-	border: 1px solid #F44333;
-      }
-  }
-
-  &-purple {
-      background: #673AB7;
-
-      &:hover, &-active {
-        color: #673AB7;
-	background: black;
-	border-bottom: 2px solid #673AB7;
-      }
-  }
-
-  &-purple-surround {
-      background: #673AB7;
-      width: 150px !important;
-      border: 1px solid #673AB7;
-
-      &:hover, &-active {
-        color: #673AB7;
-	background: black;
-	border: 1px solid #673AB7;
-      }
-  }
-
-  &-blue {
-      background: #03A9F4;
-      &:hover, &-active {
-	  color: #03A9F4;
-	  background: black;
-	  border-bottom: 2px solid #03A9F4;
-	  @media screen and (min-width: 768px) {
-	    border-right: 1px solid #03A9F4;
-	    border-left: 1px solid #03A9F4;
-	  }
-      }
-  }
-
-  &:hover {
-    text-decoration: none;
-    cursor: pointer;
   }
 }
 

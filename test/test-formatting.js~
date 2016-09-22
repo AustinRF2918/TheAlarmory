@@ -27,14 +27,8 @@ describe('Formats hours as strings', function() {
 	expect(_formatHour(7) == "07").to.be.true; 
     });
 
-    it ('should have same result for numeric and string up to 10.', function() {
-	for ( let i = 0; i < 10; i++ ) {
-	    expect(_formatHour(i) === _formatHour(i.toString())).to.be.true;
-	}
-    });
-
-    it ('should have same result for numeric and string up to 10 to 12.', function() {
-	for ( let i = 10; i < 12; i++ ) {
+    it ('should have same result for numeric and string 12.', function() {
+	for ( let i = 0; i < 12; i++ ) {
 	    expect(_formatHour(i) === _formatHour(i.toString())).to.be.true;
 	}
     });
@@ -200,31 +194,6 @@ describe('Should convert units to digital', function() {
 });
 
 describe('Calcultating delta should function.', function() {
-    it ('should throw type errors for invalid numerics.', function() {
-	expect(function(){_calculateDelta("A", 1, 1, 1)}).to.throw(TypeError);
-	expect(function(){_calculateDelta(1, "A", 1, 1)}).to.throw(TypeError);
-	expect(function(){_calculateDelta(1, 1, "A", 1)}).to.throw(TypeError);
-	expect(function(){_calculateDelta(1, 1, 1, "A")}).to.throw(TypeError);
-    });
-
-    it ('should throw range errors for all arguments.', function() {
-	expect(function(){_calculateDelta(25, 1, 1, 1)}).to.throw(RangeError);
-	expect(function(){_calculateDelta(-1, 1, 1, 1)}).to.throw(RangeError);
-	expect(function(){_calculateDelta(5, 1, 1, 1)}).to.not.throw(RangeError);
-
-	expect(function(){_calculateDelta(1, 1, 25, 1)}).to.throw(RangeError);
-	expect(function(){_calculateDelta(1, 1, -25, 1)}).to.throw(RangeError);
-	expect(function(){_calculateDelta(1, 1, 1, 1)}).to.not.throw(RangeError);
-
-	expect(function(){_calculateDelta(1, 61, 1, 1)}).to.throw(RangeError);
-	expect(function(){_calculateDelta(1, -1, 1, 1)}).to.throw(RangeError);
-	expect(function(){_calculateDelta(1, 1, 1, 1)}).to.not.throw(RangeError);
-
-	expect(function(){_calculateDelta(1, 1, 1, 64)}).to.throw(RangeError);
-	expect(function(){_calculateDelta(1, 1, 1, -1)}).to.throw(RangeError);
-	expect(function(){_calculateDelta(1, 1, 1, 1)}).to.not.throw(RangeError);
-    });
-
     it ('should properly compute simple hours. (next day.)', function() {
 	for (let i = 0; i < 22; i++) {
 	    expect(_calculateDelta( 22, 2, i, 2 )).to.equal(2 + i);

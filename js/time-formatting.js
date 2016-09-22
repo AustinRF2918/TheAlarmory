@@ -42,11 +42,8 @@ function _formatHourAsString(hour) {
 
     if (stringifiedHour === "0" || hour === "00")  {
 	return "12";
-    } else if (stringifiedHour.length !== 2) {
-	return "0" + stringifiedHour;
     } else {
-	console.log(stringifiedHour);
-        return stringifiedHour.toString();
+	return _convertUnitToDigital(stringifiedHour);
     }
 };
 
@@ -66,11 +63,7 @@ var _formatHourAsNumber = function(hour) {
     _validateNumeric(hour,  "Bad value passed to format hour as number.");
     hour = hour.toString();
 
-    if (hour.length < 2) {
-	return "0" + hour;
-    } else  {
-	return hour;
-    }
+    return _convertUnitToDigital(hour);
 };
 
 /**
@@ -94,11 +87,7 @@ var _formatMinuteAsString = function(minute) {
     _checkMinuteRange(minute, "Bad range value passed to _formatMinuteAsString, must be between 0 and 60 and nondecimal.");
     minute = minute.toString();
 
-    if (minute.length < 2) {
-	return "0" + minute;
-    } else {
-	return minute;
-    }
+    return _convertUnitToDigital(minute);
 };
 
 /**
@@ -173,7 +162,7 @@ var _convertUnitToDigital = function( timeUnit ) {
     else if (timeUnit.length === 1)
 	return '0' + timeUnit;
     else 
-	throw "An unknown exception occured (bad length";
+	return _convertUnitToDigital(timeUnit);
 };
 
 module.exports._convertUnitToDigital = _convertUnitToDigital;

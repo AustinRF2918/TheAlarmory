@@ -122,7 +122,7 @@ var ClockInterface = function() {
 	    }
 
 	    var tempMHours = TimeFormatter.convertNumericToMillitary(selectedHours, selectedPeriod);
-	    var tempDelta = TimeFormatter.calculateDelta(tempMHours, currentHour, currentMinute, selectedMinutes);
+	    var tempDelta = TimeFormatter.calculateDelta(currentHour, currentMinute, tempMHours, selectedMinutes);
 	    console.log(tempDelta);
 	    $(deltaHoursIndicator).html(tempDelta);
 	};

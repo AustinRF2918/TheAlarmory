@@ -9,21 +9,31 @@
  * @param {string} region - The region which can be American or anything 
  * else.
  */
-var _formatHourAsString = function(hour, region) {
-    if (hour == "0" && region == "American") {
-	return "12";
+var _formatHourAsString = function(hour) {
+
+    if (isNaN(Number(hour))) {
+	throw new TypeError("Bad value passed to format minute.");
     }
 
-    if (hour == "00" && region == "American") {
-	return "12";
+    if (Number(hour) > 11 || Number(hour) < 0 || Number(hour) % 1 != 0) {
+	throw new RangeError("Bad range value passed to _formatHourAsString, must be between 0 and 11 and nondecimal.");
     }
 
-    if (hour.length != 2) {
+    if (typeof hour === 'number')
+	hour = _formatHourAsNumber(hour);
+
+    if (hour === "0")
+	return "12";
+    else if (hour === "00")
+	return "12";
+
+    else if (hour.length !== 2)
 	return "0" + hour;
-    }
-
-    return hour;
+    else
+        return hour;
 };
+
+//module.exports._formatHourAsString = _formatHourAsString;
 
 /**
  * Function utilized by _formatHour to format the hour in the case that 
@@ -35,38 +45,21 @@ var _formatHourAsString = function(hour, region) {
  * @param {string} region - The region which can be American or anything 
  * else.
  */
-var _formatHourAsNumber = function(hour, region) {
+var _formatHourAsNumber = function(hour) {
+    var stringifiedHour = hour.toString();
 
-    if (hour === 0 && region === "American") {
-	return "12";
-    }
-
-    if (hour.toString().length != 2) {
-	return "0" + hour;
-    }
-
-    return hour.toString();
+    if (stringifiedHour.length < 2)
+	return "0" + stringifiedHour;
+    else 
+	return stringifiedHour;
 };
 
 /**
- * A internal method for formatting hours: basically if the hour is zero,
- * and the region is america, it will be printed american style.
- * @function
- * @param {number or string} hour - The hour which we are passing to be 
- * formatted as a number or string.
- * @param {string} region - The region which can be American or anything 
- * else.
+   Alias of formatHourAsString to retain same API.
  */
 
-var _formatHour = function(hour, region) {
-    if (typeof hour === "string") {
-	return _formatHourAsString(hour, region);
-    } else if (typeof hour === "number") {
-	return _formatHourAsNumber(hour, region);
-    } else {
-	return null;
-    }
-};
+var _formatHour = _formatHourAsString;
+//module.exports._formatHour = _formatHourAsString;
 
 /**
  * Function utilized by _formatMinute to format the minute in the case that 
@@ -78,27 +71,19 @@ var _formatHour = function(hour, region) {
  */
 
 var _formatMinuteAsString = function(minute) {
-    if (minute.length != 2) {
-	return "0" + minute;
-    } else {
-	return minute;
-    }
-};
+    if (isNaN(Number(minute)))
+	throw new TypeError("Bad value passed to format minute.");
 
-/**
- * Function utilized by _formatMinute to format the minute in the case that 
- * it a string was passed. Contains interior logic for beautiful 
- * formatting for use in the view.
- * @function
- * @param {number or string} hour - The hour which we are passing to be 
- * formatted as a number or string.
- */
-var _formatMinuteAsNumeric = function(minute) {
-    if (minute.toString().length != 2) {
+    if (Number(minute) > 59 || Number(minute) < 0 || Number(minute) % 1 != 0)
+	throw new RangeError("Bad range value passed to _formatMinuteAsString, must be between 0 and 60 and nondecimal.");
+
+    if (typeof minute === 'number') 
+	minute = minute.toString();
+
+    if (minute.length < 2)
 	return "0" + minute;
-    } else {
-	return minute.toString();
-    }
+    else 
+	return minute;
 };
 
 /**
@@ -108,17 +93,9 @@ var _formatMinuteAsNumeric = function(minute) {
  * @param {number or string} minute - The minute which we are passing to be 
  * formatted as a number or string.
  */
-var _formatMinute = function(minute) {
-    if (typeof minute === "string") {
-	return _formatMinuteAsString(minute);
-    } else if (typeof minute === "number") {
-	return _formatMinuteAsNumeric(minute);
-    } else {
-	return null;
-    }
+var _formatMinute = _formatMinuteAsString; 
 
-    return minute;
-};
+//module.exports._formatMinute = _formatMinute;
 
 /**
  * A internal method for convertin AM/PM in conjunction with hours into
@@ -130,13 +107,24 @@ var _formatMinute = function(minute) {
  * generating a millitary time.
  */
 var _convertNumericToMillitary = function( hour, period ) {
-	if (period == "PM") {
-	    return Number(hour) + 12;
-	} else if (period == "AM") {
-	    return Number(hour);
-	}
-    return null;
+    if (isNaN(Number(hour)))
+	throw new TypeError("Bad value passed to _convertNumericToMillitary.");
+    else
+	var numerifiedHour = Number(hour);
+
+    if (numerifiedHour > 11 || numerifiedHour < 0 || numerifiedHour % 1 != 0)
+	throw new RangeError("Bad range value passed to _convertNumericToMillitary, must be between 0 and 11 and nondecimal.");
+
+    if (period !== "PM" && period !== "AM")
+	throw RangeError("Invalid period passed to _convertNumericToMillitary");
+
+    if (period === "PM")
+	return Number(hour) + 12;
+    else
+	return Number(hour);
 };
+
+//module.exports._convertNumericToMillitary = _convertNumericToMillitary;
 
 /**
  * Converts a millitary time to a nonformal 12 hour format. This function
@@ -146,8 +134,18 @@ var _convertNumericToMillitary = function( hour, period ) {
  * converted to millitary time.
  */
 var _convertMillitaryToNumeric = function( hour ) {
+    if (isNaN(Number(hour)))
+	throw new TypeError("Bad value passed to _convertMillitaryToNumeric.");
+    else
+	var numerifiedHour = Number(hour);
+
+    if (numerifiedHour > 23 || numerifiedHour < 0 || numerifiedHour % 1 != 0)
+	throw new RangeError("Bad range value passed to _convertMillitaryToNumeric, must be between 0 and 23 and nondecimal.");
+
     return hour % 12;
 };
+
+//module.exports._convertMillitaryToNumeric = _convertMillitaryToNumeric;
 
 /**
  * Converts a (potentially) nondigital number to digital
@@ -156,37 +154,48 @@ var _convertMillitaryToNumeric = function( hour ) {
  * converted to digital appearance.
  */
 var _convertUnitToDigital = function( timeUnit ) {
-    if ( timeUnit.toString().length == 1 ) {
-	return "0" + timeUnit.toString();;
-    } else {
-	return timeUnit.toString();
-    }
+    if (isNaN(Number( timeUnit )))
+	throw new TypeError("Bad value passed to _convertUnitToDigital.");
+    else
+	var numerifiedUnit = Number( timeUnit ).toString();
 
-    return null;
+    if (numerifiedUnit.length > 2) 
+	throw new RangeError("Units passed to _convertUnitToDigital must be 1 or 2 digits long.");
+
+    if ( numerifiedUnit.length === 2 )
+	return numerifiedUnit;
+    else if (numerifiedUnit.length === 1)
+	return '0' + numerifiedUnit;
+    else 
+	throw "An unknown exception occured (bad length";
 };
 
-var _calculateDelta = function( millitaryNumber, currentHours, cMinutes, sMinutes) {
-    if (millitaryNumber < currentHours) {
-	return 24 - (Number(currentHours) - millitaryNumber);
-    } else if (millitaryNumber === currentHours) {
-	if (Number(cMinutes) < Number(sMinutes)){
-	  if (sMinutes - cMinutes < 30) {
-	    return millitaryNumber - Number(currentHours);
-	  } else {
-	    return 1;
-	  }
+//module.exports._convertUnitToDigital = _convertUnitToDigital;
 
-	} else {
-	    if (cMinutes - sMinutes < 30 ) {
-		return 24 - (Number(currentHours) - millitaryNumber);
-	    } else {
-		return 0;
-	    }
-	}
-    } else {
-	return millitaryNumber - Number(currentHours);
+var _calculateDelta = function( currentHours, currentMinutes, setHours, setMinutes ) {
+    if (currentHours < setHours) {
+	if (setMinutes >= currentMinutes) 
+	  var deltaHours = setHours - currentHours;
+        else
+	  var deltaHours = setHours - currentHours - 1;
     }
+    else if (currentHours > setHours)  {
+	if (setMinutes >= currentMinutes) 
+	  var deltaHours = 24 - (currentHours - setHours);
+        else
+	  var deltaHours = 24 - (currentHours - setHours + 1);
+    }
+    else {
+	if (setMinutes >= currentMinutes) 
+	    var deltaHours = 0;
+	if (setMinutes < currentMinutes)
+	    var deltaHours = 23;
+    }
+
+    return deltaHours;
 };
+
+//module.exports._calculateDelta = _calculateDelta;
 
 /**
  * A static object for being able to call methods without the instanciation

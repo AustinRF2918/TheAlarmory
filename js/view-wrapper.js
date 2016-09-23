@@ -97,15 +97,9 @@ var ClockInterface = function() {
 		selectedPeriodIndicator = $(periodDisplay);
 	    }
 
-	    if (isAmerican){
-		selectedHoursIndicator.html(TimeFormatter.formatHour(selectedHours, "American"));
-		selectedMinutesIndicator.html(TimeFormatter.formatMinute(selectedMinutes, "American"));
-		selectedPeriodIndicator.html(selectedPeriod);
-	    } else {
-		selectedHoursIndicator.html(TimeFormatter.formatHour(selectedHours, "other"));
-		selectedMinutesIndicator.html(TimeFormatter.formatMinute(selectedMinutes, "other"));
-		selectedPeriodIndicator.html(selectedPeriod);
-	    }
+	    selectedHoursIndicator.html(TimeFormatter.formatHour(selectedHours));
+	    selectedMinutesIndicator.html(TimeFormatter.formatMinute(selectedMinutes));
+	    selectedPeriodIndicator.html(selectedPeriod);
 	};
 
 	//TODO: GIVE RUNDOWN ON THIS FOR DOCS.
@@ -122,7 +116,7 @@ var ClockInterface = function() {
 	    }
 
 	    var tempMHours = TimeFormatter.convertNumericToMillitary(selectedHours, selectedPeriod);
-	    var tempDelta = TimeFormatter.calculateDelta(currentHour, currentMinute, tempMHours, selectedMinutes);
+	    var tempDelta = TimeFormatter.calculateDelta(currentHour, currentMinute, selectedHours, selectedMinutes);
 	    console.log(tempDelta);
 	    $(deltaHoursIndicator).html(tempDelta);
 	};
@@ -150,7 +144,11 @@ var ClockInterface = function() {
 	var _displayCurrent = function() {
 	    var tempMinutes = TimeFormatter.convertUnitToDigital(currentMinute);
 	    
-	    currentHoursIndicator.html(TimeFormatter.convertMillitaryToNumeric(currentHour));
+	    if (currentHour !== 12) {
+		currentHoursIndicator.html(TimeFormatter.convertMillitaryToNumeric(currentHour));
+	    } else {
+		currentHoursIndicator.html("12");
+	    }
 	    currentMinutesIndicator.html(tempMinutes);
 	    currentPeriodIndicator.html(currentPeriod);
 	};

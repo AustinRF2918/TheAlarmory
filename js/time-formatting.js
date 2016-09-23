@@ -1,4 +1,5 @@
 var TimeFormatter = (function() {
+
     /**
     * Function for automatically generating numerical validation conditions
     * and throwing in certain cases
@@ -92,6 +93,7 @@ var TimeFormatter = (function() {
     */
     function _formatHourAsString( hour ) {
 	_validateNumeric( hour,  "Bad value passed to format hour." );
+	console.log(hour);
 	hour = _check12HourRange( hour, "Invalid range passed to format hour." ).toString();
 
 	if ( hour === "0" || hour === "00" || hour === "" || hour === null )  {
@@ -254,10 +256,10 @@ var TimeFormatter = (function() {
     };
 })();
 
-module.exports._formatHourAsString = TimeFormatter.formatHourAsString;
-module.exports._formatHour = TimeFormatter.formatHour;
-module.exports._formatMinute = TimeFormatter.formatMinute;
-module.exports._convertNumericToMillitary = TimeFormatter.convertNumericToMillitary;
-module.exports._convertMillitaryToNumeric = TimeFormatter.convertMillitaryToNumeric;
-module.exports._convertUnitToDigital = TimeFormatter.convertUnitToDigital;
-module.exports._calculateDelta = TimeFormatter.calculateDelta;
+//module.exports._formatHourAsString = TimeFormatter.formatHourAsString;
+//module.exports._formatHour = TimeFormatter.formatHour;
+//module.exports._formatMinute = TimeFormatter.formatMinute;
+//module.exports._convertNumericToMillitary = TimeFormatter.convertNumericToMillitary;
+//module.exports._convertMillitaryToNumeric = TimeFormatter.convertMillitaryToNumeric;
+//module.exports._convertUnitToDigital = TimeFormatter.convertUnitToDigital;
+//module.exports._calculateDelta = TimeFormatter.calculateDelta;

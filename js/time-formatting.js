@@ -1,10 +1,24 @@
+/**
+ * Function for automatically vertifying that a string (or number) is
+ * a numeric. If it can not be, it will throw, otherwise it will return
+ * a numerified result.
+ * @function
+ * @param {number or string} number - Number to be validated
+ * @param {string} msg - Message to throw if number is not valid
+ */
 function _validateNumeric(number, msg) {
     if (isNaN(Number(number)))
 	throw new TypeError(number);
     else
 	return Number(number);
 }
-
+/**
+ * Function for automatically vertifying that a string (or number) is
+ * in a 24 hour range.
+ * @function
+ * @param {number or string} hour - Hour to be validated
+ * @param {string} msg - Message to throw if number is not valid
+ */
 function _check24HourRange(hour, msg) {
     if (Number(hour) > 23 || Number(hour) < 0 || Number(hour) % 1 != 0)
 	throw new RangeError(msg);
@@ -12,6 +26,13 @@ function _check24HourRange(hour, msg) {
 	return Number(hour);
 }
 
+/**
+ * Function for automatically vertifying that a string (or number) is
+ * in a 12 hour range.
+ * @function
+ * @param {number or string} hour - Hour to be validated
+ * @param {string} msg - Message to throw if number is not valid
+ */
 function _check12HourRange(hour, msg) {
     if (Number(hour) > 11 || Number(hour) < 0 || Number(hour) % 1 != 0)
 	throw new RangeError(msg);
@@ -19,6 +40,13 @@ function _check12HourRange(hour, msg) {
 	return Number(hour);
 }
 
+/**
+ * Function for automatically vertifying that a string (or number) is
+ * in a hour (in minutes) range.
+ * @function
+ * @param {number or string} minute - Minute to be validated
+ * @param {string} msg - Message to throw if number is not valid
+ */
 function _checkMinuteRange(minute, msg) {
     if (Number(minute) > 59 || Number(minute) < 0 || Number(minute) % 1 != 0)
 	throw new RangeError(msg);
@@ -47,7 +75,6 @@ function _formatHourAsString(hour) {
     }
 };
 
-module.exports._formatHourAsString = _formatHourAsString;
 
 /**
  * Function utilized by _formatHour to format the hour in the case that 
@@ -71,7 +98,6 @@ var _formatHourAsNumber = function(hour) {
  */
 
 var _formatHour = _formatHourAsString;
-module.exports._formatHour = _formatHourAsString;
 
 /**
  * Function utilized by _formatMinute to format the minute in the case that 
@@ -99,7 +125,6 @@ var _formatMinuteAsString = function(minute) {
  */
 var _formatMinute = _formatMinuteAsString; 
 
-module.exports._formatMinute = _formatMinute;
 
 /**
  * A internal method for convertin AM/PM in conjunction with hours into
@@ -126,7 +151,6 @@ var _convertNumericToMillitary = function( hour, period ) {
     }
 };
 
-module.exports._convertNumericToMillitary = _convertNumericToMillitary;
 
 /**
  * Converts a millitary time to a nonformal 12 hour format. This function
@@ -143,7 +167,6 @@ var _convertMillitaryToNumeric = function( hour ) {
     return hour % 12;
 };
 
-module.exports._convertMillitaryToNumeric = _convertMillitaryToNumeric;
 
 /**
  * Converts a (potentially) nondigital number to digital
@@ -165,7 +188,6 @@ var _convertUnitToDigital = function( timeUnit ) {
 	return _convertUnitToDigital(timeUnit);
 };
 
-module.exports._convertUnitToDigital = _convertUnitToDigital;
 
 var _calculateDelta = function( currentHours, currentMinutes, setHours, setMinutes ) {
     currentHours = _validateNumeric(currentHours,  "Bad value passed to argument 1 of calculate delta.");
@@ -199,7 +221,6 @@ var _calculateDelta = function( currentHours, currentMinutes, setHours, setMinut
     }
 };
 
-module.exports._calculateDelta = _calculateDelta;
 
 /**
  * A static object for being able to call methods without the instanciation
@@ -218,3 +239,10 @@ TimeFormatter.convertMillitaryToNumeric = _convertMillitaryToNumeric;
 TimeFormatter.convertUnitToDigital = _convertUnitToDigital;
 TimeFormatter.calculateDelta = _calculateDelta;
 
+module.exports._formatHourAsString = _formatHourAsString;
+module.exports._formatHour = _formatHourAsString;
+module.exports._formatMinute = _formatMinute;
+module.exports._convertNumericToMillitary = _convertNumericToMillitary;
+module.exports._convertMillitaryToNumeric = _convertMillitaryToNumeric;
+module.exports._convertUnitToDigital = _convertUnitToDigital;
+module.exports._calculateDelta = _calculateDelta;

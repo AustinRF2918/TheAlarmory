@@ -3,185 +3,185 @@ var expect = require('chai').expect;
 var _formatHour = require('../js/time-formatting.js')._formatHourAsString;
 var _formatHour = require('../js/time-formatting.js')._formatHour;
 var _formatMinute = require('../js/time-formatting.js')._formatMinute;
-var _convertNumericToMillitary = require('../js/time-formatting.js')._convertNumericToMillitary;
-var _convertMillitaryToNumeric = require('../js/time-formatting.js')._convertMillitaryToNumeric;
+var _convertHourToMillitary = require('../js/time-formatting.js')._convertHourToMillitary;
+var _convertMillitaryToHour = require('../js/time-formatting.js')._convertMillitaryToHour;
 var _convertUnitToDigital = require('../js/time-formatting.js')._convertUnitToDigital;
 var _convertUnitToDigital = require('../js/time-formatting.js')._convertUnitToDigital;
 var _calculateDelta = require('../js/time-formatting.js')._calculateDelta;
 
 describe('Formats hours as strings', function() {
-    it('should format edge cases in various regions.', function() {
-	expect(_formatHour("11") == "11").to.be.true; 
-	expect(_formatHour("0") == "12").to.be.true; 
-	expect(_formatHour("1") == "01").to.be.true; 
-	expect(_formatHour("6") == "06").to.be.true; 
+    it('Should format edge cases in various regions.', function() {
+	expect(_formatHour("11") == "11").to.be.true;
+	expect(_formatHour("0") == "12").to.be.true;
+	expect(_formatHour("1") == "01").to.be.true;
+	expect(_formatHour("6") == "06").to.be.true;
     });
 
-    it ('should format double digit strings.', function() {
-	expect(_formatHour("11") == "11").to.be.true; 
-	expect(_formatHour("10") == "10").to.be.true; 
+    it ('Should format double digit strings.', function() {
+	expect(_formatHour("11") == "11").to.be.true;
+	expect(_formatHour("10") == "10").to.be.true;
     });
 
-    it ('should easily convert from number to string as well.', function() {
-	expect(_formatHour(1) == "01").to.be.true; 
-	expect(_formatHour(7) == "07").to.be.true; 
+    it ('Should easily convert from number to string as well.', function() {
+	expect(_formatHour(1) == "01").to.be.true;
+	expect(_formatHour(7) == "07").to.be.true;
     });
 
-    it ('should have same result for numeric and string up to 10.', function() {
+    it ('Should have same result for numeric and string up to 10.', function() {
 	for ( let i = 0; i < 10; i++ ) {
 	    expect(_formatHour(i) === _formatHour(i.toString())).to.be.true;
 	}
     });
 
-    it ('should have same result for numeric and string up to 10 to 12.', function() {
+    it ('Should have same result for numeric and string up to 10 to 12.', function() {
 	for ( let i = 10; i < 12; i++ ) {
 	    expect(_formatHour(i) === _formatHour(i.toString())).to.be.true;
 	}
     });
 
     it ('Should throw on any value greater than 11.', function() {
-	expect(function(){_formatHour(12)}).to.throw(RangeError); 
-	expect(function(){_formatHour(13)}).to.throw(RangeError); 
-	expect(function(){_formatHour(-1)}).to.throw(RangeError); 
+	expect(function(){_formatHour(12)}).to.throw(RangeError);
+	expect(function(){_formatHour(13)}).to.throw(RangeError);
+	expect(function(){_formatHour(-1)}).to.throw(RangeError);
     });
 
     it ('Should throw on any value greater than 11 and decimals (strings).', function() {
-	expect(function(){_formatHour("12")}).to.throw(RangeError); 
-	expect(function(){_formatHour("13")}).to.throw(RangeError); 
-	expect(function(){_formatHour("-1")}).to.throw(RangeError); 
-	expect(function(){_formatHour("11.2")}).to.throw(RangeError); 
-	expect(function(){_formatHour("0.1")}).to.throw(RangeError); 
+	expect(function(){_formatHour("12")}).to.throw(RangeError);
+	expect(function(){_formatHour("13")}).to.throw(RangeError);
+	expect(function(){_formatHour("-1")}).to.throw(RangeError);
+	expect(function(){_formatHour("11.2")}).to.throw(RangeError);
+	expect(function(){_formatHour("0.1")}).to.throw(RangeError);
     });
 
     it ('Should throw type errors.', function() {
-	expect(function(){_formatHour("A")}).to.throw(TypeError); 
-	expect(function(){_formatHour("5A")}).to.throw(TypeError); 
-	expect(function(){_formatHour("Bob")}).to.throw(TypeError); 
+	expect(function(){_formatHour("A")}).to.throw(TypeError);
+	expect(function(){_formatHour("5A")}).to.throw(TypeError);
+	expect(function(){_formatHour("Bob")}).to.throw(TypeError);
     });
 
 
     it ('Should throw on any value greater not an integer.', function() {
-	expect(function(){_formatHour(11.2)}).to.throw(RangeError); 
-	expect(function(){_formatHour(0.1)}).to.throw(RangeError); 
+	expect(function(){_formatHour(11.2)}).to.throw(RangeError);
+	expect(function(){_formatHour(0.1)}).to.throw(RangeError);
     });
 });
 
 describe('Minute formatting functions work.', function() {
-    it( 'Should properly do edge case minutes', function() {
-	expect(_formatMinute("0") == "00").to.be.true; 
-	expect(_formatMinute("59") == "59").to.be.true; 
-	expect(_formatMinute("30") == "30").to.be.true; 
+    it( 'Should properly do edge case minutes.', function() {
+	expect(_formatMinute("0") == "00").to.be.true;
+	expect(_formatMinute("59") == "59").to.be.true;
+	expect(_formatMinute("30") == "30").to.be.true;
     });
 
     it( 'Should convert numerics to formatted minutes.', function() {
-	expect(_formatMinute(0) == "00").to.be.true; 
-	expect(_formatMinute(9) == "09").to.be.true; 
-	expect(_formatMinute(45) == "45").to.be.true; 
-	expect(_formatMinute(59) == "59").to.be.true; 
+	expect(_formatMinute(0) == "00").to.be.true;
+	expect(_formatMinute(9) == "09").to.be.true;
+	expect(_formatMinute(45) == "45").to.be.true;
+	expect(_formatMinute(59) == "59").to.be.true;
     });
 
     it ('Should throw on any value greater or less than (59, 0).', function() {
-	expect(function(){_formatMinute(60)}).to.throw(RangeError); 
-	expect(function(){_formatMinute(120)}).to.throw(RangeError); 
-	expect(function(){_formatMinute(-1)}).to.throw(RangeError); 
-	expect(function(){_formatMinute(-120)}).to.throw(RangeError); 
+	expect(function(){_formatMinute(60)}).to.throw(RangeError);
+	expect(function(){_formatMinute(120)}).to.throw(RangeError);
+	expect(function(){_formatMinute(-1)}).to.throw(RangeError);
+	expect(function(){_formatMinute(-120)}).to.throw(RangeError);
     });
 
     it ('Should throw on any value that is a decimal.', function() {
-	expect(function(){_formatMinute(30.2)}).to.throw(RangeError); 
-	expect(function(){_formatMinute(10.2)}).to.throw(RangeError); 
-	expect(function(){_formatMinute(-1.1)}).to.throw(RangeError); 
-	expect(function(){_formatMinute(-120.1)}).to.throw(RangeError); 
+	expect(function(){_formatMinute(30.2)}).to.throw(RangeError);
+	expect(function(){_formatMinute(10.2)}).to.throw(RangeError);
+	expect(function(){_formatMinute(-1.1)}).to.throw(RangeError);
+	expect(function(){_formatMinute(-120.1)}).to.throw(RangeError);
     });
 
     it ('Should throw type errors.', function() {
-	expect(function(){_formatMinute("A")}).to.throw(TypeError); 
-	expect(function(){_formatMinute("5A")}).to.throw(TypeError); 
-	expect(function(){_formatMinute("Bob")}).to.throw(TypeError); 
+	expect(function(){_formatMinute("A")}).to.throw(TypeError);
+	expect(function(){_formatMinute("5A")}).to.throw(TypeError);
+	expect(function(){_formatMinute("Bob")}).to.throw(TypeError);
     });
 });
 
 describe('Converting numeric to millitary should function.', function() {
 
-    it ('should throw type errors for invalid numerics.', function() {
-	expect(function(){_convertNumericToMillitary("A", "AM")}).to.throw(TypeError);
+    it ('Should throw type errors for invalid numerics.', function() {
+	expect(function(){_convertHourToMillitary("A", "AM")}).to.throw(TypeError);
     });
 
-    it ('should throw range errors for period.', function() {
-	expect(function(){_convertNumericToMillitary(0, "LM")}).to.throw(RangeError);
-	expect(function(){_convertNumericToMillitary(0, "AM")}).to.not.throw(RangeError);
-	expect(function(){_convertNumericToMillitary(0, "PM")}).to.not.throw(RangeError);
+    it ('Should throw range errors for period.', function() {
+	expect(function(){_convertHourToMillitary(0, "LM")}).to.throw(RangeError);
+	expect(function(){_convertHourToMillitary(0, "AM")}).to.not.throw(RangeError);
+	expect(function(){_convertHourToMillitary(0, "PM")}).to.not.throw(RangeError);
     });
 
-    it ('should throw range errors for hour.', function() {
-	expect(function(){_convertNumericToMillitary(-1, "AM")}).to.throw(RangeError);
-	expect(function(){_convertNumericToMillitary(0, "AM")}).to.not.throw(RangeError);
-	expect(function(){_convertNumericToMillitary(11, "AM")}).to.not.throw(RangeError);
-	expect(function(){_convertNumericToMillitary(12, "PM")}).to.throw(RangeError);
-	expect(function(){_convertNumericToMillitary(100, "PM")}).to.throw(RangeError);
+    it ('Should throw range errors for hour.', function() {
+	expect(function(){_convertHourToMillitary(-1, "AM")}).to.throw(RangeError);
+	expect(function(){_convertHourToMillitary(0, "AM")}).to.not.throw(RangeError);
+	expect(function(){_convertHourToMillitary(11, "AM")}).to.not.throw(RangeError);
+	expect(function(){_convertHourToMillitary(12, "PM")}).to.throw(RangeError);
+	expect(function(){_convertHourToMillitary(100, "PM")}).to.throw(RangeError);
     });
 
-    it ('should convert to PM (via string) properly', function() {
+    it ('Should convert to PM (via string) properly.', function() {
 	for (let i = 0; i < 12; i++)
-	  expect(_convertNumericToMillitary(i, "PM") === i + 12).to.be.true;
+	  expect(_convertHourToMillitary(i, "PM") === i + 12).to.be.true;
     });
 
-    it ('should convert to AM (via string) properly', function() {
+    it ('Should convert to AM (via string) properly.', function() {
 	for (let i = 0; i < 12; i++)
-	  expect(_convertNumericToMillitary(i, "AM") === i).to.be.true;
+	  expect(_convertHourToMillitary(i, "AM") === i).to.be.true;
     });
 
-    it ('should convert to PM (via string) properly', function() {
+    it ('Should convert to PM (via string) properly.', function() {
 	for (let i = 0; i < 12; i++)
-	    expect(_convertNumericToMillitary(i.toString(), "PM") === i + 12).to.be.true;
+	    expect(_convertHourToMillitary(i.toString(), "PM") === i + 12).to.be.true;
     });
 
-    it ('should convert to AM (via string) properly', function() {
+    it ('Should convert to AM (via string) properly.', function() {
 	for (let i = 0; i < 12; i++)
-	    expect(_convertNumericToMillitary(i.toString(), "AM") === i).to.be.true;
+	    expect(_convertHourToMillitary(i.toString(), "AM") === i).to.be.true;
     });
 });
 
 describe('Converting millitary to numeric should function.', function() {
-    it ('should throw type errors for invalid numerics.', function() {
-	expect(function(){_convertMillitaryToNumeric("A")}).to.throw(TypeError);
-	expect(function(){_convertMillitaryToNumeric(1)}).to.not.throw(TypeError);
-	expect(function(){_convertMillitaryToNumeric("1")}).to.not.throw(TypeError);
+    it ('Should throw type errors for invalid numerics.', function() {
+	expect(function(){_convertMillitaryToHour("A")}).to.throw(TypeError);
+	expect(function(){_convertMillitaryToHour(1)}).to.not.throw(TypeError);
+	expect(function(){_convertMillitaryToHour("1")}).to.not.throw(TypeError);
     });
 
-    it ('should throw range errors for hour.', function() {
-	expect(function(){_convertMillitaryToNumeric(-1)}).to.throw(RangeError);
-	expect(function(){_convertMillitaryToNumeric(0)}).to.not.throw(RangeError);
-	expect(function(){_convertMillitaryToNumeric(23)}).to.not.throw(RangeError);
-	expect(function(){_convertMillitaryToNumeric(24)}).to.throw(RangeError);
-	expect(function(){_convertMillitaryToNumeric(100)}).to.throw(RangeError);
+    it ('Should throw range errors for hour.', function() {
+	expect(function(){_convertMillitaryToHour(-1)}).to.throw(RangeError);
+	expect(function(){_convertMillitaryToHour(0)}).to.not.throw(RangeError);
+	expect(function(){_convertMillitaryToHour(23)}).to.not.throw(RangeError);
+	expect(function(){_convertMillitaryToHour(24)}).to.throw(RangeError);
+	expect(function(){_convertMillitaryToHour(100)}).to.throw(RangeError);
     });
 
-    it ('should convert general numerics.', function() {
+    it ('Should convert general numerics.', function() {
 	for (let i = 0; i < 11; i++)
-	  expect(_convertMillitaryToNumeric(i) === i).to.be.true;
+	  expect(_convertMillitaryToHour(i) === i).to.be.true;
 
 	for (let i = 12; i < 24; i++)
-	  expect(_convertMillitaryToNumeric(i) === i - 12).to.be.true;
+	  expect(_convertMillitaryToHour(i) === i - 12).to.be.true;
     });
 
-    it ('should convert general numerics (string).', function() {
+    it ('Should convert general numerics (string).', function() {
 	for (let i = 0; i < 11; i++)
-	    expect(_convertMillitaryToNumeric(i.toString()) === i).to.be.true;
+	    expect(_convertMillitaryToHour(i.toString()) === i).to.be.true;
 
 	for (let i = 12; i < 24; i++)
-	    expect(_convertMillitaryToNumeric(i.toString()) === i - 12).to.be.true;
+	    expect(_convertMillitaryToHour(i.toString()) === i - 12).to.be.true;
     });
 });
 
 describe('Should convert units to digital', function() {
-    it ('should throw type errors for invalid numerics.', function() {
+    it ('Should throw type errors for invalid numerics.', function() {
 	expect(function(){_convertUnitToDigital("A")}).to.throw(TypeError);
 	expect(function(){_convertUnitToDigital("1A")}).to.throw(TypeError);
 	expect(function(){_convertUnitToDigital(1)}).to.not.throw(TypeError);
     });
 
-    it ('should throw range errors for larger numerics.', function() {
+    it ('Should throw range errors for larger numerics.', function() {
 	expect(function(){_convertUnitToDigital("111")}).to.throw(RangeError);
 	expect(function(){_convertUnitToDigital(121)}).to.throw(RangeError);
 	expect(function(){_convertUnitToDigital(1)}).to.not.throw(TypeError);
@@ -199,15 +199,15 @@ describe('Should convert units to digital', function() {
     });
 });
 
-describe('Calcultating delta should function.', function() {
-    it ('should throw type errors for invalid numerics.', function() {
+describe('Calculating deltas should function.', function() {
+    it ('Should throw type errors for invalid numerics.', function() {
 	expect(function(){_calculateDelta("A", 1, 1, 1)}).to.throw(TypeError);
 	expect(function(){_calculateDelta(1, "A", 1, 1)}).to.throw(TypeError);
 	expect(function(){_calculateDelta(1, 1, "A", 1)}).to.throw(TypeError);
 	expect(function(){_calculateDelta(1, 1, 1, "A")}).to.throw(TypeError);
     });
 
-    it ('should throw range errors for all arguments.', function() {
+    it ('Should throw range errors for all arguments.', function() {
 	expect(function(){_calculateDelta(25, 1, 1, 1)}).to.throw(RangeError);
 	expect(function(){_calculateDelta(-1, 1, 1, 1)}).to.throw(RangeError);
 	expect(function(){_calculateDelta(5, 1, 1, 1)}).to.not.throw(RangeError);
@@ -225,35 +225,35 @@ describe('Calcultating delta should function.', function() {
 	expect(function(){_calculateDelta(1, 1, 1, 1)}).to.not.throw(RangeError);
     });
 
-    it ('should properly compute simple hours. (next day.)', function() {
+    it ('Should properly compute simple hours. (next day.)', function() {
 	for (let i = 0; i < 22; i++) {
 	    expect(_calculateDelta( 22, 2, i, 2 )).to.equal(2 + i);
 	}
     });
 
-    it ('should properly compute simple hours. (today.)', function() {
+    it ('Should properly compute simple hours. (today.)', function() {
 	for (let i = 2; i < 22; i++) {
 	    expect(_calculateDelta( 1, 2, i, 2 )).to.equal(i - 1);
 	}
     });
 
-    it ('should properly compute 0 hours.', function() {
+    it ('Should properly compute 0 hours.', function() {
 	expect(_calculateDelta( 1, 2, 1, 2 )).to.equal(0);
 	expect(_calculateDelta( 1, 2, 1, 3 )).to.equal(0);
 	expect(_calculateDelta( 1, 2, 2, 1 )).to.equal(0);
     });
 
-    it ('should properly compute 24 hours.', function() {
+    it ('Should properly compute 24 hours.', function() {
 	expect(_calculateDelta( 1, 2, 1, 1 )).to.equal(23);
     });
 
-    it ('should properly compute range hours.', function() {
+    it ('Should properly compute range hours.', function() {
 	for ( let i = 2; i < 23 ; i++) {
 	    expect(_calculateDelta( 1, 2, i, 1 )).to.equal(i - 2);
 	}
     });
 
-    it ('should properly compute range hours.', function() {
+    it ('Should properly compute range hours.', function() {
 	for ( let i = 0; i < 23 ; i++) {
 	    expect(_calculateDelta( 23, 2, i, 1 )).to.equal(i);
 	}

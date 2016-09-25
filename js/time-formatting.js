@@ -48,6 +48,7 @@ var TimeFormatter = (function() {
     function _isDecimal( val ) {
 	return !( val % 1 );
     }
+
     /**
     * Function for automatically vertifying that a string (or number) is
     * in a 24 hour range.
@@ -91,62 +92,30 @@ var TimeFormatter = (function() {
     * @param {string} region - The region which can be American or anything 
     * else.
     */
-    function _formatHourAsString( hour ) {
+    function _formatHour( hour ) {
 	_validateNumeric( hour,  "Bad value passed to format hour." );
-	console.log(hour);
 	hour = _check12HourRange( hour, "Invalid range passed to format hour." ).toString();
 
-	if ( hour === "0" || hour === "00" || hour === "" || hour === null )  {
+	if ( hour === 0 || hour === "0" || hour === "00" || hour === "" || hour === null )  {
 	    hour = "12";
 	}
 
 	return _convertUnitToDigital( hour );
     };
 
-
     /**
-    * Function utilized by _formatHour to format the hour in the case that 
-    * it was a string. Contains interior logic for beautiful formatting 
-    * for use in the view.
-    * @function
-    * @param {number or string} hour - The hour which we are passing to be 
-    * formatted as a number or string.
-    * @param {string} region - The region which can be American or anything 
-    * else.
-    */
-    var _formatHourAsNumber = function( hour ) {
-	hour = _validateNumeric( hour,  "Bad value passed to format hour as number." ).toString();
-	return _convertUnitToDigital( hour );
-    };
-
-    /**
-    Alias of formatHourAsString to retain same API.
-    */
-    var _formatHour = _formatHourAsString;
-
-    /**
-    * Function utilized by _formatMinute to format the minute in the case that 
+    * Function to format the minute in the case that 
     * a numerical string was passed. Contains interior logic for beautiful 
     * formatting for use in the view.
     * @function
     * @param {number or string} hour - The hour which we are passing to be 
     * formatted as a number or string.
     */
-    var _formatMinuteAsString = function(minute) {
+    var _formatMinute = function(minute) {
 	_validateNumeric( minute,  "Bad value passed to format minute as string." );
 	minute = _checkMinuteRange( minute, "Bad range value passed to _formatMinuteAsString, must be between 0 and 60 and nondecimal." ).toString();
 	return _convertUnitToDigital( minute );
     };
-
-    /**
-    * A internal method for formatting minutes: basically if the minute is below,
-    * 10, it will add a zero to make it look digital.
-    * @function
-    * @param {number or string} minute - The minute which we are passing to be 
-    * formatted as a number or string.
-    */
-    var _formatMinute = _formatMinuteAsString; 
-
 
     /**
     * An internal method for converting AM/PM in conjunction with hours into
@@ -157,7 +126,7 @@ var TimeFormatter = (function() {
     * @param {string} period - The AM/PM parameter which will assist in
     * generating a millitary time.
     */
-    var _convertNumericToMillitary = function( hour, period ) {
+    var _convertHourToMillitary = function( hour, period ) {
 	_validateNumeric( hour,  "Bad value passed to convert numberic to millitary." );
 	hour = _check12HourRange( hour, "Bad range value passed to convert numeric to millitary." );
 
@@ -165,7 +134,8 @@ var TimeFormatter = (function() {
 	    throw RangeError( "Invalid period passed to _convertNumericToMillitary" );
 	}
 
-	period === "PM" ? hour += 12 : null;
+	( period === "PM" ) ? ( hour += 12 ) : ( null );
+
 	return hour;
     };
 
@@ -177,7 +147,7 @@ var TimeFormatter = (function() {
     * @param {number} hour - The hour which we are passing to be 
     * converted to millitary time.
     */
-    var _convertMillitaryToNumeric = function( hour ) {
+    var _convertMillitaryToHour = function( hour ) {
 	_validateNumeric( hour,  "Bad value passed to convert millitary to numeric." );
 	hour = _check24HourRange( hour, "Invalid range passed to format hour." );
 	return hour % 12;
@@ -249,17 +219,17 @@ var TimeFormatter = (function() {
     return {
 	formatMinute: _formatMinute,
 	formatHour: _formatHour,
-	convertNumericToMillitary: _convertNumericToMillitary,
-	convertMillitaryToNumeric: _convertMillitaryToNumeric,
+	convertHourToMillitary: _convertHourToMillitary,
+	convertMillitaryToHour: _convertMillitaryToHour,
 	convertUnitToDigital: _convertUnitToDigital,
 	calculateDelta: _calculateDelta
     };
 })();
 
-//module.exports._formatHourAsString = TimeFormatter.formatHourAsString;
-//module.exports._formatHour = TimeFormatter.formatHour;
-//module.exports._formatMinute = TimeFormatter.formatMinute;
-//module.exports._convertNumericToMillitary = TimeFormatter.convertNumericToMillitary;
-//module.exports._convertMillitaryToNumeric = TimeFormatter.convertMillitaryToNumeric;
-//module.exports._convertUnitToDigital = TimeFormatter.convertUnitToDigital;
-//module.exports._calculateDelta = TimeFormatter.calculateDelta;
+module.exports._formatHourAsString = TimeFormatter.formatHourAsString;
+module.exports._formatHour = TimeFormatter.formatHour;
+module.exports._formatMinute = TimeFormatter.formatMinute;
+module.exports._convertNumericToMillitary = TimeFormatter.convertHourToMillitary;
+module.exports._convertMillitaryToNumeric = TimeFormatter.convertMillitaryToHour;
+module.exports._convertUnitToDigital = TimeFormatter.convertUnitToDigital;
+module.exports._calculateDelta = TimeFormatter.calculateDelta;

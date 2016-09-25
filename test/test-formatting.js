@@ -1,11 +1,9 @@
 var expect = require('chai').expect;
 
-var _formatHour = require('../js/time-formatting.js')._formatHourAsString;
 var _formatHour = require('../js/time-formatting.js')._formatHour;
 var _formatMinute = require('../js/time-formatting.js')._formatMinute;
 var _convertHourToMillitary = require('../js/time-formatting.js')._convertHourToMillitary;
 var _convertMillitaryToHour = require('../js/time-formatting.js')._convertMillitaryToHour;
-var _convertUnitToDigital = require('../js/time-formatting.js')._convertUnitToDigital;
 var _convertUnitToDigital = require('../js/time-formatting.js')._convertUnitToDigital;
 var _calculateDelta = require('../js/time-formatting.js')._calculateDelta;
 

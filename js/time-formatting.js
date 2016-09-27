@@ -226,6 +226,7 @@ var TimeFormatter = (function() {
     };
 })();
 
+module.exports.TimeFormatter = TimeFormatter;
 module.exports._formatHourAsString = TimeFormatter.formatHourAsString;
 module.exports._formatHour = TimeFormatter.formatHour;
 module.exports._formatMinute = TimeFormatter.formatMinute;

@@ -1,3 +1,5 @@
+var TimeFormatter = require('../js/time-formatting.js').TimeFormatter;
+
 var _checkTDInstantiate = function( value ) {
     return (typeof value === "string");
 };
@@ -9,13 +11,46 @@ var TimeDisplayComponent = function( DOMId ){
 
     return ( function( ) {
 	var _internalDOMIdentifier = DOMId;
-	var _$jq = $(_internalDOMIdentifier);
-	var renderJQ = function() {
+	var $el = $(_internalDOMIdentifier);
+
+	var _currentHours = TimeFormatter.formatHour( 0 );
+	var _currentMinutes = TimeFormatter.formatMinute( 0 );
+	var _currentPeriod = "AM";
+
+	var _generateTemplate = function() {
+	    var tag = '';
+	    tag += '<h3 class="text-body text-extra">';
+	    tag +=   '<strong>';
+	    tag +=     'At ';
+	    tag +=     '<span id="hour-alarm">' + _currentHours + '</span>';
+	    tag +=     '<span id="exxtra">' + ':' + '</span>';
+	    tag +=     '<span id="minute-alarm">' + _currentMinutes + '</span>';
+	    tag +=     '<span id="when-alarm">' + _currentPeriod + '</span>';
+	    tag +=   '</strong>';
+	    tag += '</h3>';
+	    return tag;
+	};
+	
+	var _render = function() {
+	    $el.html( _generateTemplate() );
+	};
+
+	var _pushTime = function( hour, minute, period ) {
+	    _currentHours = TimeFormatter.formatHour(hour);
+	    _currentMinutes = TimeFormatter.formatMinute(minute);
+
+	    if ( period === "AM" || period === "PM" ) {
+	      _currentPeriod = period;
+	    } else {
+		throw TypeError( "Invalid period passed to period parameters: must be 'AM' or 'PM'" );
+	    }
 	};
 
 	return {
-	    _DOMIdentifier: _internalDOMIdentifier,
-	    render: renderJQ,
+	    DOMIdentifier: _internalDOMIdentifier,
+	    render: _render,
+	    pushTime: _pushTime,
+	    __generateTemplate: _generateTemplate
 	};
     })( );
 };

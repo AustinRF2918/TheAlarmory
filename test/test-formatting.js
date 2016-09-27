@@ -3,6 +3,7 @@ var expect = require('chai').expect;
 var _formatHour = require('../js/time-formatting.js')._formatHour;
 var _formatMinute = require('../js/time-formatting.js')._formatMinute;
 var _formatPeriod = require('../js/time-formatting.js')._formatPeriod;
+var _getPeriod = require('../js/time-formatting.js')._getPeriod;
 var _convertHourToMillitary = require('../js/time-formatting.js')._convertHourToMillitary;
 var _convertMillitaryToHour = require('../js/time-formatting.js')._convertMillitaryToHour;
 var _convertUnitToDigital = require('../js/time-formatting.js')._convertUnitToDigital;
@@ -259,7 +260,7 @@ describe('Calculating deltas should function.', function() {
     });
 });
 
-describe('Calculating deltas should function.', function() {
+describe('AM and PM formatter should function.', function() {
     it ('Should throw type errors for invalid strings.', function() {
 	expect( function() {
 	    _formatPeriod( 213 );
@@ -272,7 +273,7 @@ describe('Calculating deltas should function.', function() {
 	}).to.throw(TypeError);
     });
 
-    it ('Format all AMs properly.', function() {
+    it ('Should format all AMs properly.', function() {
 	expect( _formatPeriod( "am" ) == "AM" );
 	expect( _formatPeriod( "AM" ) == "AM" );
 	expect( _formatPeriod( "aM" ) == "AM" );
@@ -281,7 +282,7 @@ describe('Calculating deltas should function.', function() {
 	expect( _formatPeriod( "A" ) == "AM" );
     });
 
-    it ('Format all PMs properly.', function() {
+    it ('Should format all PMs properly.', function() {
 	expect( _formatPeriod( "pm" ) == "PM" );
 	expect( _formatPeriod( "PM" ) == "PM" );
 	expect( _formatPeriod( "pM" ) == "PM" );
@@ -291,3 +292,32 @@ describe('Calculating deltas should function.', function() {
     });
 });
 
+
+describe('Should be able to extract periods from hours.', function() {
+    it ('Should throw type errors for invalid numerics.', function() {
+	expect(function(){_getPeriod("A")}).to.throw(TypeError);
+	expect(function(){_getPeriod(1)}).to.not.throw(TypeError);
+	expect(function(){_getPeriod("1")}).to.not.throw(TypeError);
+    });
+
+    it ('Should throw range errors for hour.', function() {
+	expect(function(){_getPeriod(-1)}).to.throw(RangeError);
+	expect(function(){_getPeriod(0)}).to.not.throw(RangeError);
+	expect(function(){_getPeriod(23)}).to.not.throw(RangeError);
+	expect(function(){_getPeriod(24)}).to.throw(RangeError);
+	expect(function(){_getPeriod(100)}).to.throw(RangeError);
+    });
+
+
+    it ('Should properly get all AM numerics.', function() {
+	for ( let i = 0; i < 13; i++ ) {
+	    expect( _getPeriod(i) == "AM" ).to.be.true;
+	}
+    });
+
+    it ('Should properly get all PM numerics.', function() {
+	for ( let i = 13; i < 24; i++ ) {
+	    expect( _getPeriod(i) == "PM" ).to.be.true;
+	}
+    });
+});

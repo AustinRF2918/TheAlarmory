@@ -35,18 +35,18 @@ describe('Properly renders tags', function() {
     });
 
     it ('Should render a proper h3 tag when stuff is passed in', function() {
-	tds.pushTime( 2, 5, "AM" );
+	tds.__pushTime( 2, 5, "AM" );
 	expect( tds.__generateTemplate() === '<h3 class="text-body text-extra"><strong>At <span id="hour-alarm">02</span><span id="exxtra">:</span><span id="minute-alarm">05</span><span id="when-alarm">AM</span></strong></h3>' ).to.be.true;
     });
 
     it ('Should properly render PMs', function() {
-	tds.pushTime( 2, 5, "PM" );
+	tds.__pushTime( 2, 5, "PM" );
 	expect( tds.__generateTemplate() === '<h3 class="text-body text-extra"><strong>At <span id="hour-alarm">02</span><span id="exxtra">:</span><span id="minute-alarm">05</span><span id="when-alarm">PM</span></strong></h3>' ).to.be.true;
     });
 
     it ('Should throw with improper period arguments.', function() {
 	expect( function() {
-	  tds.pushTime( 2, 5, "STDT" );
+	  tds.__pushTime( 2, 5, "STDT" );
 	}).to.throw();
     });
 

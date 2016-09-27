@@ -179,6 +179,20 @@ var TimeFormatter = (function() {
 	return hour % 12;
     };
 
+    /**
+    * Gets a period from an hour string or numeric.
+    * @function
+    * @param {number} hour - The hour which we are passing to be 
+    * converted to millitary time.
+    */
+    var _getPeriod = function( hour ) {
+	_validateNumeric( hour,  "Bad value passed to getPeriod." );
+	hour = _check24HourRange( hour, "Invalid range passed to getPeriod." );
+	hour = hour > 12 ? 'PM' : 'AM';
+
+	return hour;
+    };
+
 
     /**
     * Converts a (potentially) nondigital number to digital
@@ -246,6 +260,7 @@ var TimeFormatter = (function() {
 	formatMinute: _formatMinute,
 	formatHour: _formatHour,
 	formatPeriod: _formatPeriod,
+	getPeriod: _getPeriod,
 	convertHourToMillitary: _convertHourToMillitary,
 	convertMillitaryToHour: _convertMillitaryToHour,
 	convertUnitToDigital: _convertUnitToDigital,
@@ -257,6 +272,7 @@ module.exports.TimeFormatter = TimeFormatter;
 module.exports._formatHour = TimeFormatter.formatHour;
 module.exports._formatMinute = TimeFormatter.formatMinute;
 module.exports._formatPeriod = TimeFormatter.formatPeriod;
+module.exports._getPeriod = TimeFormatter.getPeriod;
 module.exports._convertHourToMillitary = TimeFormatter.convertHourToMillitary;
 module.exports._convertMillitaryToHour = TimeFormatter.convertMillitaryToHour;
 module.exports._convertUnitToDigital = TimeFormatter.convertUnitToDigital;

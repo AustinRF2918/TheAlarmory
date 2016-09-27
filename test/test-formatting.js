@@ -2,6 +2,7 @@ var expect = require('chai').expect;
 
 var _formatHour = require('../js/time-formatting.js')._formatHour;
 var _formatMinute = require('../js/time-formatting.js')._formatMinute;
+var _formatPeriod = require('../js/time-formatting.js')._formatPeriod;
 var _convertHourToMillitary = require('../js/time-formatting.js')._convertHourToMillitary;
 var _convertMillitaryToHour = require('../js/time-formatting.js')._convertMillitaryToHour;
 var _convertUnitToDigital = require('../js/time-formatting.js')._convertUnitToDigital;
@@ -255,6 +256,38 @@ describe('Calculating deltas should function.', function() {
 	for ( let i = 0; i < 23 ; i++) {
 	    expect(_calculateDelta( 23, 2, i, 1 )).to.equal(i);
 	}
+    });
+});
+
+describe('Calculating deltas should function.', function() {
+    it ('Should throw type errors for invalid strings.', function() {
+	expect( function() {
+	    _formatPeriod( 213 );
+	}).to.throw(TypeError);
+    });
+
+    it ('Should throw type errors for invalid strings.', function() {
+	expect( function() {
+	    _formatPeriod( "FS" );
+	}).to.throw(TypeError);
+    });
+
+    it ('Format all AMs properly.', function() {
+	expect( _formatPeriod( "am" ) == "AM" );
+	expect( _formatPeriod( "AM" ) == "AM" );
+	expect( _formatPeriod( "aM" ) == "AM" );
+	expect( _formatPeriod( "Am" ) == "AM" );
+	expect( _formatPeriod( "a" ) == "AM" );
+	expect( _formatPeriod( "A" ) == "AM" );
+    });
+
+    it ('Format all PMs properly.', function() {
+	expect( _formatPeriod( "pm" ) == "PM" );
+	expect( _formatPeriod( "PM" ) == "PM" );
+	expect( _formatPeriod( "pM" ) == "PM" );
+	expect( _formatPeriod( "Pm" ) == "PM" );
+	expect( _formatPeriod( "P" ) == "PM" );
+	expect( _formatPeriod( "p" ) == "PM" );
     });
 });
 

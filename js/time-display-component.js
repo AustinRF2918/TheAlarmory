@@ -38,19 +38,14 @@ var TimeDisplayComponent = function( DOMId ){
 	var _pushTime = function( hour, minute, period ) {
 	    _currentHours = TimeFormatter.formatHour(hour);
 	    _currentMinutes = TimeFormatter.formatMinute(minute);
-
-	    if ( period === "AM" || period === "PM" ) {
-	      _currentPeriod = period;
-	    } else {
-		throw TypeError( "Invalid period passed to period parameters: must be 'AM' or 'PM'" );
-	    }
+	    _currentPeriod = TimeFormatter.formatPeriod(period);
 	};
 
 	return {
-	    DOMIdentifier: _internalDOMIdentifier,
+	    __DOMIdentifier: _internalDOMIdentifier,
+	    __generateTemplate: _generateTemplate,
 	    render: _render,
-	    pushTime: _pushTime,
-	    __generateTemplate: _generateTemplate
+	    pushTime: _pushTime
 	};
     })( );
 };

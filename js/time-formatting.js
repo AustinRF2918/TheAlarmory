@@ -104,6 +104,32 @@ var TimeFormatter = (function() {
     };
 
     /**
+    * Function for formatting general periods that may be passed by
+    * a program: we must make certain that something that can be 
+    * identified as AM or PM
+    * The following can be interpreted as AM: [ AM, A, am, a, aM, Am, .. ]
+    * The following can be interpreted as PM: [ PM, P, pm, p, pM, Pm, .. ]
+    * @function
+    * @param {number or string} period - The hour which we are passing to be 
+    * formatted as a number or string.
+    */
+    function _formatPeriod( period ) {
+	if ( typeof period !== 'string' ) {
+	    throw TypeError( "Invalid type passed to _formatPeriod" );
+	} else {
+	    period = period.toLowerCase();
+	}
+
+	if ( period === 'p' || period === 'pm' )  {
+	    return "PM";
+	} else if ( period === 'a' || period === 'am' ) {
+	    return "AM";
+	} else {
+	    throw TypeError( "Invalid period name passed to _formatPeriod: see documentation." );
+	}
+    };
+
+    /**
     * Function to format the minute in the case that 
     * a numerical string was passed. Contains interior logic for beautiful 
     * formatting for use in the view.
@@ -219,6 +245,7 @@ var TimeFormatter = (function() {
     return {
 	formatMinute: _formatMinute,
 	formatHour: _formatHour,
+	formatPeriod: _formatPeriod,
 	convertHourToMillitary: _convertHourToMillitary,
 	convertMillitaryToHour: _convertMillitaryToHour,
 	convertUnitToDigital: _convertUnitToDigital,
@@ -227,9 +254,9 @@ var TimeFormatter = (function() {
 })();
 
 module.exports.TimeFormatter = TimeFormatter;
-module.exports._formatHourAsString = TimeFormatter.formatHourAsString;
 module.exports._formatHour = TimeFormatter.formatHour;
 module.exports._formatMinute = TimeFormatter.formatMinute;
+module.exports._formatPeriod = TimeFormatter.formatPeriod;
 module.exports._convertHourToMillitary = TimeFormatter.convertHourToMillitary;
 module.exports._convertMillitaryToHour = TimeFormatter.convertMillitaryToHour;
 module.exports._convertUnitToDigital = TimeFormatter.convertUnitToDigital;

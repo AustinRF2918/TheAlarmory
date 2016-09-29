@@ -29,19 +29,18 @@ describe('Properly hooks to DOM', function() {
 
 describe('Properly renders tags', function() {
     var tds = TimeDisplayComponent( "#test" );
-
     it ('Should render a proper h3 tag when nothing is passed in', function() {
-	expect( tds.__generateTemplate() === '<h3 class="text-body text-extra"><strong>At <span id="hour-alarm">12</span><span id="exxtra">:</span><span id="minute-alarm">00</span><span id="when-alarm">AM</span></strong></h3>' ).to.be.true;
+	expect( tds.__generateTemplate() === '<div id="#test"><h3 class="text-body text-extra"><strong>At <span id="hour-alarm">12</span><span id="exxtra">:</span><span id="minute-alarm">00</span><span id="when-alarm">AM</span></strong></h3></div>' ).to.be.true;
     });
 
     it ('Should render a proper h3 tag when stuff is passed in', function() {
 	tds.__pushTime( 2, 5, "AM" );
-	expect( tds.__generateTemplate() === '<h3 class="text-body text-extra"><strong>At <span id="hour-alarm">02</span><span id="exxtra">:</span><span id="minute-alarm">05</span><span id="when-alarm">AM</span></strong></h3>' ).to.be.true;
+	expect( tds.__generateTemplate() === '<div id="#test"><h3 class="text-body text-extra"><strong>At <span id="hour-alarm">02</span><span id="exxtra">:</span><span id="minute-alarm">05</span><span id="when-alarm">AM</span></strong></h3></div>' ).to.be.true;
     });
 
     it ('Should properly render PMs', function() {
 	tds.__pushTime( 2, 5, "PM" );
-	expect( tds.__generateTemplate() === '<h3 class="text-body text-extra"><strong>At <span id="hour-alarm">02</span><span id="exxtra">:</span><span id="minute-alarm">05</span><span id="when-alarm">PM</span></strong></h3>' ).to.be.true;
+	expect( tds.__generateTemplate() === '<div id="#test"><h3 class="text-body text-extra"><strong>At <span id="hour-alarm">02</span><span id="exxtra">:</span><span id="minute-alarm">05</span><span id="when-alarm">PM</span></strong></h3></div>' ).to.be.true;
     });
 
     it ('Should throw with improper period arguments.', function() {

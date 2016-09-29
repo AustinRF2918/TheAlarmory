@@ -1,4 +1,5 @@
 var TimeFormatter = require('../js/time-formatting.js').TimeFormatter;
+var templateWrapper = require('../js/template-helpers.js').templateWrapper;
 
 var TimeCurrentComponent = function( DOMId ){
     if ( typeof DOMId !== "string" ) {
@@ -24,7 +25,8 @@ var TimeCurrentComponent = function( DOMId ){
 	    tag +=   '<span id="current-minute-alarm">' + _currentMinutes + '</span>';
 	    tag +=   '<span id="current-when-alarm">' + _currentPeriod + '</span>';
 	    tag += '</h5>';
-	    return tag;
+
+	    return( templateWrapper( _internalDOMIdentifier, tag ));
 	};
 	
 	var _render = function() {

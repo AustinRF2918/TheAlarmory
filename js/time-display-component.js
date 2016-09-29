@@ -1,4 +1,5 @@
 var TimeFormatter = require('../js/time-formatting.js').TimeFormatter;
+var templateWrapper = require('../js/template-helpers.js').templateWrapper;
 
 var TimeDisplayComponent = function( DOMId ){
     if ( typeof DOMId !== "string" ) {
@@ -10,8 +11,8 @@ var TimeDisplayComponent = function( DOMId ){
 	var $el = $(_internalDOMIdentifier);
 
 	var _selectedHours = TimeFormatter.formatHour( 0 );
-	var _selectedMinutes = TimeFormatter.formatMinute( 0 );
 	var _selectedPeriod = TimeFormatter.formatPeriod( "AM" );
+	var _selectedMinutes = TimeFormatter.formatMinute( 0 );
 
 	var _generateTemplate = function() {
 	    var tag = '';
@@ -24,7 +25,8 @@ var TimeDisplayComponent = function( DOMId ){
 	    tag +=     '<span id="when-alarm">' + _selectedPeriod + '</span>';
 	    tag +=   '</strong>';
 	    tag += '</h3>';
-	    return tag;
+
+	    return( templateWrapper( _internalDOMIdentifier, tag ));
 	};
 	
 	var _render = function() {

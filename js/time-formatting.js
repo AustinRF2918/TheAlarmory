@@ -153,8 +153,8 @@ var TimeFormatter = (function() {
     * generating a millitary time.
     */
     var _convertHourToMillitary = function( hour, period ) {
-	_validateNumeric( hour,  "Bad value passed to convert numberic to millitary." );
-	hour = _check12HourRange( hour, "Bad range value passed to convert numeric to millitary." );
+	_validateNumeric( hour,  "Bad value passed to convert numeric to millitary." );
+	hour = _check12HourRange( hour, "Bad range value passed to convert numeric to millitary: " + hour);
 
 	if ( period !== "PM" && period !== "AM" ) {
 	    throw RangeError( "Invalid period passed to _convertNumericToMillitary" );
@@ -223,15 +223,15 @@ var TimeFormatter = (function() {
     * generating a millitary time.
     */
     var _calculateDelta = function( currentHours, currentMinutes, setHours, setMinutes ) {
-	_validateNumeric( currentHours,  "Bad value passed to argument 1 of calculate delta." );
-	_validateNumeric( currentMinutes,  "Bad value passed to argument 2 of calculate delta." );
-	_validateNumeric( setHours,  "Bad value passed to argument 3 of calculate delta." );
-	_validateNumeric( setMinutes,  "Bad value passed to argument 4 of calculate delta." );
+	_validateNumeric( currentHours,  "Bad value passed to argument 1 of calculate delta: " + currentHours );
+	_validateNumeric( currentMinutes,  "Bad value passed to argument 2 of calculate delta: " + currentMinutes );
+	_validateNumeric( setHours,  "Bad value passed to argument 3 of calculate delta: " + setHours);
+	_validateNumeric( setMinutes,  "Bad value passed to argument 4 of calculate delta: " + setMinutes);
 
-	currentHours = _check24HourRange( currentHours, "Invalid range passed to argument 1 of calculate delta." );
-	currentMinutes = _checkMinuteRange( currentMinutes, "Invalid range passed to argument 2 of currentHours." );
-	setHours = _check24HourRange( setHours, "Invalid range passed to argument 3 of calculate delta." );
-	setMinutes = _checkMinuteRange( setMinutes, "Invalid range passed to argument 4 of currentHours." );
+	currentHours = _check24HourRange( currentHours, "Invalid range passed to argument 1 of calculate delta: " + currentHours );
+	currentMinutes = _checkMinuteRange( currentMinutes, "Invalid range passed to argument 2 of currentHours: " + currentMinutes );
+	setHours = _check24HourRange( setHours, "Invalid range passed to argument 3 of calculate delta:" + setHours );
+	setMinutes = _checkMinuteRange( setMinutes, "Invalid range passed to argument 4 of currentHours: " + setMinutes );
 
 	if ( currentHours < setHours ) {
 	    if ( setMinutes >= currentMinutes ) {

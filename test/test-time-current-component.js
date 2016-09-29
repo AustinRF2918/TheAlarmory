@@ -30,16 +30,15 @@ describe('Properly hooks to DOM', function() {
 
 describe('Properly renders tags', function() {
     var tds = TimeCurrentComponent( "#test" );
-    console.log( tds.__generateTemplate() );
 
     it ('Should render a proper h5 tag when nothing is passed in', function() {
 	var currentTime = new Date();
-	expect( tds.__generateTemplate() === '<h5 class="text-body">Current Time: <span id="current-hour-alarm">' + TimeFormatter.convertUnitToDigital( currentTime.getHours() ) + '</span>:<span id="current-minute-alarm">' + TimeFormatter.formatMinute( currentTime.getMinutes() ) + '</span><span id="current-when-alarm">' + TimeFormatter.getPeriod( currentTime.getHours() ) + '</span></h5>' ).to.be.true;
+	expect( tds.__generateTemplate() === '<div id="#test"><h5 class="text-body">Current Time: <span id="current-hour-alarm">' + TimeFormatter.convertUnitToDigital( currentTime.getHours() ) + '</span>:<span id="current-minute-alarm">' + TimeFormatter.formatMinute( currentTime.getMinutes() ) + '</span><span id="current-when-alarm">' + TimeFormatter.getPeriod( currentTime.getHours() ) + '</span></h5></div>' ).to.be.true;
     });
 
     it ('Should render a proper h5 tag when refreshed', function() {
 	var currentTime = new Date();
 	tds.__refresh();
-	expect( tds.__generateTemplate() === '<h5 class="text-body">Current Time: <span id="current-hour-alarm">' + TimeFormatter.convertUnitToDigital( currentTime.getHours() ) + '</span>:<span id="current-minute-alarm">' + TimeFormatter.formatMinute( currentTime.getMinutes() ) + '</span><span id="current-when-alarm">' + TimeFormatter.getPeriod( currentTime.getHours() ) + '</span></h5>' ).to.be.true;
+	expect( tds.__generateTemplate() === '<div id="#test"><h5 class="text-body">Current Time: <span id="current-hour-alarm">' + TimeFormatter.convertUnitToDigital( currentTime.getHours() ) + '</span>:<span id="current-minute-alarm">' + TimeFormatter.formatMinute( currentTime.getMinutes() ) + '</span><span id="current-when-alarm">' + TimeFormatter.getPeriod( currentTime.getHours() ) + '</span></h5></div>' ).to.be.true;
     });
 });

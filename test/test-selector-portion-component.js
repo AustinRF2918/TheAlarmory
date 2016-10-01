@@ -49,7 +49,7 @@ describe('Properly constructs', function() {
 describe('Renders correctly.', function() {
     it ('Should be able to render an empty component.', function() {
 	var tds = SelectorPortionComponent( "hour-container", "Hours" );
-	expect( tds.__generateTemplate() === '<div class="row"><h3 class="text-body">Hours</h3></div><div class="row" id="hour-container"></div>' ).to.be.true;
+	expect( tds.__generateTemplate() === '<div class="row"><h3 class="text-body">Hours</h3></div><div class="row"><div class="square-container"></div></div>' ).to.be.true;
     });
 
     it ('Should be able to add a generic renderable component and render it alongside.', function() {
@@ -58,7 +58,7 @@ describe('Renders correctly.', function() {
 
 	expect(tdsAlt.__generateTemplate() === '<div id="test-0" class="btn-square-hours"><a>0</a></div>').to.be.true;
 	tds.pushChild( tdsAlt );
-	expect( tds.__generateTemplate() === '<div class="row"><h3 class="text-body">Hours</h3></div><div class="row" id="hour-container"><div id="test-0" class="btn-square-hours"><a>0</a></div></div>' ).to.be.true;
+	expect( tds.__generateTemplate() === '<div class="row"><h3 class="text-body">Hours</h3></div><div class="row"><div class="square-container"><div id="test-0" class="btn-square-hours"><a>0</a></div></div></div>' ).to.be.true;
 
     });
 
@@ -70,7 +70,7 @@ describe('Renders correctly.', function() {
 	expect(tdsA.__generateTemplate() === '<div id="testa-0" class="btn-square-hours-0"><a>0</a></div>').to.be.true;
 	tds.pushChild( tdsA );
 	tds.pushChild( tdsB );
-	expect( tds.__generateTemplate() === '<div class="row"><h3 class="text-body">Hours</h3></div><div class="row" id="hour-container"><div id="testa-0" class="btn-square-hours-0"><a>0</a></div><div id="testb-1" class="btn-square-hours-1"><a>1</a></div></div>' ).to.be.true;
+	expect( tds.__generateTemplate() === '<div class="row"><h3 class="text-body">Hours</h3></div><div class="row"><div class="square-container"><div id="testa-0" class="btn-square-hours-0"><a>0</a></div><div id="testb-1" class="btn-square-hours-1"><a>1</a></div></div></div>' ).to.be.true;
     });
 });
 
@@ -91,14 +91,3 @@ describe('Performs component logic.', function() {
 	tdsList[0].__fireEvent();
     });
 });
-
-
-
-
-
-
-
-
-
-
-

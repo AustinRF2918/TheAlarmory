@@ -7,7 +7,7 @@ function _checkForType( item, type, errorText ) {
     }
 }
 
-var SelectorPortionComponent = function( DOMId, name ){
+var ControlPanelComponent = function( DOMId, name ){
     _checkForType( DOMId, "string", "Invalid data type passed to TimeDeltaComponent parameter 1 (DOMId): must be a string.");
 
     _checkForType( name, "string", "Invalid data type passed to TimeDeltaComponent parameter 2 (number) : must be a number.");
@@ -17,8 +17,9 @@ var SelectorPortionComponent = function( DOMId, name ){
 	var $el = $(_internalDOMIdentifier);
 	var _name = name;
 
-	var _isActive = false;
-	var _currentActive = undefined;
+	var _hourActive = false;
+	var _minuteActive = false;
+	var _periodActive = false;
 
 	var _actions = [];
 
@@ -27,12 +28,13 @@ var SelectorPortionComponent = function( DOMId, name ){
 
 	var _generateTemplate = function( ) {
 	    var tag = '';
-	    tag += '<div class="row"><h3 class="text-body">' + _name + '</h3></div><div class="row"><div class="square-container">';
+	    tag += '<div class="col-md-8">';
+
 	    for ( var i = 0; i < _children.length; i++) {
 		tag += _children[i].__generateTemplate();
 	    }
 
-	    tag += '</div></div>';
+	    tag += '</div>';
 	    return tag;
 	};
 
@@ -46,11 +48,13 @@ var SelectorPortionComponent = function( DOMId, name ){
 	};
 
 	var _handle = function( data ) {
-	    if ( data && data.active ) {
-		_currentActive = data.id;
-
-		for ( var i = 0; i < _children.length; i++) {
-		    _children[i].__pushActiveNumber( data.id );
+	    if ( data ) {
+		if ( data.name === "Hours" ) {
+		    _hourActive = data.currentActive;
+		} else if ( data.name === "Minutes" ) {
+		    _minuteActive = data.currentActive;
+		} else if ( data.name === "AM/PM" ) {
+		    _periodActive = data.currentActive;
 		}
 
 		_notify();
@@ -60,14 +64,12 @@ var SelectorPortionComponent = function( DOMId, name ){
 	var _notify = function( ) {
 	    if ( _parent ) {
 		_parent.__handle( {
-		    currentActive: _currentActive,
+		    hourActive: _hourActive,
+		    minuteActive: _minuteActive,
+		    periodActive: _periodActive,
 		    name: _name
 		} );
 	    }
-	};
-
-	var _setActive = function( numeric ) {
-	    _currentActive = numeric;
 	};
 
 	var _render = function( ) {
@@ -76,18 +78,10 @@ var SelectorPortionComponent = function( DOMId, name ){
 	};
 
 	var _display = function( ) {
-	    console.log( `_isActive: (${_isActive})` );
-	    console.log( `_action: (${_actions})` );
-	    console.log( `_currentActive: (${_currentActive})` );
+	    console.log( `_hourActive: (${_hourActive})` );
+	    console.log( `_minuteActive: (${_minuteActive})` );
+	    console.log( `_periodActive: (${_periodActive})` );
 	    console.log( `html: (${_generateTemplate()})` );
-	};
-
-	var _setEvent = function( event, test ) {
-	    $el.on( event, function( ) {
-		for (var i = 0; i < _actions.length; i++) {
-		    _actions[i]();
-		}
-	    });
 	};
 
 	return {
@@ -96,16 +90,13 @@ var SelectorPortionComponent = function( DOMId, name ){
 	    __generateTemplate: _generateTemplate,
 	    __actions: _actions,
 	    __render: _render,
-	    __currentActive: _currentActive,
 	    __this: this,
-	    __setActive: _setActive,
 	    __handle: _handle,
 	    __notify: _notify,
-	    setEvent: _setEvent,
 	    pushChild: _pushChild,
 	    pushParent: _pushParent
 	};
     })( );
 };
 
-module.exports.SelectorPortionComponent = SelectorPortionComponent;
+module.exports.ControlPanelComponent = ControlPanelComponent;

@@ -7,15 +7,12 @@ function _checkForType( item, type, errorText ) {
     }
 }
 
-var ControlPanelComponent = function( DOMId, name ){
+var ControlPanelComponent = function( DOMId ){
     _checkForType( DOMId, "string", "Invalid data type passed to TimeDeltaComponent parameter 1 (DOMId): must be a string.");
-
-    _checkForType( name, "string", "Invalid data type passed to TimeDeltaComponent parameter 2 (number) : must be a number.");
 
     return ( function( ) {
 	var _internalDOMIdentifier = DOMId;
 	var $el = $(_internalDOMIdentifier);
-	var _name = name;
 
 	var _hourActive = false;
 	var _minuteActive = false;
@@ -28,7 +25,7 @@ var ControlPanelComponent = function( DOMId, name ){
 
 	var _generateTemplate = function( ) {
 	    var tag = '';
-	    tag += '<div class="col-md-8">';
+	    tag += '<div class="col-md-8" id="' + _internalDOMIdentifier + '">';
 
 	    for ( var i = 0; i < _children.length; i++) {
 		tag += _children[i].__generateTemplate();

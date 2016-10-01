@@ -48,26 +48,26 @@ describe('Properly constructs', function() {
 
 describe('Renders correctly.', function() {
     it ('Should render an initial, non active item.', function() {
-	var tds = SelectorButtonComponent( "#test", 0, "btn-square-hours" );
-	expect(tds.__generateTemplate() === '<div id="btn-square-hours"><a>0</a></div>').to.be.true;
+	var tds = SelectorButtonComponent( "test", 0, "btn-square-hours" );
+	expect(tds.__generateTemplate() === '<div id="test-0" class="btn-square-hours"><a>0</a></div>').to.be.true;
     });
 
     it ('Should render an active item.', function() {
-	var tds = SelectorButtonComponent( "#test", 0, "btn-square-hours" );
+	var tds = SelectorButtonComponent( "test", 0, "btn-square-hours" );
 	tds.__pushActiveNumber( 0 );
-	expect(tds.__generateTemplate() === '<div id="btn-square-hours btn-square-hours-active"><a>0</a></div>').to.be.true;
+	expect(tds.__generateTemplate() === '<div id="test-0" class="btn-square-hours btn-square-hours-active"><a>0</a></div>').to.be.true;
     });
 
     it ('Should render an inactive item after being passed a non-containing numeric..', function() {
-	var tds = SelectorButtonComponent( "#test", 0, "btn-square-hours" );
+	var tds = SelectorButtonComponent( "test", 0, "btn-square-hours" );
 	tds.__pushActiveNumber( 1 );
-	expect(tds.__generateTemplate() === '<div id="btn-square-hours"><a>0</a></div>').to.be.true;
+	expect(tds.__generateTemplate() === '<div id="test-0" class="btn-square-hours"><a>0</a></div>').to.be.true;
     });
 });
 
 describe('Correctly adds actions.', function() {
     it ('Should be able to add actions to an internal stack.', function() {
-	var tds = SelectorButtonComponent( "#test", 0, "btn-square-hours" );
+	var tds = SelectorButtonComponent( "test", 0, "btn-square-hours" );
 	tds.pushAction( function() { return tds.__number; } );
 	expect(tds.__actions[0]() === 0).to.be.true;
     });

@@ -21,20 +21,23 @@ var SelectorButtonComponent = function( DOMId, number, className){
 	var _className = className;
 	var _isActive = false;
 	var _number = number;
+
 	var _actions = [];
+
+	var _children = [];
 	var _parent = undefined;
 
-	var _generateClassDiv = function( ) {
+	var _generateIdentifier = function( ) {
 	    if ( _isActive ) {
-		return '<div id="' + _className + ' ' + _className + '-active"' + ">";
+		return '<div id="' + _internalDOMIdentifier + '" class="' + _className + ' ' + _className + '-active' + '">';
 	    } else {
-		return '<div id="' + _className + '">';
+		return '<div id="' + _internalDOMIdentifier + '" class="' + _className + '">';
 	    }
 	};
 
 	var _generateTemplate = function( ) {
 	    var tag = '';
-	    tag += _generateClassDiv( ) ;
+	    tag += _generateIdentifier( ) ;
 	    tag +=   '<a>' + _number + '</a>';
 	    tag += '</div>';
 	    return tag;
@@ -49,12 +52,12 @@ var SelectorButtonComponent = function( DOMId, number, className){
 	    _isActive = function(){ return (number === _number) }();
 	};
 
-	var _pushParent = function( parent ) {
-	    _parent = parent;
+	var _pushParent = function( component ) {
+	    _parent = component;
 	};
 
 	var _update = function( currentNumberActive ) {
-	    var _temp = function(){ return (currentNumberActive === _number) }();
+	    var temp = currentNumberActive === _number;
 	    if (_isActive !== temp ) {
 		_isActive = temp;
 		_render( );
@@ -89,17 +92,17 @@ var SelectorButtonComponent = function( DOMId, number, className){
 	    _isActive = true;
 
 	    for (var i = 0; i < _actions.length; i++) {
-		_actions[i]();
+		_actions[i]( );
 	    }
 
-	    _notify();
+	    _notify( );
 	};
 
 	var _notify = function ( ) {
 	    _parent.__handle( {
 		active: _isActive,
 		id: _number
-	    });
+	    } );
 	};
 
 	return {

@@ -54,24 +54,23 @@ describe('Renders correctly.', function() {
 
     it ('Should be able to add a generic renderable component and render it alongside.', function() {
 	var tds = SelectorPortionComponent( "hour-container", "Hours" );
-	var tdsAlt = SelectorButtonComponent( "#test", 0, "btn-square-hours" );
+	var tdsAlt = SelectorButtonComponent( "test", 0, "btn-square-hours" );
 
-	expect(tdsAlt.__generateTemplate() === '<div id="btn-square-hours"><a>0</a></div>').to.be.true;
+	expect(tdsAlt.__generateTemplate() === '<div id="test-0" class="btn-square-hours"><a>0</a></div>').to.be.true;
 	tds.pushChild( tdsAlt );
-	expect( tds.__generateTemplate() === '<div class="row"><h3 class="text-body">Hours</h3></div><div class="row" id="hour-container"><div id="btn-square-hours"><a>0</a></div></div>' ).to.be.true;
+	expect( tds.__generateTemplate() === '<div class="row"><h3 class="text-body">Hours</h3></div><div class="row" id="hour-container"><div id="test-0" class="btn-square-hours"><a>0</a></div></div>' ).to.be.true;
 
     });
 
     it ('Should be able to render multiple generic components.', function() {
 	var tds = SelectorPortionComponent( "hour-container", "Hours" );
-	var tdsA = SelectorButtonComponent( "#testa", 0, "btn-square-hours-0" );
-	var tdsB = SelectorButtonComponent( "#testb", 1, "btn-square-hours-1" );
+	var tdsA = SelectorButtonComponent( "testa", 0, "btn-square-hours-0" );
+	var tdsB = SelectorButtonComponent( "testb", 1, "btn-square-hours-1" );
 
-	expect(tdsA.__generateTemplate() === '<div id="btn-square-hours-0"><a>0</a></div>').to.be.true;
+	expect(tdsA.__generateTemplate() === '<div id="testa-0" class="btn-square-hours-0"><a>0</a></div>').to.be.true;
 	tds.pushChild( tdsA );
 	tds.pushChild( tdsB );
-	expect( tds.__generateTemplate() === '<div class="row"><h3 class="text-body">Hours</h3></div><div class="row" id="hour-container"><div id="btn-square-hours-0"><a>0</a></div><div id="btn-square-hours-1"><a>1</a></div></div>' ).to.be.true;
-
+	expect( tds.__generateTemplate() === '<div class="row"><h3 class="text-body">Hours</h3></div><div class="row" id="hour-container"><div id="testa-0" class="btn-square-hours-0"><a>0</a></div><div id="testb-1" class="btn-square-hours-1"><a>1</a></div></div>' ).to.be.true;
     });
 });
 
@@ -81,7 +80,7 @@ describe('Performs component logic.', function() {
 	var tdsList = [];
 
 	for (var i = 0; i < 12; i++) {
-	    tdsList.push(SelectorButtonComponent( "#testa", i, "btn-square-hours-" + i ));
+	    tdsList.push(SelectorButtonComponent( "#testa-" + i, i, "btn-square-hours" ));
 	}
 
 	for ( var i = 0; i< tdsList.length; i++ ) {
@@ -90,8 +89,6 @@ describe('Performs component logic.', function() {
 
 	tdsList[1].__fireEvent();
 	tdsList[0].__fireEvent();
-	
-	tds.__display();
     });
 });
 

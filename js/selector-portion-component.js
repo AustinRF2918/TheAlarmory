@@ -8,9 +8,9 @@ function _checkForType( item, type, errorText ) {
 }
 
 var SelectorPortionComponent = function( DOMId, name ){
-    _checkForType( DOMId, "string", "Invalid data type passed to TimeDeltaComponent parameter 1 (DOMId): must be a string.");
+    _checkForType( DOMId, "string", "Invalid data type passed to SelectorPortionComponent parameter 1 (DOMId): must be a string.");
 
-    _checkForType( name, "string", "Invalid data type passed to TimeDeltaComponent parameter 2 (number) : must be a number.");
+    _checkForType( name, "string", "Invalid data type passed to SelectorPortionComponent parameter 2 (number) : must be a number.");
 
     return ( function( ) {
 	var _internalDOMIdentifier = DOMId;
@@ -101,6 +101,7 @@ var SelectorPortionComponent = function( DOMId, name ){
 	    __setActive: _setActive,
 	    __handle: _handle,
 	    __notify: _notify,
+	    __componentName: "SelectorPortionComponent",
 	    setEvent: _setEvent,
 	    pushChild: _pushChild,
 	    pushParent: _pushParent

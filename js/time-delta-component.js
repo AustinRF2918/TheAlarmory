@@ -11,16 +11,20 @@ var TimeDeltaComponent = function( DOMId ){
 	var $el = $(_internalDOMIdentifier);
 
 	var _currentTime = new Date();
-
 	var _currentHours = _currentTime.getHours();
 	var _currentPeriod = TimeFormatter.getPeriod(_currentHours);
 	var _currentMinutes =  _currentTime.getMinutes();
-
 	var _selectedHours = 0;
 	var _selectedPeriod = TimeFormatter.formatPeriod( "AM" );
 	var _selectedMinutes = 0;
-
 	var _timeDelta = TimeFormatter.calculateDelta( _currentHours, _currentMinutes, _selectedHours, _selectedMinutes );
+
+	var _actions = [];
+
+	var _children = [];
+	var _parent = undefined;
+
+
 
 	var _generateTemplate = function() {
 	    var tag = '';
@@ -32,6 +36,15 @@ var TimeDeltaComponent = function( DOMId ){
 	    tag += '</h5>';
 
 	    return( templateWrapper( _internalDOMIdentifier, tag ));
+	};
+
+	var _pushChild = function( component ) {
+	    component.pushParent( this );
+	    _children.push( component );
+	};
+
+	var _pushParent = function( component ) {
+	    _parent = component;
 	};
 	
 	var _render = function() {
@@ -70,6 +83,12 @@ var TimeDeltaComponent = function( DOMId ){
 	    _render( );
 	};
 
+	var _notify = function( ) {
+	};
+
+	var _handle = function( data ) {
+	};
+
 	var _display = function ( ) {
 	    console.log( `_currentHours: (${_currentHours})` );
 	    console.log( `_currentPeriod: (${_currentPeriod})` );
@@ -87,8 +106,13 @@ var TimeDeltaComponent = function( DOMId ){
 	    __pushCurrentTime: _pushCurrentTime,
 	    __DOMIdentifier: _internalDOMIdentifier,
 	    __generateTemplate: _generateTemplate,
+	    __componentName: "TimeDeltaComponent",
 	    __render: _render,
 	    __pushTime: _pushTime,
+	    __handle: _handle,
+	    __notify: _notify,
+	    pushParent: _pushParent,
+	    pushChild: _pushChild,
 	    update: _update
 	};
     })( );

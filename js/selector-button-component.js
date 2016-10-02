@@ -7,10 +7,12 @@ function _checkForType( item, type, errorText ) {
     }
 }
 
-var SelectorButtonComponent = function( DOMId, number, className){
+var SelectorButtonComponent = function( DOMId, number, className, nonNumeric){
     _checkForType( DOMId, "string", "Invalid data type passed to TimeDeltaComponent parameter 1 (DOMId): must be a string.");
 
-    _checkForType( number, "number", "Invalid data type passed to TimeDeltaComponent parameter 2 (number) : must be a number.");
+    if (!nonNumeric) {
+	_checkForType( number, "number", "Invalid data type passed to TimeDeltaComponent parameter 2 (number) : must be a number.");
+    }
 
     _checkForType( className, "string", "Invalid data type passed to TimeDeltaComponent parameter 3 (number) : must be a string.");
 
@@ -34,6 +36,10 @@ var SelectorButtonComponent = function( DOMId, number, className){
 		return '<div id="' + _internalDOMIdentifier + '" class="' + _className + '">';
 	    }
 	};
+
+	var _active = ( function( ) {
+	    return _isActive;
+	} );
 
 	var _generateTemplate = function( ) {
 	    var tag = '';
@@ -106,6 +112,7 @@ var SelectorButtonComponent = function( DOMId, number, className){
 	};
 
 	return {
+	    __isActive: _active,
 	    __pushActiveNumber: _pushActiveNumber,
 	    __number: _number,
 	    __display: _display,
@@ -116,6 +123,7 @@ var SelectorButtonComponent = function( DOMId, number, className){
 	    __parent: _parent,
 	    __notify: _notify,
 	    __fireEvent: _fireEvent,
+	    __componentName: "SelectorButtonComponent",
 	    setEvent: _setEvent,
 	    update: _update,
 	    pushAction: _pushAction,

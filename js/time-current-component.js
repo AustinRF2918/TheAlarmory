@@ -16,6 +16,11 @@ var TimeCurrentComponent = function( DOMId ){
 	var _currentPeriod = TimeFormatter.getPeriod(_currentHours);
 	var _currentMinutes = TimeFormatter.formatMinute( _currentTime.getMinutes() );
 
+	var _actions = [];
+
+	var _children = [];
+	var _parent = undefined;
+
 	var _generateTemplate = function() {
 	    var tag = '';
 	    tag += '<h5 class="text-body">';
@@ -27,6 +32,15 @@ var TimeCurrentComponent = function( DOMId ){
 	    tag += '</h5>';
 
 	    return( templateWrapper( _internalDOMIdentifier, tag ));
+	};
+
+	var _pushChild = function( component ) {
+	    component.pushParent( this );
+	    _children.push( component );
+	};
+
+	var _pushParent = function( component ) {
+	    _parent = component;
 	};
 	
 	var _render = function() {
@@ -51,6 +65,9 @@ var TimeCurrentComponent = function( DOMId ){
 	    __generateTemplate: _generateTemplate,
 	    __render: _render,
 	    __refresh: _refreshTime,
+	    __componentName: "TimeCurrentComponent",
+	    pushChild: _pushChild,
+	    pushParent: _pushParent,
 	    update: _update
 	};
     })( );

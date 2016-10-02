@@ -14,6 +14,11 @@ var TimeDisplayComponent = function( DOMId ){
 	var _selectedPeriod = TimeFormatter.formatPeriod( "AM" );
 	var _selectedMinutes = TimeFormatter.formatMinute( 0 );
 
+	var _actions = [];
+
+	var _children = [];
+	var _parent = undefined;
+
 	var _generateTemplate = function() {
 	    var tag = '';
 	    tag += '<h3 class="text-body text-extra">';
@@ -28,7 +33,16 @@ var TimeDisplayComponent = function( DOMId ){
 
 	    return( templateWrapper( _internalDOMIdentifier, tag ));
 	};
-	
+
+	var _pushChild = function( component ) {
+	    component.pushParent( this );
+	    _children.push( component );
+	};
+
+	var _pushParent = function( component ) {
+	    _parent = component;
+	};
+
 	var _render = function() {
 	    $el.remove();
 	    $el.html( _generateTemplate() );
@@ -44,12 +58,42 @@ var TimeDisplayComponent = function( DOMId ){
 	    _pushTime( hour, minute, period );
 	    _render( );
 	};
+
+	var _notify = function( ) {
+	};
+
+	var _handle = function( data ) {
+	    console.log( data );
+	    if ( data.componentName === 'ControlPanelComponent' ) {
+		_selectedHours = data.hourActive;
+		_selectedPeriod = data.periodActive;
+		_selectedMinutes = data.minuteActive;
+	    }
+	};
+
+	var _display = function ( ) {
+	    console.log( `_selectedHours: (${_selectedHours})` );
+	    console.log( `_selectedMinutes: (${_selectedMinutes})` );
+	    console.log( `_selectedPeriod: (${_selectedPeriod})` );
+	    console.log( `_action: (${_actions})` );
+	    console.log( `html: (${_generateTemplate()})` );
+	};
+
 	return {
+	    __selectedMinutes: _selectedMinutes,
+	    __selectedHours: _selectedHours,
+	    __selectedPeriod: _selectedPeriod,
 	    __DOMIdentifier: _internalDOMIdentifier,
 	    __generateTemplate: _generateTemplate,
+	    __componentName: "TimeDisplayComponent",
 	    __render: _render,
 	    __pushTime: _pushTime,
-	    update: _update
+	    __display: _display,
+	    __notify: _notify,
+	    __handle: _handle,
+	    update: _update,
+	    pushParent: _pushParent,
+	    pushChild: _pushChild
 	};
     })( );
 };

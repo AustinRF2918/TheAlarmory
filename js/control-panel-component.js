@@ -64,7 +64,7 @@ var ControlPanelComponent = function( DOMId ){
 		    hourActive: _hourActive,
 		    minuteActive: _minuteActive,
 		    periodActive: _periodActive,
-		    name: _name
+		    componentName: "ControlPanelComponent"
 		} );
 	    }
 	};
@@ -90,6 +90,7 @@ var ControlPanelComponent = function( DOMId ){
 	    __this: this,
 	    __handle: _handle,
 	    __notify: _notify,
+	    __componentName: "ControlPanelComponent",
 	    pushChild: _pushChild,
 	    pushParent: _pushParent
 	};

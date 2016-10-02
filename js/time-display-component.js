@@ -60,10 +60,10 @@ var TimeDisplayComponent = function( DOMId ){
 	};
 
 	var _notify = function( ) {
+	    // TimeDeltaComponent is not interactive: Thus no notification will ever be needed.
 	};
 
 	var _handle = function( data ) {
-	    console.log( data );
 	    if ( data.componentName === 'ControlPanelComponent' ) {
 		_selectedHours = data.hourActive;
 		_selectedPeriod = data.periodActive;

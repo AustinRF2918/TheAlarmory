@@ -84,9 +84,13 @@ var TimeDeltaComponent = function( DOMId ){
 	};
 
 	var _notify = function( ) {
+	    // TimeDeltaComponent is not interactive: Thus no notification will ever be needed.
 	};
 
 	var _handle = function( data ) {
+	    if ( data.componentName === 'ControlPanelComponent'  && data.periodActive && data.hourActive && data.minuteActive) {
+		_pushTime( data.hourActive, data.minuteActive, data.periodActive );
+	    }
 	};
 
 	var _display = function ( ) {

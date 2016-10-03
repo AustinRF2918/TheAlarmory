@@ -36,6 +36,7 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric){
 	var _children = [];
 	var _parent = undefined;
 
+	// Weird computed property: This is because our test suite has difficulties recieving this.
 	var _active = ( function( ) {
 	    return _isActive;
 	} );
@@ -92,13 +93,26 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric){
 	};
 
 	/*
-	  OrderedComponents trait: OrderedComponents will require our object to both
+	 OrderedComponents trait: OrderedComponents will require our object to both
 	  implement a _pushParent function which our component can notify, and a 
 	  _pushChild function, which our component can receive notification from.
+	*/
+
+	/*
+	  _pushParent: Pushes a parent to the parent component.
+	   Note that this is a top level component so we do not
+	   implement this function totally.
 	*/
 	var _pushParent = function( component ) {
 	    _parent = component;
 	};
+
+	/*
+	  _pushChild: Pushes a child to the internal stack of children components.
+	*/
+	var _pushChild = function( component ) {
+	    //Pass.
+	}
 
 	// Debug function: Because this is ES6 syntax, we should disable these on
 	// deployment of the website.
@@ -124,7 +138,7 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric){
 	  our component and their behavior.
 	*/
 	var _pushAction = function ( fn ) {
-	    _actions.push(fn);
+	    _actions.push( fn );
 	};
 
 	/*
@@ -134,13 +148,7 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric){
 	*/
 	var _setEvent = function ( event ) {
 	    $el.on( event, function() {
-	        _isActive = true;
-
-		for (var i = 0; i < _actions.length; i++) {
-		    _actions[i]();
-		}
-
-		_notify();
+		_fireEvent( );
 	    });
 	};
 
@@ -153,7 +161,7 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric){
 	var _fireEvent = function( ) {
 	    _isActive = true;
 
-	    for (var i = 0; i < _actions.length; i++) {
+	    for (var i of _actions) {
 		_actions[i]( );
 	    }
 

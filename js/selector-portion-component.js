@@ -13,22 +13,41 @@ var SelectorPortionComponent = function( DOMId, name ){
     _checkForType( name, "string", "Invalid data type passed to SelectorPortionComponent parameter 2 (number) : must be a number.");
 
     return ( function( ) {
+	// CoreComponent
 	var _internalDOMIdentifier = DOMId;
 	var $el = $(_internalDOMIdentifier);
-	var _name = name;
 
+	// CoreComponentFields
+	var _name = name;
 	var _isActive = false;
 	var _currentActive = undefined;
 
+	// Handles Events
 	var _actions = [];
 
+	// Node
 	var _children = [];
 	var _parent = undefined;
+
+	/*
+	  View components: _render should only be called on initial render and following this
+	  a rerender should be called: JQuery will do this by changing text elements or any 
+	  class attributes.
+	*/
+
+	/*
+	  _generateTemplate: Internal function for render: The creates the HTML markup
+	  for our component. Core view trait requires this to be implemented.
+	*/
+	var _render = function( ) {
+	    $el.remove( );
+	    $el.html( _generateTemplate( ) );
+	};
 
 	var _generateTemplate = function( ) {
 	    var tag = '';
 	    tag += '<div class="row"><h3 class="text-body">' + _name + '</h3></div><div class="row"><div class="square-container">';
-	    for ( var i = 0; i < _children.length; i++) {
+	    for ( var i in _children ) {
 		tag += _children[i].__generateTemplate();
 	    }
 
@@ -36,27 +55,40 @@ var SelectorPortionComponent = function( DOMId, name ){
 	    return tag;
 	};
 
+	/*
+	 OrderedComponents trait: OrderedComponents will require our object to both
+	  implement a _pushParent function which our component can notify, and a 
+	  _pushChild function, which our component can receive notification from.
+	*/
+
+	/*
+	  _pushParent: Pushes a parent to the parent component.
+	   Note that this is a top level component so we do not
+	   implement this function totally.
+	*/
+	var _pushParent = function( component ) {
+	    _parent = component;
+	};
+
+	/*
+	  _pushChild: Pushes a child to the internal stack of children components.
+	*/
 	var _pushChild = function( component ) {
 	    component.pushParent( this );
 	    _children.push( component );
 	};
 
-	var _pushParent = function( component ) {
-	    _parent = component;
-	};
+	/* 
+	   Node trait: Node means we have to implement _notify and _handle:
+	   both of these allow our component to send and recieve events 
+	   and messages from other components respectively.
+	*/
 
-	var _handle = function( data ) {
-	    if ( data && data.active ) {
-		_currentActive = data.id;
-
-		for ( var i = 0; i < _children.length; i++) {
-		    _children[i].__pushActiveNumber( data.id );
-		}
-
-		_notify();
-	    };
-	};
-
+	/* 
+	   _notify: notify sends our parent a handle function with a JavaScript
+	   object: our parent is then free to implement handle in whatever way
+	   it sees fit to handle messaging between components. 
+	*/
 	var _notify = function( ) {
 	    if ( _parent ) {
 		_parent.__handle( {
@@ -66,13 +98,26 @@ var SelectorPortionComponent = function( DOMId, name ){
 	    }
 	};
 
-	var _setActive = function( numeric ) {
-	    _currentActive = numeric;
+	/* 
+	   _handle: _handle will take a JavaScript object and analyize it to do 
+	   whatever actions it needs to do.
+	*/
+	var _handle = function( data ) {
+	    if ( data && data.active ) {
+		_currentActive = data.id;
+
+		for ( var i in _children ) {
+		    _children[i].__pushActiveNumber( data.id );
+		}
+
+		_notify();
+	    };
 	};
 
-	var _render = function( ) {
-	    $el.remove( );
-	    $el.html( _generateTemplate( ) );
+	// General internal utility function to set the current
+	// active button in our component.
+	var _setActive = function( numeric ) {
+	    _currentActive = numeric;
 	};
 
 	var _display = function( ) {
@@ -82,6 +127,11 @@ var SelectorPortionComponent = function( DOMId, name ){
 	    console.log( `html: (${_generateTemplate()})` );
 	};
 
+	/*
+	  _setEvent: setEvent uses JQuery internally to give an event that will 
+	  fire our actions. For example: if we set our event as 'click', all 
+	  of our actions will fire when the specific components $el is clicked.
+	*/
 	var _setEvent = function( event, test ) {
 	    $el.on( event, function( ) {
 		for (var i = 0; i < _actions.length; i++) {

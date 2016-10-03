@@ -65,9 +65,9 @@ var TimeDisplayComponent = function( DOMId ){
 
 	var _handle = function( data ) {
 	    if ( data.componentName === 'ControlPanelComponent' ) {
-		_selectedHours = data.hourActive;
-		_selectedPeriod = data.periodActive;
-		_selectedMinutes = data.minuteActive;
+            _selectedHours = data.hourActive;
+            _selectedPeriod = data.periodActive;
+            _selectedMinutes = data.minuteActive;
 	    }
 	};
 

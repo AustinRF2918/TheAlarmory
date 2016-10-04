@@ -11,15 +11,19 @@ var ControlPanelComponent = function( DOMId ){
     _checkForType( DOMId, "string", "Invalid data type passed to TimeDeltaComponent parameter 1 (DOMId): must be a string.");
 
     return ( function( ) {
+	// CoreComponent
 	var _internalDOMIdentifier = DOMId;
 	var $el = $(_internalDOMIdentifier);
 
+	// CoreComponentFields
 	var _hourActive = false;
 	var _minuteActive = false;
 	var _periodActive = false;
 
+	// Handles Events
 	var _actions = [];
 
+	// Node
 	var _children = [];
 	var _parent = undefined;
 

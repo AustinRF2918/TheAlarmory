@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 
-var TimeDisplayComponent = require('../js/time-display-component.js').TimeDisplayComponent;
+var TimeDisplayComponent = require('../js/components/time-display.js').TimeDisplayComponent;
 
 describe('Properly hooks to DOM', function() {
     $ = function (){};

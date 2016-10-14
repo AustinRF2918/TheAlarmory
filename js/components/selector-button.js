@@ -1,5 +1,5 @@
-var TimeFormatter = require('../js/time-formatting.js').TimeFormatter;
-var templateWrapper = require('../js/template-helpers.js').templateWrapper;
+var TimeFormatter = require('../lib/time-formatting.js').TimeFormatter;
+var templateWrapper = require('../lib/template-helpers.js').templateWrapper;
 
 /*
   Put into own component, keep DRY

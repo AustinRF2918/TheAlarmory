@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var templateWrapper = require('../js/template-helpers.js').templateWrapper;
+var templateWrapper = require('../js/lib/template-helpers.js').templateWrapper;
 
 describe('Check ability of templateWrapper to assign IDs.', function() {
     it('It formats empty text.', function() {

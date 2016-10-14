@@ -1,0 +1,16 @@
+-> We have a ButtonComponent which composes a SectionComponent which composes a ControlPanelComponent
+-> We have a CurrentTimeComponent, SelectedTimeComponent, DeltaTimeComponent
+
+-> Controller must take the ControlPanelComponent, and all of the time components
+   and compose them: Whenever a message is recieveed from ControlPanelComponent,
+   we would change our underlying data for SelectedTimeComponent and DeltaTimeComponent.
+
+-> Controller will continously tic and send update messages to all components.
+
+-> Seperate Type-Checks into seperate module.
+
+-> Make any modules that have to do with handling of messages to a __handle module,
+   for example in all the time components. This will give us a single consistent 
+   API that we can use for ALL components, simply messaging a payload.
+	-> We should probably look into Ember.js source code to guarentee good 
+	type checking across all variables.

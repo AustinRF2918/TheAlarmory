@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 
-var SelectorButtonComponent = require('../js/selector-button-component.js').SelectorButtonComponent;
+var SelectorButtonComponent = require('../js/components/selector-button.js').SelectorButtonComponent;
 
 describe('Properly constructs', function() {
     $ = function (){};

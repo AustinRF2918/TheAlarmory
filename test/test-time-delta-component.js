@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 
-var TimeDeltaComponent = require('../js/time-delta-component.js').TimeDeltaComponent;
+var TimeDeltaComponent = require('../js/components/time-delta.js').TimeDeltaComponent;
 
 describe('Properly hooks to DOM', function() {
     $ = function (){};

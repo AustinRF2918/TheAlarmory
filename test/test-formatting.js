@@ -1,13 +1,13 @@
 var expect = require('chai').expect;
 
-var _formatHour = require('../js/time-formatting.js')._formatHour;
-var _formatMinute = require('../js/time-formatting.js')._formatMinute;
-var _formatPeriod = require('../js/time-formatting.js')._formatPeriod;
-var _getPeriod = require('../js/time-formatting.js')._getPeriod;
-var _convertHourToMillitary = require('../js/time-formatting.js')._convertHourToMillitary;
-var _convertMillitaryToHour = require('../js/time-formatting.js')._convertMillitaryToHour;
-var _convertUnitToDigital = require('../js/time-formatting.js')._convertUnitToDigital;
-var _calculateDelta = require('../js/time-formatting.js')._calculateDelta;
+var _formatHour = require('../js/lib/time-formatting.js')._formatHour;
+var _formatMinute = require('../js/lib/time-formatting.js')._formatMinute;
+var _formatPeriod = require('../js/lib/time-formatting.js')._formatPeriod;
+var _getPeriod = require('../js/lib/time-formatting.js')._getPeriod;
+var _convertHourToMillitary = require('../js/lib/time-formatting.js')._convertHourToMillitary;
+var _convertMillitaryToHour = require('../js/lib/time-formatting.js')._convertMillitaryToHour;
+var _convertUnitToDigital = require('../js/lib/time-formatting.js')._convertUnitToDigital;
+var _calculateDelta = require('../js/lib/time-formatting.js')._calculateDelta;
 
 describe('Formats hours as strings', function() {
     it('Should format edge cases in various regions.', function() {

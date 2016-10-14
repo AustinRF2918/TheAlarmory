@@ -1,8 +1,8 @@
 var expect = require('chai').expect;
 
-var ControlPanelComponent = require('../js/control-panel-component.js').ControlPanelComponent;
-var SelectorPortionComponent = require('../js/selector-portion-component.js').SelectorPortionComponent;
-var SelectorButtonComponent = require('../js/selector-button-component.js').SelectorButtonComponent;
+var ControlPanelComponent = require('../js/components/control-panel.js').ControlPanelComponent;
+var SelectorPortionComponent = require('../js/components/selector-portion.js').SelectorPortionComponent;
+var SelectorButtonComponent = require('../js/components/selector-button.js').SelectorButtonComponent;
 
 describe('Properly constructs', function() {
     $ = function (){};

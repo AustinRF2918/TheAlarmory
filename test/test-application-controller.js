@@ -1,12 +1,12 @@
 var expect = require('chai').expect;
 
-var ControlPanelComponent = require('../js/control-panel-component.js').ControlPanelComponent;
-var SelectorPortionComponent = require('../js/selector-portion-component.js').SelectorPortionComponent;
-var SelectorButtonComponent = require('../js/selector-button-component.js').SelectorButtonComponent;
-var ApplicationController = require('../js/application-controller.js').ApplicationController;
-var TimeCurrentComponent = require('../js/time-current-component.js').TimeCurrentComponent;
-var TimeDisplayComponent = require('../js/time-display-component.js').TimeDisplayComponent;
-var TimeDeltaComponent = require('../js/time-delta-component.js').TimeDeltaComponent;
+var ControlPanelComponent = require('../js/components/control-panel.js').ControlPanelComponent;
+var SelectorPortionComponent = require('../js/components/selector-portion.js').SelectorPortionComponent;
+var SelectorButtonComponent = require('../js/components/selector-button.js').SelectorButtonComponent;
+var ApplicationController = require('../js/controllers/application.js').ApplicationController;
+var TimeCurrentComponent = require('../js/components/time-current.js').TimeCurrentComponent;
+var TimeDisplayComponent = require('../js/components/time-display.js').TimeDisplayComponent;
+var TimeDeltaComponent = require('../js/components/time-delta.js').TimeDeltaComponent;
 
 describe('Properly constructs', function() {
     $ = function (){};

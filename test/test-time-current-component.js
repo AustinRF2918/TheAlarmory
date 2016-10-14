@@ -1,7 +1,7 @@
 var expect = require('chai').expect;
 
-var TimeFormatter = require('../js/time-formatting.js').TimeFormatter;
-var TimeCurrentComponent = require('../js/time-current-component.js').TimeCurrentComponent;
+var TimeFormatter = require('../js/lib/time-formatting.js').TimeFormatter;
+var TimeCurrentComponent = require('../js/components/time-current.js').TimeCurrentComponent;
 
 describe('Properly hooks to DOM', function() {
     $ = function (){};

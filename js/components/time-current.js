@@ -38,8 +38,7 @@ var TimeCurrentComponent = function( DOMId ){
 	  the ComponentMessanger trait.
 	*/
 	var _render = function() {
-	    $el.remove();
-	    $el.html( _generateTemplate() );
+	    $el.append( _generateTemplate( ) );
 	};
 
 	/*
@@ -54,7 +53,7 @@ var TimeCurrentComponent = function( DOMId ){
 	    tag +=   '<span id="current-hour-alarm">' + _currentHours + '</span>';
 	    tag +=   ':';
 	    tag +=   '<span id="current-minute-alarm">' + _currentMinutes + '</span>';
-	    tag +=   '<span id="current-when-alarm">' + _currentPeriod + '</span>';
+	    tag +=   '<span id="current-when-alarm"> ' + _currentPeriod + '</span>';
 	    tag += '</h5>';
 
 	    return( templateWrapper( _internalDOMIdentifier, tag ));

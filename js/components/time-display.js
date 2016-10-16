@@ -44,8 +44,7 @@ var TimeDisplayComponent = function( DOMId ){
 	};
 
 	var _render = function() {
-	    $el.remove();
-	    $el.html( _generateTemplate() );
+	    $el.append( _generateTemplate( ) );
 	};
 
 	var _pushTime = function( hour, minute, period ) {

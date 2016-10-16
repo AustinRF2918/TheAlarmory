@@ -53,8 +53,14 @@ $(document).ready(function(){
     // End When Container
 
     var timeDisplay = TimeDisplayComponent( "#time-display-component" );
+    timeDisplay.__render();
+
     var timeDelta = TimeDeltaComponent( "#time-delta-component" );
+    timeDelta.__render();
+
     var timeCurrent = TimeCurrentComponent( "#time-current-component" );
+    timeCurrent.__render();
+
 
     controller.pushChild(tds);
     controller.pushChild(timeDisplay);

@@ -43,8 +43,7 @@ var TimeDeltaComponent = function( DOMId ){
 	  the ComponentMessanger trait.
 	*/
 	var _render = function() {
-	    $el.remove( );
-	    $el.html( _generateTemplate( ) );
+	    $el.append( _generateTemplate( ) );
 	};
 
 	/*

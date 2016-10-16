@@ -10,7 +10,7 @@ function _checkForType( item, type, errorText ) {
     }
 }
 
-var SelectorButtonComponent = function( DOMId, number, className, nonNumeric){
+var SelectorButtonComponent = function( DOMId, number, className, nonNumeric, addOne){
     _checkForType( DOMId, "string", "Invalid data type passed to TimeDeltaComponent parameter 1 (DOMId): must be a string.");
 
     if (!nonNumeric) {
@@ -62,8 +62,13 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric){
 	var _generateTemplate = function( ) {
 	    var tag = '';
 	    tag += _generateIdentifier( ) ;
-	    tag +=   '<a>' + _number + '</a>';
+	    if (addOne) {
+		tag +=   '<a>' + (Number(_number ) + 1) + '</a>';
+	    } else {
+	      tag +=   '<a>' + _number + '</a>';
+	    }
 	    tag += '</div>';
+
 	    return tag;
 	};
 

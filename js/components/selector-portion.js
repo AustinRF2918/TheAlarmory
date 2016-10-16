@@ -116,6 +116,7 @@ var SelectorPortionComponent = function( DOMId, name ){
 	// General internal utility function to set the current
 	// active button in our component.
 	var _setActive = function( numeric ) {
+	    _isActive = true;
 	    _currentActive = numeric;
 	};
 

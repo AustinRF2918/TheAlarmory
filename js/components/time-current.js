@@ -9,11 +9,18 @@ var TimeCurrentComponent = function( DOMId ){
     return ( function( ) {
 	// CoreComponent
 	var _internalDOMIdentifier = DOMId;
-	var $el = $(_internalDOMIdentifier);
+	var $el = $("#" + _internalDOMIdentifier);
 
 	// CoreComponentFields
 	var _currentTime = new Date();
-	var _currentHours = TimeFormatter.convertUnitToDigital( _currentTime.getHours() );
+	
+
+	var _currentHours = TimeFormatter.convertUnitToDigital( _currentTime.getHours());
+
+	if (_currentHours === 0) {
+	    _currentHours = 12;
+	}
+
 	var _currentPeriod = TimeFormatter.getPeriod(_currentHours);
 	var _currentMinutes = TimeFormatter.formatMinute( _currentTime.getMinutes() );
 
@@ -39,6 +46,18 @@ var TimeCurrentComponent = function( DOMId ){
 	*/
 	var _render = function() {
 	    $el.append( _generateTemplate( ) );
+	    var interval = setInterval(function() {
+
+		var hours = TimeFormatter.convertMillitaryToHour(_currentHours);
+		if (hours === 0) {
+		    hours = 12;
+		}
+		_refreshTime();
+		$("#" + _internalDOMIdentifier +  " #current-hour-alarm").html(hours);
+		$("#" + _internalDOMIdentifier +  " #current-minute-alarm").html(_currentMinutes);
+		$("#" + _internalDOMIdentifier +  " #current-when-alarm").html(_currentPeriod);
+	    }, 5000);
+
 	};
 
 	/*
@@ -48,9 +67,18 @@ var TimeCurrentComponent = function( DOMId ){
 
 	var _generateTemplate = function() {
 	    var tag = '';
+	    var str = "";
+
 	    tag += '<h5 class="text-body">';
 	    tag +=   'Current Time: ';
-	    tag +=   '<span id="current-hour-alarm">' + _currentHours + '</span>';
+
+
+	    if (_currentHours === "00") {
+		str = "12";
+	    } else {
+		str = _currentHours;
+	    }
+	    tag +=   '<span id="current-hour-alarm">' + str + '</span>';
 	    tag +=   ':';
 	    tag +=   '<span id="current-minute-alarm">' + _currentMinutes + '</span>';
 	    tag +=   '<span id="current-when-alarm"> ' + _currentPeriod + '</span>';
@@ -86,6 +114,12 @@ var TimeCurrentComponent = function( DOMId ){
 	var _refreshTime = function( ) {
 	    var _newTime = new Date();
 	    _currentHours = TimeFormatter.convertUnitToDigital( _newTime.getHours() );
+	    _currentHours = TimeFormatter.convertMillitaryToHour(_currentHours);
+
+	    if (_currentHours === "0") {
+		_currentHours = 12;
+	    }
+
 	    _currentPeriod = TimeFormatter.getPeriod(_currentHours );
 	    _currentMinutes = TimeFormatter.formatMinute( _newTime.getMinutes() );
 	};

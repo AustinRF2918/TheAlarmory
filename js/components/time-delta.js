@@ -9,7 +9,7 @@ var TimeDeltaComponent = function( DOMId ){
     return ( function( ) {
 	// CoreComponent
 	var _internalDOMIdentifier = DOMId;
-	var $el = $(_internalDOMIdentifier);
+	var $el = $("#" + _internalDOMIdentifier);
 
 	// CoreComponentFields
 	var _currentTime = new Date();
@@ -90,7 +90,7 @@ var TimeDeltaComponent = function( DOMId ){
 	// will change time delta.
 	var _refreshTimeDelta = function( ) {
 	    _timeDelta = TimeFormatter.calculateDelta( _currentHours, _currentMinutes, _selectedHours, _selectedMinutes );
-	    $(_internalDOMIdentifier +  " #delta").html(_timeDelta);
+	    $("#" + _internalDOMIdentifier +  " #delta").html(_timeDelta);
 	};
 
 	// Refreshes the internal current time.
@@ -99,14 +99,18 @@ var TimeDeltaComponent = function( DOMId ){
 	var _refreshTime = function( ) {
 	    var _newTime = new Date( );
 	    _currentHours = _newTime.getHours();
-	    _currentPeriod = TimeFormatter.getPeriod(_currentHours );
+	    _currentPeriod = TimeFormatter.getPeriod(_currentHours);
 	    _currentMinutes = _newTime.getMinutes();
 	    _refreshTimeDelta( );
 	};
 
 	// Maybe refresh with message?
 	var _pushTime = function( hour, minute, period ) {
-	    _selectedHours = TimeFormatter.convertHourToMillitary( hour - 1, period );
+	    try {
+		_selectedHours = TimeFormatter.convertHourToMillitary( hour, period );
+	    } catch(e) {
+		_selectedHours = 0;
+	    }
 	    _selectedPeriod = period;
 	    _selectedMinutes = minute;
 	    _refreshTime( );
@@ -114,7 +118,11 @@ var TimeDeltaComponent = function( DOMId ){
 
 	// Maybe refresh with message?
 	var _pushCurrentTime = function( hour, minute, period ) {
-	    _currentHours = TimeFormatter.convertHourToMillitary( hour - 1, period );
+	    try {
+		_currentHours = TimeFormatter.convertHourToMillitary( hour, period );
+	    } catch(e) {
+		_currentHours = 0;
+	    }
 	    _currentPeriod = period;
 	    _currentMinutes = minute;
 	    _refreshTimeDelta( );
@@ -145,7 +153,6 @@ var TimeDeltaComponent = function( DOMId ){
 	   whatever actions it needs to do.
 	*/
 	var _handle = function( data ) {
-	    console.log(data);
 	    if ( data.componentName === 'ControlPanelComponent'  && data.periodActive && data.hourActive && data.minuteActive) {
 		_pushTime( data.hourActive, data.minuteActive, data.periodActive );
 	    }

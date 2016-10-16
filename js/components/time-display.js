@@ -8,9 +8,9 @@ var TimeDisplayComponent = function( DOMId ){
 
     return ( function( ) {
 	var _internalDOMIdentifier = DOMId;
-	var $el = $(_internalDOMIdentifier);
+	var $el = $("#" + _internalDOMIdentifier);
 
-	var _selectedHours = TimeFormatter.formatHour( 0 );
+	var _selectedHours = TimeFormatter.formatHour( 1 );
 	var _selectedPeriod = TimeFormatter.formatPeriod( "AM" );
 	var _selectedMinutes = TimeFormatter.formatMinute( 0 );
 
@@ -48,7 +48,7 @@ var TimeDisplayComponent = function( DOMId ){
 	};
 
 	var _pushTime = function( hour, minute, period ) {
-	    _selectedHours = TimeFormatter.formatHour(hour);
+	    _selectedHours = TimeFormatter.formatHour(hour) + 1;
 	    _selectedMinutes = TimeFormatter.formatMinute(minute);
 	    _selectedPeriod = TimeFormatter.formatPeriod(period);
 	};
@@ -64,9 +64,15 @@ var TimeDisplayComponent = function( DOMId ){
 
 	var _handle = function( data ) {
 	    if ( data.componentName === 'ControlPanelComponent' ) {
-            _selectedHours = data.hourActive;
-            _selectedPeriod = data.periodActive;
-            _selectedMinutes = data.minuteActive;
+		_selectedHours = data.hourActive;
+		_selectedPeriod = data.periodActive;
+		_selectedMinutes = data.minuteActive;
+
+		var hourDisplay = TimeFormatter.convertUnitToDigital(_selectedHours);
+
+		$("#" + _internalDOMIdentifier +  " #hour-alarm").html(hourDisplay);
+		$("#" + _internalDOMIdentifier +  " #minute-alarm").html(_selectedMinutes);
+		$("#" + _internalDOMIdentifier +  " #when-alarm").html(_selectedPeriod);
 	    }
 	};
 

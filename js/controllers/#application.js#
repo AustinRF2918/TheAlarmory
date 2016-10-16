@@ -95,7 +95,6 @@ var ApplicationController = function( ) {
 		    _notify( 'TimeDeltaComponent', data );
 		    _notify( 'TimeDisplayComponent', data );
 		} else if ( data.componentName === "SelectorButtonComponent" ) {
-		    console.log("Got message from button...");
 		}
 	    }
 	};

@@ -81,6 +81,9 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric){
 	// Simple internal function to handle events.
 	var _pushActiveNumber = function( number ) {
 	    _isActive = function(){ return (number === _number) }();
+	    if (!_isActive) {
+		$("#" + _internalDOMIdentifier).removeClass( _className + "-active" );
+	    }
 	};
 
 	var _update = function( currentNumberActive ) {
@@ -159,10 +162,7 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric){
 	*/
 	var _fireEvent = function( ) {
 	    _isActive = true;
-
-	    for (var i of _actions) {
-		_actions[i]( );
-	    }
+	    $("#" + _internalDOMIdentifier).addClass(_className + "-active");
 
 	    _notify( );
 	};
@@ -181,6 +181,7 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric){
 	*/
 	var _notify = function ( ) {
 	    _parent.__handle( {
+		componentName: "SelectorButtonComponent",
 		active: _isActive,
 		id: _number
 	    } );

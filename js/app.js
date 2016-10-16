@@ -5,37 +5,52 @@ var alarmSnoozeMode = false;
 
 $(document).ready(function(){
     var controller = ApplicationController();
+    var tds = ControlPanelComponent( "#control-panel" );
     
+    // Hours Container
     var tdsA = SelectorPortionComponent( "#hour-container", "Hours" );
     for (var itemNumber = 1; itemNumber < 13; itemNumber++) {
-	tdsA.pushChild( SelectorButtonComponent( "#hour", itemNumber, "btn-square-hours" ) );
+	var temp = SelectorButtonComponent( "hour", itemNumber, "btn-square-hours" ) 
+	tdsA.pushChild( temp );
+	if ( itemNumber == 1 ) {
+	    temp.__fireEvent();
+	}
     }
-
-    var tdsC = SelectorPortionComponent( "#minute-container", "Minutes" );
-    var test = [];
-    for (var itemNumber = 0; itemNumber < 60; itemNumber++) {
-	var temp = SelectorButtonComponent( "minute", itemNumber, "btn-square-minutes" )
-	tdsC.pushChild( temp );
-    }
-
-    var tds = ControlPanelComponent( "#control-panel" );
-    tds.pushChild( tdsC );
-    tdsC.__render();
-
-    for (var i of tdsC.children) {
-	console.log(i);
+    tds.pushChild( tdsA );
+    tdsA.__render();
+    for (var i of tdsA.children) {
 	i.setEvent("click");
     }
+    // End Hours Container
 
+    // Minute Container
+    var tdsC = SelectorPortionComponent( "#minute-container", "Minutes" );
+    for (var itemNumber = 0; itemNumber < 60; itemNumber++) {
+	var temp =  SelectorButtonComponent( "minute", itemNumber, "btn-square-minutes" );
+	tdsC.pushChild( temp );
+	if ( itemNumber == 0 ) {
+	    temp.__fireEvent();
+	}
+    }
+    tds.pushChild( tdsC );
+    tdsC.__render();
+    for (var i of tdsC.children) {
+	i.setEvent("click");
+    }
+    // End Minute Container
+
+    // When Contains
     var tdsE = SelectorPortionComponent( "#when-container", "AM/PM" );
-    tdsE.pushChild( SelectorButtonComponent( "type", "AM", "btn-square-when", true ) );
+    var temp = SelectorButtonComponent( "type", "AM", "btn-square-when", true ) 
+    tdsE.pushChild(temp);
+    temp.__fireEvent();
     tdsE.pushChild( SelectorButtonComponent( "type", "PM", "btn-square-when", true ) );
-
-
-    tds.pushChild( tdsA );
     tds.pushChild( tdsE );
-    tdsA.__render();
     tdsE.__render();
+    for (var i of tdsE.children) {
+	i.setEvent("click");
+    }
+    // End When Container
 
     var timeDisplay = TimeDisplayComponent( "#time-display-component" );
     var timeDelta = TimeDeltaComponent( "#time-delta-component" );

@@ -56,6 +56,7 @@ var TimeDeltaComponent = function( DOMId ){
 	    tag +=   '<strong>';
 	    tag +=     'In: ';
 	    tag +=     '<span id="delta">' + _timeDelta + '</span>';
+	    tag +=     ' Hours.';
 	    tag +=   '</strong>';
 	    tag += '</h5>';
 
@@ -89,6 +90,7 @@ var TimeDeltaComponent = function( DOMId ){
 	// will change time delta.
 	var _refreshTimeDelta = function( ) {
 	    _timeDelta = TimeFormatter.calculateDelta( _currentHours, _currentMinutes, _selectedHours, _selectedMinutes );
+	    $(_internalDOMIdentifier +  " #delta").html(_timeDelta);
 	};
 
 	// Refreshes the internal current time.
@@ -143,6 +145,7 @@ var TimeDeltaComponent = function( DOMId ){
 	   whatever actions it needs to do.
 	*/
 	var _handle = function( data ) {
+	    console.log(data);
 	    if ( data.componentName === 'ControlPanelComponent'  && data.periodActive && data.hourActive && data.minuteActive) {
 		_pushTime( data.hourActive, data.minuteActive, data.periodActive );
 	    }

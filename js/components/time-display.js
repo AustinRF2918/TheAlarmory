@@ -69,9 +69,10 @@ var TimeDisplayComponent = function( DOMId ){
 		_selectedMinutes = data.minuteActive;
 
 		var hourDisplay = TimeFormatter.convertUnitToDigital(_selectedHours);
+		var minuteDisplay = TimeFormatter.convertUnitToDigital(_selectedMinutes);
 
 		$("#" + _internalDOMIdentifier +  " #hour-alarm").html(hourDisplay);
-		$("#" + _internalDOMIdentifier +  " #minute-alarm").html(_selectedMinutes);
+		$("#" + _internalDOMIdentifier +  " #minute-alarm").html(minuteDisplay);
 		$("#" + _internalDOMIdentifier +  " #when-alarm").html(_selectedPeriod);
 	    }
 	};

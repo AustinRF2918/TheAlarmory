@@ -55,7 +55,7 @@ var TimeCurrentComponent = function( DOMId ){
 		_refreshTime();
 		$("#" + _internalDOMIdentifier +  " #current-hour-alarm").html(hours);
 		$("#" + _internalDOMIdentifier +  " #current-minute-alarm").html(_currentMinutes);
-		$("#" + _internalDOMIdentifier +  " #current-when-alarm").html(_currentPeriod);
+		$("#" + _internalDOMIdentifier +  " #current-when-alarm").html(" " + _currentPeriod);
 	    }, 5000);
 
 	};

@@ -1,5 +1,5 @@
-var TimeFormatter = require('../lib/time-formatting.js').TimeFormatter;
-var templateWrapper = require('../lib/template-helpers.js').templateWrapper;
+// var TimeFormatter = require('../lib/time-formatting.js').TimeFormatter;
+// var templateWrapper = require('../lib/template-helpers.js').templateWrapper;
 
 var TimeCurrentComponent = function( DOMId ){
     if ( typeof DOMId !== "string" ) {
@@ -46,6 +46,7 @@ var TimeCurrentComponent = function( DOMId ){
 	  _generateTemplate: Internal function for render: The creates the HTML markup
 	  for our component. Core view trait requires this to be implemented.
 	*/
+
 	var _generateTemplate = function() {
 	    var tag = '';
 	    tag += '<h5 class="text-body">';
@@ -82,8 +83,6 @@ var TimeCurrentComponent = function( DOMId ){
 	    _parent = component;
 	};
 	
-	
-
 	// Refreshes internal current variables.
 	var _refreshTime = function( ) {
 	    var _newTime = new Date();
@@ -112,4 +111,4 @@ var TimeCurrentComponent = function( DOMId ){
     })( );
 };
 
-module.exports.TimeCurrentComponent = TimeCurrentComponent;
+// module.exports.TimeCurrentComponent = TimeCurrentComponent;

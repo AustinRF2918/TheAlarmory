@@ -268,12 +268,13 @@ var TimeFormatter = (function() {
     };
 })();
 
-module.exports.TimeFormatter = TimeFormatter;
-module.exports._formatHour = TimeFormatter.formatHour;
-module.exports._formatMinute = TimeFormatter.formatMinute;
-module.exports._formatPeriod = TimeFormatter.formatPeriod;
-module.exports._getPeriod = TimeFormatter.getPeriod;
-module.exports._convertHourToMillitary = TimeFormatter.convertHourToMillitary;
-module.exports._convertMillitaryToHour = TimeFormatter.convertMillitaryToHour;
-module.exports._convertUnitToDigital = TimeFormatter.convertUnitToDigital;
-module.exports._calculateDelta = TimeFormatter.calculateDelta;
+
+// module.exports.TimeFormatter = TimeFormatter;
+// module.exports._formatHour = TimeFormatter.formatHour;
+// module.exports._formatMinute = TimeFormatter.formatMinute;
+// module.exports._formatPeriod = TimeFormatter.formatPeriod;
+// module.exports._getPeriod = TimeFormatter.getPeriod;
+// module.exports._convertHourToMillitary = TimeFormatter.convertHourToMillitary;
+// module.exports._convertMillitaryToHour = TimeFormatter.convertMillitaryToHour;
+// module.exports._convertUnitToDigital = TimeFormatter.convertUnitToDigital;
+// module.exports._calculateDelta = TimeFormatter.calculateDelta;

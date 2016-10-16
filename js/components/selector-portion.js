@@ -1,5 +1,5 @@
-var TimeFormatter = require('../lib/time-formatting.js').TimeFormatter;
-var templateWrapper = require('../lib/template-helpers.js').templateWrapper;
+// var TimeFormatter = require('../lib/time-formatting.js').TimeFormatter;
+// var templateWrapper = require('../lib/template-helpers.js').templateWrapper;
 
 function _checkForType( item, type, errorText ) {
     if ( typeof item !== type ) {
@@ -30,18 +30,17 @@ var SelectorPortionComponent = function( DOMId, name ){
 	var _parent = undefined;
 
 	/*
-	  View components: _render should only be called on initial render and following this
-	  a rerender should be called: JQuery will do this by changing text elements or any 
-	  class attributes.
+	View components: _render should only be called on initial render and following this
+	a rerender should be called: JQuery will do this by changing text elements or any 
+	class attributes.
 	*/
 
 	/*
-	  _generateTemplate: Internal function for render: The creates the HTML markup
-	  for our component. Core view trait requires this to be implemented.
+	_generateTemplate: Internal function for render: The creates the HTML markup
+	for our component. Core view trait requires this to be implemented.
 	*/
 	var _render = function( ) {
-	    $el.remove( );
-	    $el.html( _generateTemplate( ) );
+	    $el.append( _generateTemplate( ) );
 	};
 
 	var _generateTemplate = function( ) {
@@ -56,22 +55,22 @@ var SelectorPortionComponent = function( DOMId, name ){
 	};
 
 	/*
-	 OrderedComponents trait: OrderedComponents will require our object to both
-	  implement a _pushParent function which our component can notify, and a 
-	  _pushChild function, which our component can receive notification from.
+	OrderedComponents trait: OrderedComponents will require our object to both
+	implement a _pushParent function which our component can notify, and a 
+	_pushChild function, which our component can receive notification from.
 	*/
 
 	/*
-	  _pushParent: Pushes a parent to the parent component.
-	   Note that this is a top level component so we do not
-	   implement this function totally.
+	_pushParent: Pushes a parent to the parent component.
+	Note that this is a top level component so we do not
+	implement this function totally.
 	*/
 	var _pushParent = function( component ) {
 	    _parent = component;
 	};
 
 	/*
-	  _pushChild: Pushes a child to the internal stack of children components.
+	_pushChild: Pushes a child to the internal stack of children components.
 	*/
 	var _pushChild = function( component ) {
 	    component.pushParent( this );
@@ -79,15 +78,15 @@ var SelectorPortionComponent = function( DOMId, name ){
 	};
 
 	/* 
-	   Node trait: Node means we have to implement _notify and _handle:
-	   both of these allow our component to send and recieve events 
-	   and messages from other components respectively.
+	Node trait: Node means we have to implement _notify and _handle:
+	both of these allow our component to send and recieve events 
+	and messages from other components respectively.
 	*/
 
 	/* 
-	   _notify: notify sends our parent a handle function with a JavaScript
-	   object: our parent is then free to implement handle in whatever way
-	   it sees fit to handle messaging between components. 
+	_notify: notify sends our parent a handle function with a JavaScript
+	object: our parent is then free to implement handle in whatever way
+	it sees fit to handle messaging between components. 
 	*/
 	var _notify = function( ) {
 	    if ( _parent ) {
@@ -99,8 +98,8 @@ var SelectorPortionComponent = function( DOMId, name ){
 	};
 
 	/* 
-	   _handle: _handle will take a JavaScript object and analyize it to do 
-	   whatever actions it needs to do.
+	_handle: _handle will take a JavaScript object and analyize it to do 
+	whatever actions it needs to do.
 	*/
 	var _handle = function( data ) {
 	    if ( data && data.active ) {
@@ -128,9 +127,9 @@ var SelectorPortionComponent = function( DOMId, name ){
 	};
 
 	/*
-	  _setEvent: setEvent uses JQuery internally to give an event that will 
-	  fire our actions. For example: if we set our event as 'click', all 
-	  of our actions will fire when the specific components $el is clicked.
+	_setEvent: setEvent uses JQuery internally to give an event that will 
+	fire our actions. For example: if we set our event as 'click', all 
+	of our actions will fire when the specific components $el is clicked.
 	*/
 	var _setEvent = function( event, test ) {
 	    $el.on( event, function( ) {
@@ -152,6 +151,7 @@ var SelectorPortionComponent = function( DOMId, name ){
 	    __handle: _handle,
 	    __notify: _notify,
 	    __componentName: "SelectorPortionComponent",
+	    children: _children,
 	    setEvent: _setEvent,
 	    pushChild: _pushChild,
 	    pushParent: _pushParent
@@ -159,4 +159,4 @@ var SelectorPortionComponent = function( DOMId, name ){
     })( );
 };
 
-module.exports.SelectorPortionComponent = SelectorPortionComponent;
+// module.exports.SelectorPortionComponent = SelectorPortionComponent;

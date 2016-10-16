@@ -1,5 +1,5 @@
-var TimeFormatter = require('../lib/time-formatting.js').TimeFormatter;
-var templateWrapper = require('../lib/template-helpers.js').templateWrapper;
+// var TimeFormatter = require('../lib/time-formatting.js').TimeFormatter;
+// var templateWrapper = require('../lib/template-helpers.js').templateWrapper;
 
 function _checkForType( item, type, errorText ) {
     if ( typeof item !== type ) {
@@ -28,17 +28,17 @@ var ControlPanelComponent = function( DOMId ){
 	var _parent = undefined;
 
 	/*
-	  View components: _render should only be called on initial render and following this
-	  a rerender should be called: JQuery will do this by changing text elements or any 
-	  class attributes.
+	View components: _render should only be called on initial render and following this
+	a rerender should be called: JQuery will do this by changing text elements or any 
+	class attributes.
 	*/
 
 	/*
-	  _render: Internal function to remove the element that is current hooked to 
-	  our component and following this rerender the HTML: Unless there is some 
-	  reason to do so, we should in general keep this used only once, otherwise
-	  we should hook JQuery functions to our _handle function, implemented by
-	  the ComponentMessanger trait.
+	_render: Internal function to remove the element that is current hooked to 
+	our component and following this rerender the HTML: Unless there is some 
+	reason to do so, we should in general keep this used only once, otherwise
+	we should hook JQuery functions to our _handle function, implemented by
+	the ComponentMessanger trait.
 	*/
 	var _render = function( ) {
 	    $el.remove( );
@@ -46,8 +46,8 @@ var ControlPanelComponent = function( DOMId ){
 	};
 
 	/*
-	  _generateTemplate: Internal function for render: The creates the HTML markup
-	  for our component. Core view trait requires this to be implemented.
+	_generateTemplate: Internal function for render: The creates the HTML markup
+	for our component. Core view trait requires this to be implemented.
 	*/
 	var _generateTemplate = function( ) {
 	    var tag = '';
@@ -62,38 +62,38 @@ var ControlPanelComponent = function( DOMId ){
 	};
 
 	/*
-	 OrderedComponents trait: OrderedComponents will require our object to both
-	  implement a _pushParent function which our component can notify, and a 
-	  _pushChild function, which our component can receive notification from.
+	OrderedComponents trait: OrderedComponents will require our object to both
+	implement a _pushParent function which our component can notify, and a 
+	_pushChild function, which our component can receive notification from.
 	*/
 
 	/*
-	  _pushChild: Pushes a child to the internal stack of children components.
+	_pushChild: Pushes a child to the internal stack of children components.
 	*/
 	var _pushChild = function( component ) {
 	    component.pushParent( this );
 	    _children.push( component );
 	};
-	
+
 	/*
-	  _pushParent: Pushes a parent to the parent component.
-	   Note that this is a top level component so we do not
-	   implement this function totally.
+	_pushParent: Pushes a parent to the parent component.
+	Note that this is a top level component so we do not
+	implement this function totally.
 	*/
 	var _pushParent = function( component ) {
 	    _parent = component;
 	};
 
 	/* 
-	   Node trait: Node means we have to implement _notify and _handle:
-	   both of these allow our component to send and recieve events 
-	   and messages from other components respectively.
+	Node trait: Node means we have to implement _notify and _handle:
+	both of these allow our component to send and recieve events 
+	and messages from other components respectively.
 	*/
 
 	/* 
-	   _notify: notify sends our parent a handle function with a JavaScript
-	   object: our parent is then free to implement handle in whatever way
-	   it sees fit to handle messaging between components. 
+	_notify: notify sends our parent a handle function with a JavaScript
+	object: our parent is then free to implement handle in whatever way
+	it sees fit to handle messaging between components. 
 	*/
 	var _notify = function( ) {
 	    if ( _parent ) {
@@ -107,8 +107,8 @@ var ControlPanelComponent = function( DOMId ){
 	};
 
 	/* 
-	   _handle: _handle will take a JavaScript object and analyize it to do 
-	   whatever actions it needs to do.
+	_handle: _handle will take a JavaScript object and analyize it to do 
+	whatever actions it needs to do.
 	*/
 	var _handle = function( data ) {
 	    if ( data ) {
@@ -149,4 +149,4 @@ var ControlPanelComponent = function( DOMId ){
     })( );
 };
 
-module.exports.ControlPanelComponent = ControlPanelComponent;
+// module.exports.ControlPanelComponent = ControlPanelComponent;

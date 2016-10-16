@@ -1,5 +1,5 @@
-var TimeFormatter = require('../lib/time-formatting.js').TimeFormatter;
-var templateWrapper = require('../lib/template-helpers.js').templateWrapper;
+// var TimeFormatter = require('../lib/time-formatting.js').TimeFormatter;
+// var templateWrapper = require('../lib/template-helpers.js').templateWrapper;
 
 var TimeDisplayComponent = function( DOMId ){
     if ( typeof DOMId !== "string" ) {
@@ -98,4 +98,4 @@ var TimeDisplayComponent = function( DOMId ){
     })( );
 };
 
-module.exports.TimeDisplayComponent = TimeDisplayComponent;
+// module.exports.TimeDisplayComponent = TimeDisplayComponent;

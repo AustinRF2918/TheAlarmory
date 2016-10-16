@@ -1,5 +1,5 @@
-var TimeFormatter = require('../lib/time-formatting.js').TimeFormatter;
-var templateWrapper = require('../lib/template-helpers.js').templateWrapper;
+// var TimeFormatter = require('../lib/time-formatting.js').TimeFormatter;
+// var templateWrapper = require('../lib/template-helpers.js').templateWrapper;
 
 /*
   Put into own component, keep DRY
@@ -50,14 +50,14 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric){
 	};
 
 	/*
-	  View components: _render should only be called on initial render and following this
-	  a rerender should be called: JQuery will do this by changing text elements or any 
-	  class attributes.
+	View components: _render should only be called on initial render and following this
+	a rerender should be called: JQuery will do this by changing text elements or any 
+	class attributes.
 	*/
 
 	/*
-	  _generateTemplate: Internal function for render: The creates the HTML markup
-	  for our component. Core view trait requires this to be implemented.
+	_generateTemplate: Internal function for render: The creates the HTML markup
+	for our component. Core view trait requires this to be implemented.
 	*/
 	var _generateTemplate = function( ) {
 	    var tag = '';
@@ -66,17 +66,16 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric){
 	    tag += '</div>';
 	    return tag;
 	};
-	
+
 	/*
-	  _render: Internal function to remove the element that is current hooked to 
-	  our component and following this rerender the HTML: Unless there is some 
-	  reason to do so, we should in general keep this used only once, otherwise
-	  we should hook JQuery functions to our _handle function, implemented by
-	  the ComponentMessanger trait.
+	_render: Internal function to remove the element that is current hooked to 
+	our component and following this rerender the HTML: Unless there is some 
+	reason to do so, we should in general keep this used only once, otherwise
+	we should hook JQuery functions to our _handle function, implemented by
+	the ComponentMessanger trait.
 	*/
 	var _render = function() {
-	    $el.remove( );
-	    $el.html( _generateTemplate( ) );
+	    $el.append( _generateTemplate( ) );
 	};
 
 	// Simple internal function to handle events.
@@ -93,26 +92,26 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric){
 	};
 
 	/*
-	 OrderedComponents trait: OrderedComponents will require our object to both
-	  implement a _pushParent function which our component can notify, and a 
-	  _pushChild function, which our component can receive notification from.
+	OrderedComponents trait: OrderedComponents will require our object to both
+	implement a _pushParent function which our component can notify, and a 
+	_pushChild function, which our component can receive notification from.
 	*/
 
 	/*
-	  _pushParent: Pushes a parent to the parent component.
-	   Note that this is a top level component so we do not
-	   implement this function totally.
+	_pushParent: Pushes a parent to the parent component.
+	Note that this is a top level component so we do not
+	implement this function totally.
 	*/
 	var _pushParent = function( component ) {
 	    _parent = component;
 	};
 
 	/*
-	  _pushChild: Pushes a child to the internal stack of children components.
+	_pushChild: Pushes a child to the internal stack of children components.
 	*/
 	var _pushChild = function( component ) {
 	    //Pass.
-	}
+	};
 
 	// Debug function: Because this is ES6 syntax, we should disable these on
 	// deployment of the website.
@@ -125,38 +124,38 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric){
 	};
 
 	/* 
-	   HandlesEvents trait: HandlesEvents makes us implement three functions:
-	   _pushAction, _setEvent, and _fireEvent. These all function to allow us
-	   to push lambdas  to evaluate when an event is fired (possible multiple)
-	   and then set the event that will fire these lambdas.
+	HandlesEvents trait: HandlesEvents makes us implement three functions:
+	_pushAction, _setEvent, and _fireEvent. These all function to allow us
+	to push lambdas  to evaluate when an event is fired (possible multiple)
+	and then set the event that will fire these lambdas.
 	*/
 
 	/*
-	  _pushAction: pushAction takes an evaluatable function and pushes it to 
-	  a stack of internal actions: Later on we can set our event that will allow
-	  these actions to fire: naturally these actions allow extensibility to 
-	  our component and their behavior.
+	_pushAction: pushAction takes an evaluatable function and pushes it to 
+	a stack of internal actions: Later on we can set our event that will allow
+	these actions to fire: naturally these actions allow extensibility to 
+	our component and their behavior.
 	*/
 	var _pushAction = function ( fn ) {
 	    _actions.push( fn );
 	};
 
 	/*
-	  _setEvent: setEvent uses JQuery internally to give an event that will 
-	  fire our actions. For example: if we set our event as 'click', all 
-	  of our actions will fire when the specific components $el is clicked.
+	_setEvent: setEvent uses JQuery internally to give an event that will 
+	fire our actions. For example: if we set our event as 'click', all 
+	of our actions will fire when the specific components $el is clicked.
 	*/
 	var _setEvent = function ( event ) {
-	    $el.on( event, function() {
+	    $("#" + _internalDOMIdentifier).on( event, function() {
 		_fireEvent( );
 	    });
 	};
 
 	/*
-	  _fireEvent: fireEvent is a debug function that allows us to actually 
-	  fire and event without actually have a JQuery event specified: this
-	  means in test frameworks like Mocha we don't have to implement 
-	  JQuery ourselves.
+	_fireEvent: fireEvent is a debug function that allows us to actually 
+	fire and event without actually have a JQuery event specified: this
+	means in test frameworks like Mocha we don't have to implement 
+	JQuery ourselves.
 	*/
 	var _fireEvent = function( ) {
 	    _isActive = true;
@@ -169,16 +168,16 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric){
 	};
 
 	/* 
-	   Node trait: Node means we have to implement _notify and _handle:
-	   both of these allow our component to send and recieve events 
-	   and messages from other components respectively.
+	Node trait: Node means we have to implement _notify and _handle:
+	both of these allow our component to send and recieve events 
+	and messages from other components respectively.
 	*/
 
 
 	/* 
-	   _notify: notify sends our parent a handle function with a JavaScript
-	   object: our parent is then free to implement handle in whatever way
-	   it sees fit to handle messaging between components. 
+	_notify: notify sends our parent a handle function with a JavaScript
+	object: our parent is then free to implement handle in whatever way
+	it sees fit to handle messaging between components. 
 	*/
 	var _notify = function ( ) {
 	    _parent.__handle( {
@@ -188,8 +187,8 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric){
 	};
 
 	/* 
-	   _handle: _handle will take a JavaScript object and analyize it to do 
-	   whatever actions it needs to do.
+	_handle: _handle will take a JavaScript object and analyize it to do 
+	whatever actions it needs to do.
 	*/
 	var _handle = function( data ) {
 	    //pass.
@@ -217,4 +216,4 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric){
     })( );
 };
 
-module.exports.SelectorButtonComponent = SelectorButtonComponent;
+// module.exports.SelectorButtonComponent = SelectorButtonComponent;

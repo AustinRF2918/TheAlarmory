@@ -1,5 +1,5 @@
-var TimeFormatter = require('../lib/time-formatting.js').TimeFormatter;
-var templateWrapper = require('../lib/template-helpers.js').templateWrapper;
+// var TimeFormatter = require('../lib/time-formatting.js').TimeFormatter;
+// var templateWrapper = require('../lib/template-helpers.js').templateWrapper;
 
 var TimeDeltaComponent = function( DOMId ){
     if ( typeof DOMId !== "string" ) {
@@ -179,4 +179,4 @@ var TimeDeltaComponent = function( DOMId ){
     })( );
 };
 
-module.exports.TimeDeltaComponent = TimeDeltaComponent;
+// module.exports.TimeDeltaComponent = TimeDeltaComponent;

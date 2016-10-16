@@ -10,4 +10,4 @@ function templateWrapper( id, html ) {
     return tag;
 }
 
-module.exports.templateWrapper = templateWrapper;
+// module.exports.templateWrapper = templateWrapper;

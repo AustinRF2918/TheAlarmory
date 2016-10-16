@@ -21,6 +21,7 @@ var ApplicationController = function( ) {
 	   implement this function totally.
 	*/
 	var _pushParent = function( component ) {
+	    // Dummy Component
 	};
 
 	/*
@@ -105,6 +106,7 @@ var ApplicationController = function( ) {
 	    }
 	};
 
+	console.log("Succesfully instantiated controller.");
 	return {
 	    __children: _children,
 	    __getComponentMatches: _getComponentMatches,
@@ -115,4 +117,4 @@ var ApplicationController = function( ) {
     })( );
 };
 
-module.exports.ApplicationController = ApplicationController;
+// module.exports.ApplicationController = ApplicationController;

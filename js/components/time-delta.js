@@ -44,6 +44,8 @@ var TimeDeltaComponent = function( DOMId ){
 	*/
 	var _render = function() {
 	    $el.append( _generateTemplate( ) );
+	    // TODO
+	    // Set Event Loop Here.
 	};
 
 	/*
@@ -106,6 +108,7 @@ var TimeDeltaComponent = function( DOMId ){
 
 	// Maybe refresh with message?
 	var _pushTime = function( hour, minute, period ) {
+	    console.log( _selectedHours );
 	    try {
 		_selectedHours = TimeFormatter.convertHourToMillitary( hour, period );
 	    } catch(e) {
@@ -153,7 +156,8 @@ var TimeDeltaComponent = function( DOMId ){
 	   whatever actions it needs to do.
 	*/
 	var _handle = function( data ) {
-	    if ( data.componentName === 'ControlPanelComponent'  && data.periodActive && data.hourActive && data.minuteActive) {
+	    console.log(data);
+	    if ( data.componentName === 'ControlPanelComponent'  && data.periodActive !== undefined && data.hourActive !== undefined && data.minuteActive !== undefined) {
 		_pushTime( data.hourActive, data.minuteActive, data.periodActive );
 	    }
 	};

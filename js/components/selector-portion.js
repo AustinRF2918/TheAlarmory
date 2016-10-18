@@ -7,7 +7,7 @@ function _checkForType( item, type, errorText ) {
     }
 }
 
-var SelectorPortionComponent = function( DOMId, name ){
+var SelectorPortionComponent = function( DOMId, name, active){
     _checkForType( DOMId, "string", "Invalid data type passed to SelectorPortionComponent parameter 1 (DOMId): must be a string.");
 
     _checkForType( name, "string", "Invalid data type passed to SelectorPortionComponent parameter 2 (number) : must be a number.");
@@ -20,7 +20,8 @@ var SelectorPortionComponent = function( DOMId, name ){
 	// CoreComponentFields
 	var _name = name;
 	var _isActive = false;
-	var _currentActive = undefined;
+	
+	var _currentActive = active;
 
 	// Handles Events
 	var _actions = [];
@@ -75,6 +76,9 @@ var SelectorPortionComponent = function( DOMId, name ){
 	var _pushChild = function( component ) {
 	    component.pushParent( this );
 	    _children.push( component );
+	    if (_children.length == 1) {
+		component.__fireEvent();
+	    }
 	};
 
 	/* 

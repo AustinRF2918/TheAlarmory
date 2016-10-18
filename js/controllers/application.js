@@ -108,12 +108,22 @@ var ApplicationController = function( ) {
 	    }
 	};
 
+	var _init = function() {
+	    for ( var i in _children ) {
+		if (!_children[i].__currentActive === undefined) {
+		    _children[i].__notify(_children[i].__currentActive);
+		} else {
+		}
+	    }
+	};
+
 	console.log("Succesfully instantiated controller.");
 	return {
 	    __children: _children,
 	    __getComponentMatches: _getComponentMatches,
 	    __handle: _handle,
 	    __notify: _notify,
+	    init: _init,
 	    pushChild: _pushChild
 	};
     })( );

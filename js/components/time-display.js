@@ -27,7 +27,7 @@ var TimeDisplayComponent = function( DOMId ){
 	    tag +=     '<span id="hour-alarm">' + _selectedHours + '</span>';
 	    tag +=     '<span id="exxtra">' + ':' + '</span>';
 	    tag +=     '<span id="minute-alarm">' + _selectedMinutes + '</span>';
-	    tag +=     '<span id="when-alarm">' + _selectedPeriod + '</span>';
+	    tag +=     '<span id="when-alarm"> ' + _selectedPeriod + '</span>';
 	    tag +=   '</strong>';
 	    tag += '</h3>';
 
@@ -73,7 +73,7 @@ var TimeDisplayComponent = function( DOMId ){
 
 		$("#" + _internalDOMIdentifier +  " #hour-alarm").html(hourDisplay);
 		$("#" + _internalDOMIdentifier +  " #minute-alarm").html(minuteDisplay);
-		$("#" + _internalDOMIdentifier +  " #when-alarm").html(_selectedPeriod);
+		$("#" + _internalDOMIdentifier +  " #when-alarm").html(" " + _selectedPeriod);
 	    }
 	};
 

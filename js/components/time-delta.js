@@ -44,12 +44,13 @@ var TimeDeltaComponent = function( DOMId ){
 	*/
 	var _render = function() {
 	    $el.append( _generateTemplate( ) );
+	    _display();
 	    var interval = setInterval(function() {
-
+		_display();
 		var hours = TimeFormatter.convertMillitaryToHour(_currentHours);
 		if (hours === 0) {
-		    hours = 12;
 		}
+
 
 		_refreshTime();
 		$("#" + _internalDOMIdentifier +  " #hour-alarm").html(hours);
@@ -118,11 +119,10 @@ var TimeDeltaComponent = function( DOMId ){
 
 	// Maybe refresh with message?
 	var _pushTime = function( hour, minute, period ) {
-	    console.log( _selectedHours );
 	    try {
 		_selectedHours = TimeFormatter.convertHourToMillitary( hour, period );
 	    } catch(e) {
-		_selectedHours = 0;
+		_selectedHours = TimeFormatter.convertHourToMillitary( 0, period );
 	    }
 	    _selectedPeriod = period;
 	    _selectedMinutes = minute;

@@ -14,7 +14,6 @@ var TimeCurrentComponent = function( DOMId ){
 	// CoreComponentFields
 	var _currentTime = new Date();
 	
-
 	var _currentHours = TimeFormatter.convertUnitToDigital( _currentTime.getHours());
 
 	if (_currentHours === 0) {
@@ -45,7 +44,15 @@ var TimeCurrentComponent = function( DOMId ){
 	  the ComponentMessanger trait.
 	*/
 	var _render = function() {
+	    // extract class.
+	    try {
+		_currentHours = TimeFormatter.convertMillitaryToHour(_currentHours);
+	    } catch(e) {
+		_currentHours = 12;
+	    }
+
 	    $el.append( _generateTemplate( ) );
+
 	    var interval = setInterval(function() {
 
 		var hours = TimeFormatter.convertMillitaryToHour(_currentHours);

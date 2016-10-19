@@ -76,7 +76,7 @@ var SelectorPortionComponent = function( DOMId, name, active){
 	var _pushChild = function( component ) {
 	    component.pushParent( this );
 	    _children.push( component );
-	    if (_children.length == 1) {
+	    if (_children.length == active) {
 		component.__fireEvent();
 	    }
 	};

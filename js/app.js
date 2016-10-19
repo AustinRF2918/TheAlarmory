@@ -6,11 +6,17 @@ var alarmSnoozeMode = false;
 $(document).ready(function(){
     var controller = ApplicationController();
     var tds = ControlPanelComponent( "#control-panel" );
+    var sr = undefined;
     
     // Hours Container
-    var tdsA = SelectorPortionComponent( "#hour-container", "Hours", 12);
+    var tdsA = SelectorPortionComponent( "#hour-container", "Hours", 1);
     for (var itemNumber = 1; itemNumber < 13; itemNumber++) {
 	var temp = SelectorButtonComponent( "hour", itemNumber, "btn-square-hours", undefined, false ) 
+
+	if (itemNumber == 1) {
+	    sr = temp;
+	}
+
 	tdsA.pushChild( temp );
     }
     tds.pushChild( tdsA );
@@ -22,7 +28,7 @@ $(document).ready(function(){
     // End Hours Container
 
     // Minute Container
-    var tdsC = SelectorPortionComponent( "#minute-container", "Minutes", 0);
+    var tdsC = SelectorPortionComponent( "#minute-container", "Minutes", 1);
     for (var itemNumber = 0; itemNumber < 60; itemNumber++) {
 	var temp =  SelectorButtonComponent( "minute", itemNumber, "btn-square-minutes" );
 	tdsC.pushChild( temp );
@@ -36,7 +42,7 @@ $(document).ready(function(){
     // End Minute Container
 
     // When Contains
-    var tdsE = SelectorPortionComponent( "#when-container", "AM/PM", "AM");
+    var tdsE = SelectorPortionComponent( "#when-container", "AM/PM", 1);
     tdsE.pushChild( SelectorButtonComponent( "type", "AM", "btn-square-when", true ) );
     tdsE.pushChild( SelectorButtonComponent( "type", "PM", "btn-square-when", true ) );
     tds.pushChild( tdsE );
@@ -61,6 +67,7 @@ $(document).ready(function(){
     controller.pushChild(timeDisplay);
     controller.pushChild(timeDelta);
     controller.pushChild(timeCurrent);
+    sr.__notify();
 });
 
 

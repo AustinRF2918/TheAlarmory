@@ -44,8 +44,18 @@ var TimeDeltaComponent = function( DOMId ){
 	*/
 	var _render = function() {
 	    $el.append( _generateTemplate( ) );
-	    // TODO
-	    // Set Event Loop Here.
+	    var interval = setInterval(function() {
+
+		var hours = TimeFormatter.convertMillitaryToHour(_currentHours);
+		if (hours === 0) {
+		    hours = 12;
+		}
+
+		_refreshTime();
+		$("#" + _internalDOMIdentifier +  " #hour-alarm").html(hours);
+		$("#" + _internalDOMIdentifier +  " #minute-alarm").html(_currentMinutes);
+		$("#" + _internalDOMIdentifier +  " #when-alarm").html(" " + _currentPeriod);
+	    }, 5000);
 	};
 
 	/*
@@ -156,7 +166,6 @@ var TimeDeltaComponent = function( DOMId ){
 	   whatever actions it needs to do.
 	*/
 	var _handle = function( data ) {
-	    console.log(data);
 	    if ( data.componentName === 'ControlPanelComponent'  && data.periodActive !== undefined && data.hourActive !== undefined && data.minuteActive !== undefined) {
 		_pushTime( data.hourActive, data.minuteActive, data.periodActive );
 	    }

@@ -52,7 +52,9 @@ var TimeCurrentComponent = function( DOMId ){
 		if (hours === 0) {
 		    hours = 12;
 		}
+
 		_refreshTime();
+
 		$("#" + _internalDOMIdentifier +  " #current-hour-alarm").html(hours);
 		$("#" + _internalDOMIdentifier +  " #current-minute-alarm").html(_currentMinutes);
 		$("#" + _internalDOMIdentifier +  " #current-when-alarm").html(" " + _currentPeriod);
@@ -114,13 +116,13 @@ var TimeCurrentComponent = function( DOMId ){
 	var _refreshTime = function( ) {
 	    var _newTime = new Date();
 	    _currentHours = TimeFormatter.convertUnitToDigital( _newTime.getHours() );
+	    _currentPeriod = TimeFormatter.getPeriod( _currentHours );
 	    _currentHours = TimeFormatter.convertMillitaryToHour(_currentHours);
 
 	    if (_currentHours === "0") {
 		_currentHours = 12;
 	    }
 
-	    _currentPeriod = TimeFormatter.getPeriod(_currentHours );
 	    _currentMinutes = TimeFormatter.formatMinute( _newTime.getMinutes() );
 	};
 

@@ -29,18 +29,16 @@ var ModalWindow = function( ){
 	  the ComponentMessanger trait.
 	*/
 	var _render = function() {
-	    $el.append( _generateTemplate( ) );
-	    var interval = setInterval(function() {
-		var hours = TimeFormatter.convertMillitaryToHour(_currentHours);
-		if (hours === 0) {
-		}
+	    $.when($el.append( _generateTemplate( ) )).then(function() {
+		$("#btn-wake-up").click(function() {
+		    _removeModal();
+		});
 
-
-		_refreshTime();
-		$("#" + _internalDOMIdentifier +  " #hour-alarm").html(hours);
-		$("#" + _internalDOMIdentifier +  " #minute-alarm").html(_currentMinutes);
-		$("#" + _internalDOMIdentifier +  " #when-alarm").html(" " + _currentPeriod);
-	    }, 5000);
+		$("#btn-snooze").click(function() {
+		    _removeModal();
+		});
+	    });
+	    
 	};
 
 	/*
@@ -56,16 +54,17 @@ var ModalWindow = function( ){
 	    tag +=       _currentText;
 	    tag +=     '</h5>';
 	    tag +=       '<div class="btn-container">';
-	    tag +=       '<a class="btn btn-modal">';
+	    tag +=       '<a id="btn-wake-up" class="btn btn-modal">';
 	    tag +=         'Wake Up';
 	    tag +=       '</a>';
-	    tag +=       '<a class="btn btn-modal">';
+	    tag +=       '<a id="btn-snooze" class="btn btn-modal">';
 	    tag +=         'Snooze';
 	    tag +=       '</a>';
 	    tag +=       '</div>';
 	    tag +=     '</div>';
 	    tag +=   '</div>';
 	    tag += '</div>';
+
 
 	    return( templateWrapper( _internalDOMIdentifier, tag ));
 	};
@@ -91,9 +90,12 @@ var ModalWindow = function( ){
 	var _pushParent = function( component ) {
 	    _parent = component;
 	};
+
+	var _removeModal = function( ) {
+	    $(".modal-overlay").empty();
+	};
 	
 	var _update = function( hour, minute, period ) {
-	    _pushTime( hour, minute, period );
 	    _render( );
 	};
 
@@ -118,21 +120,11 @@ var ModalWindow = function( ){
 	*/
 	var _handle = function( data ) {
 	    if ( data.componentName === 'ControlPanelComponent'  && data.periodActive !== undefined && data.hourActive !== undefined && data.minuteActive !== undefined) {
-		_pushTime( data.hourActive, data.minuteActive, data.periodActive );
 	    }
 	};
 	// Debug function: Because this is ES6 syntax, we should disable these on
 	// deployment of the website.
 	var _display = function ( ) {
-	    console.log( `_currentHours: (${_currentHours})` );
-	    console.log( `_currentPeriod: (${_currentPeriod})` );
-	    console.log( `_currentMinutes: (${_currentMinutes})` );
-
-	    console.log( `_selectedHours: (${_selectedHours})` );
-	    console.log( `_selectedPeriod: (${_selectedPeriod})` );
-	    console.log( `_selectedMinutes: (${_selectedMinutes})` );
-
-	    console.log( `_timeDelta: (${_timeDelta})` );
 	};
 
 	return {

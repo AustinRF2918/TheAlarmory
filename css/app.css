@@ -306,21 +306,48 @@ body, html {
   .btn-square-lock * {
     color: white; }
 
-.alarm-modal {
+#modal-generator {
+  position: absolute; }
+
+.modal-body {
   position: fixed;
+  z-index: 9999;
+  border: 2px solid #F44333;
   background: black;
+  text-align: center; }
+  @media screen and (min-width: 1100px) {
+    .modal-body {
+      top: 13vw;
+      left: 46%;
+      transform: translateX(-46%);
+      width: 26%;
+      margin: 20px; } }
+  @media screen and (max-width: 1099px) {
+    .modal-body {
+      top: 33vw;
+      left: 1.5vw;
+      width: 95vw; } }
+
+.btn-modal {
   color: white;
-  border: 2px solid #00806a;
-  top: 33vh;
-  min-height: 11vw; }
-  @media screen and (min-width: 768px) {
-    .alarm-modal {
-      width: 33vw;
-      left: 33vw; } }
-  @media screen and (max-width: 767px) {
-    .alarm-modal {
-      width: 90vw;
-      left: 4vw; } }
+  border: 2px solid #673ab7;
+  margin: 20px;
+  border-radius: 0px;
+  width: 33%;
+  line-height: 40px;
+  transition-duration: .5s; }
+  .btn-modal:hover {
+    color: white;
+    background: #8259cb;
+    border: 2px solid #916dd1; }
+
+.modal-header {
+  font-size: 40px;
+  color: white;
+  border-bottom-color: transparent; }
+
+.btn-container {
+  margin-top: 10px; }
 
 .alarm-backdrop {
   top: 0px;

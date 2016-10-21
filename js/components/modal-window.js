@@ -50,17 +50,19 @@ var ModalWindow = function( ){
 	var _generateTemplate = function() {
 	    var tag = '';
 	    tag += '<div class="modal-overlay"';
-	    tag +=   '<div class="modal-window"';
+	    tag +=   '<div class="modal-window">';
+	    tag +=     '<div class="modal-body">';
 	    tag +=     '<h5 class="modal-header">';
 	    tag +=       _currentText;
 	    tag +=     '</h5>';
-	    tag +=     '<div class="modal-body">';
-	    tag +=       '<a class="btn btn-primary">';
+	    tag +=       '<div class="btn-container">';
+	    tag +=       '<a class="btn btn-modal">';
 	    tag +=         'Wake Up';
 	    tag +=       '</a>';
-	    tag +=       '<a class="btn btn-primary">';
+	    tag +=       '<a class="btn btn-modal">';
 	    tag +=         'Snooze';
 	    tag +=       '</a>';
+	    tag +=       '</div>';
 	    tag +=     '</div>';
 	    tag +=   '</div>';
 	    tag += '</div>';

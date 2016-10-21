@@ -1,25 +1,11 @@
-// var TimeFormatter = require('../lib/time-formatting.js').TimeFormatter;
-// var templateWrapper = require('../lib/template-helpers.js').templateWrapper;
-
-var TimeDeltaComponent = function( DOMId ){
-    if ( typeof DOMId !== "string" ) {
-	throw new ValueError("Invalid data type passed to TimeDeltaComponent constructor: must be a string.");
-    }
-
+var ModalWindow = function( ){
     return ( function( ) {
 	// CoreComponent
-	var _internalDOMIdentifier = DOMId;
-	var $el = $("#" + _internalDOMIdentifier);
+	var $el = $("#modal-generator");
+	var _internalDOMIdentifier = "modal-generator";
 
 	// CoreComponentFields
-	var _currentTime = new Date();
-	var _currentHours = _currentTime.getHours();
-	var _currentPeriod = TimeFormatter.getPeriod(_currentHours);
-	var _currentMinutes =  _currentTime.getMinutes();
-	var _selectedHours = 0;
-	var _selectedPeriod = TimeFormatter.formatPeriod( "AM" );
-	var _selectedMinutes = 0;
-	var _timeDelta = TimeFormatter.calculateDelta( _currentHours, _currentMinutes, _selectedHours, _selectedMinutes );
+	var _currentText = "Time's Up!";
 
 	// Handles Events
 	var _actions = [];
@@ -63,13 +49,21 @@ var TimeDeltaComponent = function( DOMId ){
 	*/
 	var _generateTemplate = function() {
 	    var tag = '';
-	    tag += '<h5 class="text-body text-extra">';
-	    tag +=   '<strong>';
-	    tag +=     'In: ';
-	    tag +=     '<span id="delta">' + _timeDelta + '</span>';
-	    tag +=     ' Hours.';
-	    tag +=   '</strong>';
-	    tag += '</h5>';
+	    tag += '<div class="modal-overlay"';
+	    tag +=   '<div class="modal-window"';
+	    tag +=     '<h5 class="modal-header">';
+	    tag +=       _currentText;
+	    tag +=     '</h5>';
+	    tag +=     '<div class="modal-body">';
+	    tag +=       '<a class="btn btn-primary">';
+	    tag +=         'Wake Up';
+	    tag +=       '</a>';
+	    tag +=       '<a class="btn btn-primary">';
+	    tag +=         'Snooze';
+	    tag +=       '</a>';
+	    tag +=     '</div>';
+	    tag +=   '</div>';
+	    tag += '</div>';
 
 	    return( templateWrapper( _internalDOMIdentifier, tag ));
 	};
@@ -84,8 +78,7 @@ var TimeDeltaComponent = function( DOMId ){
 	  _pushChild: Pushes a child to the internal stack of children components.
 	*/
 	var _pushChild = function( component ) {
-	    component.pushParent( this );
-	    _children.push( component );
+	    // Pass
 	};
 
 	/*
@@ -97,48 +90,6 @@ var TimeDeltaComponent = function( DOMId ){
 	    _parent = component;
 	};
 	
-	// In the case that internal components change,
-	// will change time delta.
-	var _refreshTimeDelta = function( ) {
-	    _timeDelta = TimeFormatter.calculateDelta( _currentHours, _currentMinutes, _selectedHours, _selectedMinutes );
-	    $("#" + _internalDOMIdentifier +  " #delta").html(_timeDelta);
-	};
-
-	// Refreshes the internal current time.
-	// Maybe refreshTime should be refactored
-	// with message?
-	var _refreshTime = function( ) {
-	    var _newTime = new Date( );
-	    _currentHours = _newTime.getHours();
-	    _currentPeriod = TimeFormatter.getPeriod(_currentHours);
-	    _currentMinutes = _newTime.getMinutes();
-	    _refreshTimeDelta( );
-	};
-
-	// Maybe refresh with message?
-	var _pushTime = function( hour, minute, period ) {
-	    try {
-		_selectedHours = TimeFormatter.convertHourToMillitary( hour, period );
-	    } catch(e) {
-		_selectedHours = TimeFormatter.convertHourToMillitary( 0, period );
-	    }
-	    _selectedPeriod = period;
-	    _selectedMinutes = minute;
-	    _refreshTime( );
-	};
-
-	// Maybe refresh with message?
-	var _pushCurrentTime = function( hour, minute, period ) {
-	    try {
-		_currentHours = TimeFormatter.convertHourToMillitary( hour, period );
-	    } catch(e) {
-		_currentHours = 0;
-	    }
-	    _currentPeriod = period;
-	    _currentMinutes = minute;
-	    _refreshTimeDelta( );
-	};
-
 	var _update = function( hour, minute, period ) {
 	    _pushTime( hour, minute, period );
 	    _render( );
@@ -184,12 +135,9 @@ var TimeDeltaComponent = function( DOMId ){
 
 	return {
 	    __display: _display,
-	    __pushCurrentTime: _pushCurrentTime,
-	    __DOMIdentifier: _internalDOMIdentifier,
 	    __generateTemplate: _generateTemplate,
 	    __componentName: "TimeDeltaComponent",
 	    __render: _render,
-	    __pushTime: _pushTime,
 	    __handle: _handle,
 	    __notify: _notify,
 	    pushParent: _pushParent,
@@ -199,4 +147,3 @@ var TimeDeltaComponent = function( DOMId ){
     })( );
 };
 
-// module.exports.TimeDeltaComponent = TimeDeltaComponent;

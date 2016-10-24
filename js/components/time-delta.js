@@ -44,16 +44,28 @@ var TimeDeltaComponent = function( DOMId ){
 	*/
 	var _render = function() {
 	    $el.append( _generateTemplate( ) );
+	    _refreshTime();
+
 	    var interval = setInterval(function() {
-		var hours = TimeFormatter.convertMillitaryToHour(_currentHours);
-		if (hours === 0) {
-		}
-
-
+		console.log("ITER");
 		_refreshTime();
-		$("#" + _internalDOMIdentifier +  " #hour-alarm").html(hours);
-		$("#" + _internalDOMIdentifier +  " #minute-alarm").html(_currentMinutes);
-		$("#" + _internalDOMIdentifier +  " #when-alarm").html(" " + _currentPeriod);
+		console.log(_selectedHours);
+		console.log(_currentHours);
+		console.log(_selectedMinutes);
+		console.log(_currentMinutes);
+		console.log(_selectedPeriod);
+		console.log(_currentPeriod);
+
+		if (_selectedHours.toString() == _currentHours.toString() &&
+		    _selectedMinutes.toString() == _currentMinutes.toString() &&
+		    _selectedPeriod.toString() == _currentPeriod.toString()) {
+
+		    
+		    _parent.__handle({
+			componentName: "TimeDeltaComponent",
+			firing: true
+		    });
+		}
 	    }, 5000);
 	};
 
@@ -63,12 +75,10 @@ var TimeDeltaComponent = function( DOMId ){
 	*/
 	var _generateTemplate = function() {
 	    var tag = '';
-	    tag += '<h5 class="text-body text-extra">';
-	    tag +=   '<strong>';
+	    tag += '<h5 class="text-body">';
 	    tag +=     'In: ';
 	    tag +=     '<span id="delta">' + _timeDelta + '</span>';
 	    tag +=     ' Hours.';
-	    tag +=   '</strong>';
 	    tag += '</h5>';
 
 	    return( templateWrapper( _internalDOMIdentifier, tag ));
@@ -108,6 +118,7 @@ var TimeDeltaComponent = function( DOMId ){
 	// Maybe refreshTime should be refactored
 	// with message?
 	var _refreshTime = function( ) {
+	    console.log("refreshing.");
 	    var _newTime = new Date( );
 	    _currentHours = _newTime.getHours();
 	    _currentPeriod = TimeFormatter.getPeriod(_currentHours);
@@ -156,7 +167,7 @@ var TimeDeltaComponent = function( DOMId ){
 	   it sees fit to handle messaging between components. 
 	*/
 	var _notify = function( ) {
-	    // TimeDeltaComponent is not interactive: Thus no notification will ever be needed.
+	    
 	};
 
 	/* 

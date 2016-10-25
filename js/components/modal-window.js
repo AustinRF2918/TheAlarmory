@@ -30,6 +30,9 @@ var ModalWindow = function( ){
 	*/
 	var _render = function() {
 	    $.when($el.append( _generateTemplate( ) )).then(function() {
+		setTimeout(function() {
+		$(".modal-overlay").removeClass("modal-transition");
+		}, 500);
 		$("#btn-wake-up").click(function() {
 		    _removeModal();
 		});
@@ -47,7 +50,7 @@ var ModalWindow = function( ){
 	*/
 	var _generateTemplate = function() {
 	    var tag = '';
-	    tag += '<div class="modal-overlay"';
+	    tag += '<div class="modal-overlay modal-transition"';
 	    tag +=   '<div class="modal-window">';
 	    tag +=     '<div class="modal-body">';
 	    tag +=     '<h5 class="modal-header">';
@@ -92,7 +95,11 @@ var ModalWindow = function( ){
 	};
 
 	var _removeModal = function( ) {
-	    $(".modal-overlay").empty();
+	    $(".modal-overlay").addClass("modal-transition");
+
+	    setTimeout(function() {
+		$(".modal-overlay").empty();
+	    }, 1000);
 	};
 	
 	var _update = function( hour, minute, period ) {

@@ -109,7 +109,7 @@ body, html {
           border-left: 1px solid #F44333; } }
 
 .btn-container {
-  margin: 0px;
+  margin: 0px !important;
   padding: 0px; }
   .btn-container * {
     width: 100%; }
@@ -348,6 +348,28 @@ body, html {
 
 .btn-container {
   margin-top: 10px; }
+
+.modal-overlay {
+  transition-duration: .5s; }
+  .modal-overlay * {
+    transition-duration: .5s; }
+
+.modal-transition {
+  border-color: transparent !important;
+  background: transparent !important;
+  color: transparent !important; }
+  .modal-transition * {
+    border-color: transparent !important;
+    background: transparent !important;
+    color: transparent !important; }
+    .modal-transition * * {
+      border-color: transparent !important;
+      background: transparent !important;
+      color: transparent !important; }
+      .modal-transition * * * {
+        border-color: transparent !important;
+        background: transparent !important;
+        color: transparent !important; }
 
 .alarm-backdrop {
   top: 0px;

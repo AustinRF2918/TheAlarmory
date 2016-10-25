@@ -1,4 +1,4 @@
-var ModalWindow = function( ){
+var ModalWindow = function( parent ){
     return ( function( ) {
 	// CoreComponent
 	var $el = $("#modal-generator");
@@ -12,7 +12,7 @@ var ModalWindow = function( ){
 
 	// Node
 	var _children = [];
-	var _parent = undefined;
+	var _parent = parent;
 
 
 	/*
@@ -33,11 +33,22 @@ var ModalWindow = function( ){
 		setTimeout(function() {
 		$(".modal-overlay").removeClass("modal-transition");
 		}, 500);
+
 		$("#btn-wake-up").click(function() {
+		    _parent.__handle({
+			componentName: "ModalButtonComponent",
+			wake: true
+		    });
+
 		    _removeModal();
 		});
 
 		$("#btn-snooze").click(function() {
+		    _parent.__handle({
+			componentName: "ModalButtonComponent",
+			snooze: true
+		    });
+
 		    _removeModal();
 		});
 	    });
@@ -126,16 +137,10 @@ var ModalWindow = function( ){
 	   whatever actions it needs to do.
 	*/
 	var _handle = function( data ) {
-	    if ( data.componentName === 'ControlPanelComponent'  && data.periodActive !== undefined && data.hourActive !== undefined && data.minuteActive !== undefined) {
-	    }
-	};
-	// Debug function: Because this is ES6 syntax, we should disable these on
-	// deployment of the website.
-	var _display = function ( ) {
+	    // Pass.
 	};
 
 	return {
-	    __display: _display,
 	    __generateTemplate: _generateTemplate,
 	    __componentName: "TimeDeltaComponent",
 	    __render: _render,

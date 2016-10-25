@@ -94,9 +94,15 @@ var ApplicationController = function( ) {
 		if ( data.componentName === "ControlPanelComponent" ) {
 		    _notify( 'TimeDeltaComponent', data );
 		    _notify( 'TimeDisplayComponent', data );
-		} else if ( data.componentName === "SelectorButtonComponent" ) {
-		    console.log("Got message from button...");
+		} else if ( data.componentName === "TimeDeltaComponent" ) {
+		    if (data.firing) {
+			var x = ModalWindow( )
+			x.__render();
+		    } else {
+			console.log("Unknown data recieved from TimeDelta.");
+		    }
 		}
+
 	    }
 	};
 

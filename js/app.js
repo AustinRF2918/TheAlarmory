@@ -68,8 +68,6 @@ $(document).ready(function(){
     controller.pushChild(timeDelta);
     controller.pushChild(timeCurrent);
 
-    var x = ModalWindow( )
-    x.__render();
     sr.__notify();
 });
 

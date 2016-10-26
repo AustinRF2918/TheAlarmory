@@ -77,6 +77,7 @@ var TimeDisplayComponent = function( DOMId ){
 	    }
 	};
 
+	/*
 	var _display = function ( ) {
 	    console.log( `_selectedHours: (${_selectedHours})` );
 	    console.log( `_selectedMinutes: (${_selectedMinutes})` );
@@ -84,8 +85,10 @@ var TimeDisplayComponent = function( DOMId ){
 	    console.log( `_action: (${_actions})` );
 	    console.log( `html: (${_generateTemplate()})` );
 	};
+	*/
 
 	return {
+	    //__display: _display,
 	    __selectedMinutes: _selectedMinutes,
 	    __selectedHours: _selectedHours,
 	    __selectedPeriod: _selectedPeriod,
@@ -94,7 +97,6 @@ var TimeDisplayComponent = function( DOMId ){
 	    __componentName: "TimeDisplayComponent",
 	    __render: _render,
 	    __pushTime: _pushTime,
-	    __display: _display,
 	    __notify: _notify,
 	    __handle: _handle,
 	    update: _update,

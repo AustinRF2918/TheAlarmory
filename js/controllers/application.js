@@ -111,7 +111,7 @@ var ApplicationController = function( ) {
 			    _children.push(x);
 			    _modalOnScreen = true;
 			} else {
-			    console.log("Unknown data recieved from TimeDelta.");
+			    //console.log("Unknown data recieved from TimeDelta.");
 			}
 		    }
 		} else if ( data.componentName === "ModalButtonComponent" ) {
@@ -133,7 +133,7 @@ var ApplicationController = function( ) {
 			_modalOnScreen = false;
 			_awake = true;
 		    } else {
-			console.log("Modal button passed unknown data to application controller.");
+			//console.log("Modal button passed unknown data to application controller.");
 		    }
 		}
 

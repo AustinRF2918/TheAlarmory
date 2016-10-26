@@ -123,6 +123,7 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric, ad
 
 	// Debug function: Because this is ES6 syntax, we should disable these on
 	// deployment of the website.
+	/*
 	var _display = function ( ) {
 	    console.log( `_className: (${_className})` );
 	    console.log( `_isActive: (${_isActive})` );
@@ -130,6 +131,7 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric, ad
 	    console.log( `_action: (${_actions})` );
 	    console.log( `html: (${_generateTemplate()})` );
 	};
+	*/
 
 	/* 
 	HandlesEvents trait: HandlesEvents makes us implement three functions:
@@ -201,10 +203,10 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric, ad
 	}
 
 	return {
+	    //__display: _display,
 	    __isActive: _active,
 	    __pushActiveNumber: _pushActiveNumber,
 	    __number: _number,
-	    __display: _display,
 	    __DOMIdentifier: _internalDOMIdentifier,
 	    __generateTemplate: _generateTemplate,
 	    __actions: _actions,

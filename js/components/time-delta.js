@@ -47,14 +47,7 @@ var TimeDeltaComponent = function( DOMId ){
 	    _refreshTime();
 
 	    var interval = setInterval(function() {
-		console.log("ITER");
 		_refreshTime();
-		console.log(_selectedHours);
-		console.log(_currentHours);
-		console.log(_selectedMinutes);
-		console.log(_currentMinutes);
-		console.log(_selectedPeriod);
-		console.log(_currentPeriod);
 
 		if (_selectedHours.toString() == _currentHours.toString() &&
 		    _selectedMinutes.toString() == _currentMinutes.toString() &&
@@ -118,7 +111,6 @@ var TimeDeltaComponent = function( DOMId ){
 	// Maybe refreshTime should be refactored
 	// with message?
 	var _refreshTime = function( ) {
-	    console.log("refreshing.");
 	    var _newTime = new Date( );
 	    _currentHours = _newTime.getHours();
 	    _currentPeriod = TimeFormatter.getPeriod(_currentHours);
@@ -181,6 +173,7 @@ var TimeDeltaComponent = function( DOMId ){
 	};
 	// Debug function: Because this is ES6 syntax, we should disable these on
 	// deployment of the website.
+	/*
 	var _display = function ( ) {
 	    console.log( `_currentHours: (${_currentHours})` );
 	    console.log( `_currentPeriod: (${_currentPeriod})` );
@@ -192,9 +185,10 @@ var TimeDeltaComponent = function( DOMId ){
 
 	    console.log( `_timeDelta: (${_timeDelta})` );
 	};
+	*/
 
 	return {
-	    __display: _display,
+	    //__display: _display,
 	    __pushCurrentTime: _pushCurrentTime,
 	    __DOMIdentifier: _internalDOMIdentifier,
 	    __generateTemplate: _generateTemplate,

@@ -126,15 +126,17 @@ var ControlPanelComponent = function( DOMId ){
 
 	// Debug function: Because this is ES6 syntax, we should disable these on
 	// deployment of the website.
+	/*
 	var _display = function( ) {
 	    console.log( `_hourActive: (${_hourActive})` );
 	    console.log( `_minuteActive: (${_minuteActive})` );
 	    console.log( `_periodActive: (${_periodActive})` );
 	    console.log( `html: (${_generateTemplate()})` );
 	};
+	*/
 
 	return {
-	    __display: _display,
+	    //__display: _display,
 	    __DOMIdentifier: _internalDOMIdentifier,
 	    __generateTemplate: _generateTemplate,
 	    __actions: _actions,

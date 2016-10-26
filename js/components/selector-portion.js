@@ -124,12 +124,14 @@ var SelectorPortionComponent = function( DOMId, name, active){
 	    _currentActive = numeric;
 	};
 
+	/*
 	var _display = function( ) {
 	    console.log( `_isActive: (${_isActive})` );
 	    console.log( `_action: (${_actions})` );
 	    console.log( `_currentActive: (${_currentActive})` );
 	    console.log( `html: (${_generateTemplate()})` );
 	};
+	*/
 
 	/*
 	_setEvent: setEvent uses JQuery internally to give an event that will 
@@ -145,7 +147,7 @@ var SelectorPortionComponent = function( DOMId, name, active){
 	};
 
 	return {
-	    __display: _display,
+	    //__display: _display,
 	    __DOMIdentifier: _internalDOMIdentifier,
 	    __generateTemplate: _generateTemplate,
 	    __actions: _actions,

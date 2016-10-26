@@ -15,7 +15,7 @@ var ApplicationController = function( ) {
 
 	/*
 	 OrderedComponents trait: OrderedComponents will require our object to both
-	  implement a _pushParent function which our component can notify, and a 
+	  implement a _pushParent function which our component can notify, and a
 	  _pushChild function, which our component can receive notification from.
 	*/
 	/*
@@ -39,13 +39,13 @@ var ApplicationController = function( ) {
 
 	/*
 	  View components: _render should only be called on initial render and following this
-	  a rerender should be called: JQuery will do this by changing text elements or any 
+	  a rerender should be called: JQuery will do this by changing text elements or any
 	  class attributes.
 	*/
 
 	/*
-	  _render: Internal function to remove the element that is current hooked to 
-	  our component and following this rerender the HTML: Unless there is some 
+	  _render: Internal function to remove the element that is current hooked to
+	  our component and following this rerender the HTML: Unless there is some
 	  reason to do so, we should in general keep this used only once, otherwise
 	  we should hook JQuery functions to our _handle function, implemented by
 	  the ComponentMessanger trait.
@@ -68,16 +68,16 @@ var ApplicationController = function( ) {
 	    } );
 	};
 
-	/* 
+	/*
 	   Node trait: Node means we have to implement _notify and _handle:
-	   both of these allow our component to send and recieve events 
+	   both of these allow our component to send and recieve events
 	   and messages from other components respectively.
 	*/
 
-	/* 
+	/*
 	   _notify: notify sends our parent a handle function with a JavaScript
 	   object: our parent is then free to implement handle in whatever way
-	   it sees fit to handle messaging between components. 
+	   it sees fit to handle messaging between components.
 	*/
 	var _notify = function( componentName, payload ) {
 	    matches = _getComponentMatches( componentName );
@@ -90,7 +90,7 @@ var ApplicationController = function( ) {
 	};
 
 	/*
-	   _handle: _handle will take a JavaScript object and analyize it to do 
+	   _handle: _handle will take a JavaScript object and analyize it to do
 	   whatever actions it needs to do.
 	*/
 	var _handle = function( data ) {
@@ -126,7 +126,7 @@ var ApplicationController = function( ) {
 				_children.push(x);
 				_modalOnScreen = true;
 			    }
-			}, 5000);
+			}, (1000 * 60 * 5));
 			_snoozing = true;
 		    } else if (data.wake) {
 			_alarmSound.pause();
@@ -152,7 +152,7 @@ var ApplicationController = function( ) {
 	    for ( var i in _children ) {
 		if (!_children[i].__currentActive === undefined) {
 		    _children[i].__notify(_children[i].__currentActive);
-		} 
+		}
 	    }
 	};
 

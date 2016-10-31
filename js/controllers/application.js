@@ -11,7 +11,8 @@ var ApplicationController = function( ) {
 	var _snoozing = false;
 	var _awake = false;
 	var _modalOnScreen = false;
-	var _alarmSound = new Audio('../sounds/alarm.ogg');
+	var _alarmSound = new Audio('../sounds/alarm.wav');
+	_alarmSound.loop = true;
 
 	/*
 	 OrderedComponents trait: OrderedComponents will require our object to both

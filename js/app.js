@@ -1,8 +1,3 @@
-var alarmAudio = new Audio("../sounds/alarm.ogg");
-alarmAudio.loop = true;
-
-var alarmSnoozeMode = false;
-
 $(document).ready(function(){
     var controller = ApplicationController();
     var tds = ControlPanelComponent( "#control-panel" );

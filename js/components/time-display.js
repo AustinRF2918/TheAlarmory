@@ -122,7 +122,7 @@ var TimeDisplayComponent = function( DOMId ){
 	   whatever actions it needs to do.
 	*/
 	var _handle = function( data ) {
-	    if ( data.componentName === 'ControlPanelComponent' ) {
+	    if ( data && data.componentName === 'ControlPanelComponent' ) {
 		_selectedHours = data.hourActive;
 		_selectedPeriod = data.periodActive;
 		_selectedMinutes = data.minuteActive;
@@ -133,6 +133,8 @@ var TimeDisplayComponent = function( DOMId ){
 		$("#" + _internalDOMIdentifier +  " #hour-alarm").html(hourDisplay);
 		$("#" + _internalDOMIdentifier +  " #minute-alarm").html(minuteDisplay);
 		$("#" + _internalDOMIdentifier +  " #when-alarm").html(" " + _selectedPeriod);
+	    } else if ( !data ) {
+		console.log( "Error in getting dispatched data: " + data.toString() );
 	    }
 	};
 

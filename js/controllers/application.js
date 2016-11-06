@@ -104,45 +104,54 @@ var ApplicationController = function( ) {
 		_modalOnScreen = false;
 	    };
 
+	    var that = this;
+
 	    var refreshDisplays = function( data ) {
 		_notify( 'TimeDeltaComponent', data );
 		_notify( 'TimeDisplayComponent', data );
 		_notify( 'TimeDeltaComponent', data );
 	    };
 
+
 	    var fireModal = function( ) {
-		var modal = ModalWindow( this );
+		var modal = ModalWindow( that );
 		modal.__render();
 		_children.push(modal);
-		_alarmSound.play();
 		_modalOnScreen = true;
 	    };
 
 	    if ( data ) {
-		    resetState();
 		if ( data.componentName === "ControlPanelComponent" ) {
-		    refreshDisplays();
+		    resetState();
+		    refreshDisplays( data );
 		} else if ( data.componentName === "TimeDeltaComponent" ) {
+		    console.log("Status 2.");
 		    if ( !_awake && !_snoozing && data.firing && !_modalOnScreen ) {
 			fireModal();
+			_alarmSound.play();
 		    }
 		} else if ( data.componentName === "ModalButtonComponent" ) {
+		    console.log("Status 3.");
 		    if (data.snooze) {
 			// Fix anti pattern here. Not properly passing messages, prone to bugs.
 			// Pop a child!
+			console.log("snoozing.");
 			_alarmSound.pause();
 			_modalOnScreen = false;
+			_snoozing = true;
 
 			setTimeout(function() {
 			    if (_snoozing) {
-				_alarmSound.play();
+				console.log("Status 3a.a.");
 				fireModal();
+				_alarmSound.play();
 			    }
 			}, (1000 * 60 * 5));
-			_snoozing = true;
 		    } else if (data.wake) {
 			location.reload();
-		    } 
+		    } else {
+			console.log("None.");
+		    }
 		}
 	    }
 	};

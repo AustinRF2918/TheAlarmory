@@ -180,6 +180,8 @@ var TimeDeltaComponent = function( DOMId ){
 	var _handle = function( data ) {
 	    if ( data && data.componentName === 'ControlPanelComponent'  && data.periodActive !== undefined && data.hourActive !== undefined && data.minuteActive !== undefined) {
 		_pushTime( data.hourActive, data.minuteActive, data.periodActive );
+	    } else if ( !data ) {
+		console.log( "Error in getting dispatched data: " + data.toString() );
 	    }
 	};
 	// Debug function: Because this is ES6 syntax, we should disable these on

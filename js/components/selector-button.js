@@ -85,9 +85,10 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric, ad
 
 	// Simple internal function to handle events.
 	var _pushActiveNumber = function( number ) {
-	    _isActive = function(){ return (number === _number) }();
-	    if (!_isActive) {
+	    if ( number !== _number ) {
 		$("#" + _internalDOMIdentifier).removeClass( _className + "-active" );
+	    } else {
+		$("#" + _internalDOMIdentifier).addClass( _className + "-active" );
 	    }
 	};
 
@@ -199,8 +200,10 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric, ad
 	whatever actions it needs to do.
 	*/
 	var _handle = function( data ) {
-	    //pass.
-	}
+	    if ( data && data.componentName === "ApplicationController" ) {
+		_update(data.newActive);
+	    } 
+	};
 
 	return {
 	    //__display: _display,

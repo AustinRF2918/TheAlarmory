@@ -8,7 +8,6 @@ var ApplicationController = function( ) {
     return ( function( ) {
 	var _children = [];
 	var _parent = undefined;
-	var _snoozing = false;
 	var _alarmSound = new Audio('../sounds/alarm.wav');
 	_alarmSound.loop = true;
 
@@ -88,17 +87,18 @@ var ApplicationController = function( ) {
 	    }
 	};
 
-	
 	/*
 	   _handle: _handle will take a JavaScript object and analyize it to do
 	   whatever actions it needs to do.
 	*/
 	var _handle = function( data ) {
-	    var resetState = function( ) {
-		_snoozing = false;
-	    };
-
 	    var that = this;
+
+	    var getActiveTimes = function( ) {
+		return  _getComponentMatches( "ControlPanelComponent" ).map( function( item ) {
+		    return item.getActiveTimes();
+		} )[0];
+	    };
 
 	    var refreshDisplays = function( data ) {
 		_notify( 'TimeDeltaComponent', data );
@@ -113,28 +113,47 @@ var ApplicationController = function( ) {
 		_children.push(modal);
 	    };
 
+	    var snoozeTime = function( ) {
+		lsNew = getActiveTimes();
+		var elevenThen = (lsNew[0] === 11);
+		lsNew[1] += 5;
+		if ( lsNew[1] > 54 ) {
+		    lsNew[1] = 0;
+		    lsNew[0] += 1;
+		    var elevenNow = (lsNew[0] === 11);
+		    if ( !elevenThen && elevenNow ) {
+			if ( lsNew[2] === "PM" ) {
+			    lsNew[2] = "AM";
+			} else {
+			    lsNew[2] = "PM";
+			}
+		    } else if ( lsNew[0] > 12 ) {
+			lsNew[0] = 1;
+		    }
+		}
+
+		return lsNew;
+	    };
+
 	    if ( data ) {
 		if ( data.componentName === "ControlPanelComponent" ) {
-		    resetState();
 		    refreshDisplays( data );
 		} else if ( data.componentName === "TimeDeltaComponent" ) {
-		    if ( !_snoozing && data.firing ) {
+		    if ( data.firing ) {
 			if ( _getComponentMatches( "ModalComponent" ).length === 0 ) {
 			    fireModal();
 			}
 		    }
 		} else if ( data.componentName === "ModalButtonComponent" ) {
 		    if (data.snooze) {
-			_children.pop();
-			// Now we have to change the currently active control panel component.
-			_snoozing = true;
+		        var ControlPanel = _getComponentMatches( "ControlPanelComponent" )[0];
 
-			setTimeout(function() {
-			    if (_snoozing) {
-				console.log("Status 3a.a.");
-				fireModal();
-			    }
-			}, 2000);
+			ControlPanel.__handle( {
+			    componentName: "ApplicationController",
+			    list: snoozeTime()
+			});
+
+			_children.pop();
 		    } else if (data.wake) {
 			location.reload();
 		    } 

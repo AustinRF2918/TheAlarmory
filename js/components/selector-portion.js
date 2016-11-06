@@ -95,6 +95,7 @@ var SelectorPortionComponent = function( DOMId, name, active){
 	var _notify = function( ) {
 	    if ( _parent ) {
 		_parent.__handle( {
+		    componentName: "SelectorPortionComponent",
 		    currentActive: _currentActive,
 		    name: _name
 		} );
@@ -106,11 +107,19 @@ var SelectorPortionComponent = function( DOMId, name, active){
 	whatever actions it needs to do.
 	*/
 	var _handle = function( data ) {
-	    if ( data && data.active ) {
+	    if ( data && data.active && data.componentName === "SelectorButtonComponent" ) {
 		_currentActive = data.id;
 
 		for ( var i in _children ) {
-		    _children[i].__pushActiveNumber( data.id );
+		    _children[i].__pushActiveNumber( _currentActive );
+		}
+
+		_notify();
+	    } else if ( data && data.active && data.componentName === "ControlPanelComponent" ) {
+		_currentActive = data.id;
+
+		for ( var i in _children ) {
+		    _children[i].__pushActiveNumber( _currentActive );
 		}
 
 		_notify();
@@ -158,6 +167,7 @@ var SelectorPortionComponent = function( DOMId, name, active){
 	    __handle: _handle,
 	    __notify: _notify,
 	    __componentName: "SelectorPortionComponent",
+	    name: _name,
 	    children: _children,
 	    setEvent: _setEvent,
 	    pushChild: _pushChild,

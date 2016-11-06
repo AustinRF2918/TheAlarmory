@@ -111,7 +111,7 @@ var ControlPanelComponent = function( DOMId ){
 	whatever actions it needs to do.
 	*/
 	var _handle = function( data ) {
-	    if ( data ) {
+	    if ( data && data.componentName === "SelectorPortionComponent" ) {
 		if ( data.name === "Hours" ) {
 		    _hourActive = data.currentActive;
 		} else if ( data.name === "Minutes" ) {
@@ -121,6 +121,15 @@ var ControlPanelComponent = function( DOMId ){
 		}
 
 		_notify();
+	    } else if ( data && data.componentName === "ApplicationController" ) {
+		console.log(data.list);
+		for (var item = 0; item < _children.length; item++) {
+		    _children[item].__handle( {
+			componentName: "ControlPanelComponent",
+			active: true,
+			id: data.list[item]
+		    } );
+		}
 	    };
 	};
 
@@ -135,6 +144,22 @@ var ControlPanelComponent = function( DOMId ){
 	};
 	*/
 
+	/*
+	  _getComponentMatches: Takes an argument componentName and searches the internal
+	  stack to find a component with the passed name: Note that the JavaScript object
+	  must actually have a __componentName field to be able to utilize this function,
+	  otherwise the map will basically fail.
+	*/
+	var _getComponentMatches = function( componentName ) {
+	    return _children.filter( function( item ) {
+		return item.__componentName === componentName;
+	    } );
+	};
+
+	var _getActiveTimes = function( ) {
+	    return [ _hourActive,_minuteActive, _periodActive ];
+	};
+
 	return {
 	    //__display: _display,
 	    __DOMIdentifier: _internalDOMIdentifier,
@@ -145,6 +170,7 @@ var ControlPanelComponent = function( DOMId ){
 	    __handle: _handle,
 	    __notify: _notify,
 	    __componentName: "ControlPanelComponent",
+	    getActiveTimes: _getActiveTimes,
 	    pushChild: _pushChild,
 	    pushParent: _pushParent
 	};

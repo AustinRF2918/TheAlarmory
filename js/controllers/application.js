@@ -91,52 +91,59 @@ var ApplicationController = function( ) {
 	};
 
 	
+	    
 
 	/*
 	   _handle: _handle will take a JavaScript object and analyize it to do
 	   whatever actions it needs to do.
 	*/
 	var _handle = function( data ) {
-	    if ( data ) {
-		_resetState();
+	    var resetState = function( ) {
+		_awake = false;
+		_snoozing = false;
+		_modalOnScreen = false;
+	    };
 
+	    var refreshDisplays = function( data ) {
+		_notify( 'TimeDeltaComponent', data );
+		_notify( 'TimeDisplayComponent', data );
+		_notify( 'TimeDeltaComponent', data );
+	    };
+
+	    var fireModal = function( ) {
+		var modal = ModalWindow( this );
+		modal.__render();
+		_children.push(modal);
+		_alarmSound.play();
+		_modalOnScreen = true;
+	    };
+
+	    if ( data ) {
+		    resetState();
 		if ( data.componentName === "ControlPanelComponent" ) {
-		    _notify( 'TimeDeltaComponent', data );
-		    _notify( 'TimeDisplayComponent', data );
-		    _notify( 'TimeDeltaComponent', data );
+		    refreshDisplays();
 		} else if ( data.componentName === "TimeDeltaComponent" ) {
-		    if (!_awake && !_snoozing) {
-			if (data.firing && !_modalOnScreen) {
-			    var x = ModalWindow( this );
-			    x.__render();
-			    _alarmSound.play();
-			    _children.push(x);
-			    _modalOnScreen = true;
-			} else {
-			    //console.log("Unknown data recieved from TimeDelta.");
-			}
+		    if ( !_awake && !_snoozing && data.firing && !_modalOnScreen ) {
+			fireModal();
 		    }
 		} else if ( data.componentName === "ModalButtonComponent" ) {
 		    if (data.snooze) {
+			// Fix anti pattern here. Not properly passing messages, prone to bugs.
+			// Pop a child!
 			_alarmSound.pause();
 			_modalOnScreen = false;
-			var y = ModalWindow( this );
+
 			setTimeout(function() {
 			    if (_snoozing) {
 				_alarmSound.play();
-				y.__render();
-				_children.push(x);
-				_modalOnScreen = true;
+				fireModal();
 			    }
 			}, (1000 * 60 * 5));
 			_snoozing = true;
 		    } else if (data.wake) {
 			location.reload();
-		    } else {
-			//console.log("Modal button passed unknown data to application controller.");
-		    }
+		    } 
 		}
-
 	    }
 	};
 

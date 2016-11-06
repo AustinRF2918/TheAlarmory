@@ -118,7 +118,11 @@ var TimeDeltaComponent = function( DOMId ){
 	    _refreshTimeDelta( );
 	};
 
-	// Maybe refresh with message?
+	/*
+	  _pushTime: Not so much a push as it is a refresh: take 
+	  a hour, minute, and period and push it into the internal
+	  data fields.
+	*/
 	var _pushTime = function( hour, minute, period ) {
 	    try {
 		_selectedHours = TimeFormatter.convertHourToMillitary( hour, period );
@@ -130,7 +134,11 @@ var TimeDeltaComponent = function( DOMId ){
 	    _refreshTime( );
 	};
 
-	// Maybe refresh with message?
+	/*
+	  _pushCurrentTime: Not so much a push as it is a refresh: take 
+	  a hour, minute, and period and push it into the internal
+	  data fields.
+	*/
 	var _pushCurrentTime = function( hour, minute, period ) {
 	    try {
 		_currentHours = TimeFormatter.convertHourToMillitary( hour, period );
@@ -142,6 +150,9 @@ var TimeDeltaComponent = function( DOMId ){
 	    _refreshTimeDelta( );
 	};
 
+	/*
+	  _update: Composition of _pushTime and _render. You do the math.
+	*/
 	var _update = function( hour, minute, period ) {
 	    _pushTime( hour, minute, period );
 	    _render( );
@@ -167,7 +178,7 @@ var TimeDeltaComponent = function( DOMId ){
 	   whatever actions it needs to do.
 	*/
 	var _handle = function( data ) {
-	    if ( data.componentName === 'ControlPanelComponent'  && data.periodActive !== undefined && data.hourActive !== undefined && data.minuteActive !== undefined) {
+	    if ( data && data.componentName === 'ControlPanelComponent'  && data.periodActive !== undefined && data.hourActive !== undefined && data.minuteActive !== undefined) {
 		_pushTime( data.hourActive, data.minuteActive, data.periodActive );
 	    }
 	};

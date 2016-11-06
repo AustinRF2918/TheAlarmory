@@ -9,7 +9,6 @@ var ApplicationController = function( ) {
 	var _children = [];
 	var _parent = undefined;
 	var _snoozing = false;
-	var _awake = false;
 	var _alarmSound = new Audio('../sounds/alarm.wav');
 	_alarmSound.loop = true;
 
@@ -96,7 +95,6 @@ var ApplicationController = function( ) {
 	*/
 	var _handle = function( data ) {
 	    var resetState = function( ) {
-		_awake = false;
 		_snoozing = false;
 	    };
 
@@ -120,7 +118,7 @@ var ApplicationController = function( ) {
 		    resetState();
 		    refreshDisplays( data );
 		} else if ( data.componentName === "TimeDeltaComponent" ) {
-		    if ( !_awake && !_snoozing && data.firing ) {
+		    if ( !_snoozing && data.firing ) {
 			if ( _getComponentMatches( "ModalComponent" ).length === 0 ) {
 			    fireModal();
 			}

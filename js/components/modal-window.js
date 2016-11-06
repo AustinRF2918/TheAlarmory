@@ -85,9 +85,7 @@ var ModalWindow = function( parent ){
 	    tag +=     '</div>';
 	    tag +=   '</div>';
 	    tag += '</div>';
-
-
-	    return( templateWrapper( _internalDOMIdentifier, tag ));
+	    return tag;
 	};
 
 	/*

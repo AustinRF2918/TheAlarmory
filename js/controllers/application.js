@@ -132,7 +132,6 @@ var ApplicationController = function( ) {
 		    if (data.snooze) {
 			// Fix anti pattern here. Not properly passing messages, prone to bugs.
 			// Pop a child!
-			_alarmSound.pause();
 			_modalOnScreen = false;
 			_snoozing = true;
 
@@ -142,7 +141,7 @@ var ApplicationController = function( ) {
 				_modalOnScreen = true;
 				fireModal();
 			    }
-			}, (1000 * 60 * 5));
+			}, 2000);
 		    } else if (data.wake) {
 			location.reload();
 		    } 

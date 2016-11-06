@@ -14,6 +14,10 @@ var ModalWindow = function( parent ){
 	var _children = [];
 	var _parent = parent;
 
+	// Alarm Clock Noise 
+	var _internalAudio = new Audio('../sounds/alarm.wav');
+	_internalAudio.loop = true;
+
 
 	/*
 	  View components: _render should only be called on initial render and following this
@@ -26,10 +30,12 @@ var ModalWindow = function( parent ){
 	  our component and following this rerender the HTML: Unless there is some 
 	  reason to do so, we should in general keep this used only once, otherwise
 	  we should hook JQuery functions to our _handle function, implemented by
-	  the ComponentMessanger trait.
+	  the ComponentMessanger trait. Here render plays a double role: turning on the 
+	  alarm.
 	*/
 	var _render = function() {
 	    $.when($el.append( _generateTemplate( ) )).then(function() {
+		_internalAudio.play();
 		setTimeout(function() {
 		$(".modal-overlay").removeClass("modal-transition");
 		}, 500);
@@ -40,6 +46,7 @@ var ModalWindow = function( parent ){
 			wake: true
 		    });
 
+		    _internalAudio.pause();
 		    _removeModal();
 		});
 
@@ -48,12 +55,12 @@ var ModalWindow = function( parent ){
 			componentName: "ModalButtonComponent",
 			snooze: true
 		    });
-
+		    _internalAudio.pause();
 		    _removeModal();
 		});
 	    });
-	    
 	};
+
 
 	/*
 	  _generateTemplate: Internal function for render: The creates the HTML markup
@@ -109,7 +116,7 @@ var ModalWindow = function( parent ){
 	    $(".modal-overlay").addClass("modal-transition");
 
 	    setTimeout(function() {
-		$(".modal-overlay").empty();
+		$("#modal-generator").empty();
 	    }, 1000);
 	};
 	
@@ -143,9 +150,9 @@ var ModalWindow = function( parent ){
 	return {
 	    __generateTemplate: _generateTemplate,
 	    __componentName: "TimeDeltaComponent",
-	    __render: _render,
 	    __handle: _handle,
 	    __notify: _notify,
+	    __render: _render,
 	    pushParent: _pushParent,
 	    pushChild: _pushChild,
 	    update: _update

@@ -34,8 +34,15 @@ var ModalWindow = function( parent ){
 	  alarm.
 	*/
 	var _render = function() {
+
 	    $.when($el.append( _generateTemplate( ) )).then(function() {
-		_internalAudio.play();
+		var player = $("#player").html.toString();
+		console.log(player);
+		if ( $("#video-form").val() === '' || player.indexOf("Cannot GET") === 0)  {
+		    _internalAudio.play();
+		} else {
+		    console.log("Found video!");
+		}
 		setTimeout(function() {
 		$(".modal-overlay").removeClass("modal-transition");
 		}, 500);
@@ -67,13 +74,34 @@ var ModalWindow = function( parent ){
 	  for our component. Core view trait requires this to be implemented.
 	*/
 	var _generateTemplate = function() {
+	    var vidId =  $("#video-form").val().split("=")[1];
 	    var tag = '';
-	    tag += '<div class="modal-overlay modal-transition"';
+	    tag += '<div class="lightbox">';
+	    tag += '</div>';
+	    if ( $("#video-form").val() != '' ) {
+		tag += '<div id="video-overlay">';
+		tag += '</div>';
+		tag += '<iframe id="player" frameborder="0" width="640" height="390"';
+		tag += ( 'src="' + $("#video-form").val().replace("watch?v=", "embed/") + '?autoplay=1&html5=true&loop=true&playlist=' + vidId + '">' );
+		tag += '</iframe>';
+	    }
+	    tag += '<div class="modal-overlay modal-transition">';
+	    console.log( $("#video-form").val() );
+
 	    tag +=   '<div class="modal-window">';
-	    tag +=     '<div class="modal-body">';
-	    tag +=     '<h5 class="modal-header">';
-	    tag +=       _currentText;
-	    tag +=     '</h5>';
+
+	    // WE NEED SANITIZATION THIS IS BUGGY !
+	    if ( $("#video-form").val() != '' ) {
+	      tag +=     '<div class="modal-body-video">';
+	    } else {
+	      tag +=     '<div class="modal-body">';
+	    }
+	    
+	    if ( $("#video-form").val() == '' ) {
+	      tag +=     '<h5 class="modal-header">';
+	      tag +=       _currentText;
+	      tag +=     '</h5>';
+	    }
 	    tag +=       '<div class="btn-container">';
 	    tag +=       '<a id="btn-wake-up" class="btn btn-modal">';
 	    tag +=         'Wake Up';

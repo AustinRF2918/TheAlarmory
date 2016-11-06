@@ -14,7 +14,6 @@
   padding: 15px 10px 10px 10%;
 
   border-radius: 0px;
-  border-bottom: 2px solid #03A9F4;
 
   text-decoration: none;
 
@@ -26,10 +25,67 @@
   user-select: none;
 
   transition: .5s ease-out;
-  color: #03A9F4;
 
-  &:hover {
-    color: darken(#03A9F4, 20%);
-    border-bottom: 2px solid darken(#03A9F4, 20%);
+  &-blue {
+    border-bottom: 2px solid #03A9F4;
+    color: #03A9F4;
+
+    &:hover, &:focus, &:active {
+	color: darken(#03A9F4, 20%);
+	border-bottom: 2px solid darken(#03A9F4, 20%);
+    }
   }
+
+  &-red {
+    @media screen and (min-width: 899px) {
+      border-bottom: 2px solid #F44333;
+    }
+
+    @media screen and (max-width: 900px) {
+      border: 2px solid #F44333 !important;
+    }
+    color: #F44333;
+
+    &:hover, &:focus, &:active {
+	color: darken(#F44333, 20%);
+	border-bottom: 2px solid darken(#F44333, 20%);
+    }
+  }
+}
+
+#player {
+    position: fixed;
+    z-index: 20;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);;
+
+}
+
+.inline-section {
+    .form-control {
+	background: black;
+	border-left-width: 0px;
+	border-right-width: 0px;
+	border-top-width: 0px;
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
+    }
+}
+
+#video-form::-webkit-input-placeholder {
+    color: #F44333;
+}
+
+#video-overlay{
+    position: fixed;
+    z-index: 21;
+    width: 640px;
+    height: 390px;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);;
+    background: rgba(0, 0, 0, 0.85);
+    border: 2px solid lighten(#03A9F4, 0%);
 }

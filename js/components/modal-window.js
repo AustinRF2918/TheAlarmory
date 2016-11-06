@@ -147,7 +147,7 @@ var ModalWindow = function( parent ){
 
 	return {
 	    __generateTemplate: _generateTemplate,
-	    __componentName: "TimeDeltaComponent",
+	    __componentName: "ModalComponent",
 	    __handle: _handle,
 	    __notify: _notify,
 	    __render: _render,

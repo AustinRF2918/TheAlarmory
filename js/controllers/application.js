@@ -10,7 +10,6 @@ var ApplicationController = function( ) {
 	var _parent = undefined;
 	var _snoozing = false;
 	var _awake = false;
-	var _modalOnScreen = false;
 	var _alarmSound = new Audio('../sounds/alarm.wav');
 	_alarmSound.loop = true;
 
@@ -91,8 +90,6 @@ var ApplicationController = function( ) {
 	};
 
 	
-	    
-
 	/*
 	   _handle: _handle will take a JavaScript object and analyize it to do
 	   whatever actions it needs to do.
@@ -101,7 +98,6 @@ var ApplicationController = function( ) {
 	    var resetState = function( ) {
 		_awake = false;
 		_snoozing = false;
-		_modalOnScreen = false;
 	    };
 
 	    var that = this;
@@ -124,21 +120,20 @@ var ApplicationController = function( ) {
 		    resetState();
 		    refreshDisplays( data );
 		} else if ( data.componentName === "TimeDeltaComponent" ) {
-		    if ( !_awake && !_snoozing && data.firing && !_modalOnScreen ) {
-			_modalOnScreen = true;
-			fireModal();
+		    if ( !_awake && !_snoozing && data.firing ) {
+			if ( _getComponentMatches( "ModalComponent" ).length === 0 ) {
+			    fireModal();
+			}
 		    }
 		} else if ( data.componentName === "ModalButtonComponent" ) {
 		    if (data.snooze) {
-			// Fix anti pattern here. Not properly passing messages, prone to bugs.
-			// Pop a child!
-			_modalOnScreen = false;
+			_children.pop();
+			// Now we have to change the currently active control panel component.
 			_snoozing = true;
 
 			setTimeout(function() {
 			    if (_snoozing) {
 				console.log("Status 3a.a.");
-				_modalOnScreen = true;
 				fireModal();
 			    }
 			}, 2000);

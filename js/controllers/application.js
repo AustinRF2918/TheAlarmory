@@ -90,23 +90,24 @@ var ApplicationController = function( ) {
 	    }
 	};
 
+	
+
 	/*
 	   _handle: _handle will take a JavaScript object and analyize it to do
 	   whatever actions it needs to do.
 	*/
 	var _handle = function( data ) {
 	    if ( data ) {
+		_resetState();
+
 		if ( data.componentName === "ControlPanelComponent" ) {
-		    _awake = false;
-		    _snoozing = false;
-		    _modalOnScreen = false;
 		    _notify( 'TimeDeltaComponent', data );
 		    _notify( 'TimeDisplayComponent', data );
 		    _notify( 'TimeDeltaComponent', data );
 		} else if ( data.componentName === "TimeDeltaComponent" ) {
 		    if (!_awake && !_snoozing) {
 			if (data.firing && !_modalOnScreen) {
-			    var x = ModalWindow( this )
+			    var x = ModalWindow( this );
 			    x.__render();
 			    _alarmSound.play();
 			    _children.push(x);
@@ -119,7 +120,7 @@ var ApplicationController = function( ) {
 		    if (data.snooze) {
 			_alarmSound.pause();
 			_modalOnScreen = false;
-			y = ModalWindow( this )
+			var y = ModalWindow( this );
 			setTimeout(function() {
 			    if (_snoozing) {
 				_alarmSound.play();
@@ -130,9 +131,7 @@ var ApplicationController = function( ) {
 			}, (1000 * 60 * 5));
 			_snoozing = true;
 		    } else if (data.wake) {
-			_alarmSound.pause();
-			_modalOnScreen = false;
-			_awake = true;
+			location.reload();
 		    } else {
 			//console.log("Modal button passed unknown data to application controller.");
 		    }

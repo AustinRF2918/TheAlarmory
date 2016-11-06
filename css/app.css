@@ -217,7 +217,7 @@ body, html {
   width: 22px;
   height: 22px;
   margin: 6px;
-  background: #57417d;
+  background: #167fae;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -232,15 +232,15 @@ body, html {
   .btn-square-when:hover {
     transform: scale(1.4, 1.4);
     cursor: pointer;
-    background: #673AB7; }
+    background: #03A9F4; }
     .btn-square-when:hover * {
       color: white; }
   .btn-square-when-active {
     transform: scale(1.5, 1.5);
-    background: #4400be !important; }
+    background: #0087c4 !important; }
   .btn-square-when-active:after {
     transform: scale(1.5, 1.5);
-    background: #4400be !important; }
+    background: #0087c4 !important; }
   .btn-square-when * {
     color: white; }
 

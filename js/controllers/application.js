@@ -113,11 +113,14 @@ var ApplicationController = function( ) {
 		_children.push(modal);
 	    };
 
-	    var snoozeTime = function( ) {
+	    var snoozeTime = function( delta ) {
 		lsNew = getActiveTimes();
 		var elevenThen = (lsNew[0] === 11);
+		// WATCH OUT: PRONE TO BUGS!!
 		lsNew[1] += 5;
-		if ( lsNew[1] > 54 ) {
+		lsNew[1] += delta;
+		// WATCH OUT: PRONE TO BUGS!!
+		if ( lsNew[1] > 60 - (delta + 1 + 5) ) {
 		    lsNew[1] = 0;
 		    lsNew[0] += 1;
 		    var elevenNow = (lsNew[0] === 11);
@@ -150,7 +153,9 @@ var ApplicationController = function( ) {
 
 			ControlPanel.__handle( {
 			    componentName: "ApplicationController",
-			    list: snoozeTime()
+			    // Round up and a little more to make sure we are good
+			    // PRONE TO BUGS!!!
+			    list: snoozeTime( Math.ceil(data.timeElapsed) + 1  )
 			});
 
 			_children.pop();

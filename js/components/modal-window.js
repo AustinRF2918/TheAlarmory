@@ -18,6 +18,10 @@ var ModalWindow = function( parent ){
 	var _internalAudio = new Audio('../sounds/alarm.wav');
 	_internalAudio.loop = true;
 
+	// Timer to manipulate timing.
+	// TODO: watch out for more than an hour snooze!
+	var _then = new Date();
+
 
 	/*
 	  View components: _render should only be called on initial render and following this
@@ -58,9 +62,14 @@ var ModalWindow = function( parent ){
 		});
 
 		$("#btn-snooze").click(function() {
+		    var now = new Date();
+		    var delta = ( (_then.getTime() - now.getTime()) / 60000 ); 
+
 		    _parent.__handle({
 			componentName: "ModalButtonComponent",
-			snooze: true
+			snooze: true,
+			timeElapsed: delta
+
 		    });
 		    _internalAudio.pause();
 		    _removeModal();

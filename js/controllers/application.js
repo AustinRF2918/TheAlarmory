@@ -116,17 +116,17 @@ var ApplicationController = function( ) {
 	    var snoozeTime = function( delta ) {
 		lsNew = getActiveTimes();
 		var elevenThen = (lsNew[0] === 11);
-		// WATCH OUT: PRONE TO BUGS!!
 		lsNew[1] += delta;
-		// WATCH OUT: PRONE TO BUGS!!
-		//  Esp. prone to one off bug: I believe that in the case
-		// that a bug is fired from this, it will only cause one to
-		// snooze for an extra minute, but more research should be
-		// done into this.
-		if ( lsNew[1] > 60 - (delta + 1) ) {
-		    lsNew[1] = 0;
+
+		if ( lsNew[1] > 60 - delta ) {
+		    // PRONE TO BUGS: WHAT IF ALARM HAS GONE FOR MORE THAN AN HOUR?
+		    newDelta = Math.abs( lsNew[1] - ( 60 - delta ) );
+		    lsNew[1] = newDelta;
 		    lsNew[0] += 1;
+		    // PRONE TO BUGS
 		    var elevenNow = (lsNew[0] === 11);
+
+		    // Pushdown Autonoma here.
 		    if ( !elevenThen && elevenNow ) {
 			if ( lsNew[2] === "PM" ) {
 			    lsNew[2] = "AM";
@@ -156,8 +156,6 @@ var ApplicationController = function( ) {
 
 			ControlPanel.__handle( {
 			    componentName: "ApplicationController",
-			    // Round up and a little more to make sure we are good
-			    // PRONE TO BUGS!!!
 			    list: snoozeTime( Math.floor(data.timeElapsed) + 6  )
 			});
 

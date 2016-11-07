@@ -41,41 +41,40 @@ var ModalWindow = function( parent ){
 
 	    $.when($el.append( _generateTemplate( ) )).then(function() {
 		var player = $("#player").html.toString();
-		console.log(player);
 		if ( $("#video-form").val() === '' || player.indexOf("Cannot GET") === 0)  {
 		    _internalAudio.play();
-		} else {
-		    console.log("Found video!");
-		}
-		setTimeout(function() {
-		$(".modal-overlay").removeClass("modal-transition");
-		}, 500);
+		} 
 
-		$("#btn-wake-up").click(function() {
-		    _parent.__handle({
-			componentName: "ModalButtonComponent",
-			wake: true
+		setTimeout(function() {
+		    $(".modal-overlay").removeClass("modal-transition");
+		    }, 500);
+
+		    $("#btn-wake-up").click(function() {
+			_parent.__handle({
+			    componentName: "ModalButtonComponent",
+			    wake: true
+			});
+
+			_internalAudio.pause();
+			_removeModal();
 		    });
 
-		    _internalAudio.pause();
-		    _removeModal();
-		});
+		    $("#btn-snooze").click(function() {
+			var now = new Date();
+			var delta = ( (now.getTime() - _then.getTime()) / 60000 ); 
+			console.log(delta);
 
-		$("#btn-snooze").click(function() {
-		    var now = new Date();
-		    var delta = ( (_then.getTime() - now.getTime()) / 60000 ); 
-
-		    _parent.__handle({
-			componentName: "ModalButtonComponent",
-			snooze: true,
-			timeElapsed: delta
+			_parent.__handle({
+			    componentName: "ModalButtonComponent",
+			    snooze: true,
+			    timeElapsed: delta
 
 		    });
 		    _internalAudio.pause();
 		    _removeModal();
 		});
 	    });
-	};
+	}
 
 
 	/*
@@ -95,8 +94,6 @@ var ModalWindow = function( parent ){
 		tag += '</iframe>';
 	    }
 	    tag += '<div class="modal-overlay modal-transition">';
-	    console.log( $("#video-form").val() );
-
 	    tag +=   '<div class="modal-window">';
 
 	    // WE NEED SANITIZATION THIS IS BUGGY !

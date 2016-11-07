@@ -117,10 +117,13 @@ var ApplicationController = function( ) {
 		lsNew = getActiveTimes();
 		var elevenThen = (lsNew[0] === 11);
 		// WATCH OUT: PRONE TO BUGS!!
-		lsNew[1] += 5;
 		lsNew[1] += delta;
 		// WATCH OUT: PRONE TO BUGS!!
-		if ( lsNew[1] > 60 - (delta + 1 + 5) ) {
+		//  Esp. prone to one off bug: I believe that in the case
+		// that a bug is fired from this, it will only cause one to
+		// snooze for an extra minute, but more research should be
+		// done into this.
+		if ( lsNew[1] > 60 - (delta + 1) ) {
 		    lsNew[1] = 0;
 		    lsNew[0] += 1;
 		    var elevenNow = (lsNew[0] === 11);
@@ -155,7 +158,7 @@ var ApplicationController = function( ) {
 			    componentName: "ApplicationController",
 			    // Round up and a little more to make sure we are good
 			    // PRONE TO BUGS!!!
-			    list: snoozeTime( Math.ceil(data.timeElapsed) + 1  )
+			    list: snoozeTime( Math.floor(data.timeElapsed) + 6  )
 			});
 
 			_children.pop();

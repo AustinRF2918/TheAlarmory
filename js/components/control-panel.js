@@ -122,7 +122,6 @@ var ControlPanelComponent = function( DOMId ){
 
 		_notify();
 	    } else if ( data && data.componentName === "ApplicationController" ) {
-		console.log(data.list);
 		for (var item = 0; item < _children.length; item++) {
 		    _children[item].__handle( {
 			componentName: "ControlPanelComponent",

@@ -89,7 +89,7 @@ var TimeDisplayComponent = function( DOMId ){
 	  data fields.
 	*/
 	var _pushTime = function( hour, minute, period ) {
-	    _selectedHours = TimeFormatter.formatHour(hour) + 1;
+	    _selectedHours = TimeFormatter.formatHour(hour + 1);
 	    _selectedMinutes = TimeFormatter.formatMinute(minute);
 	    _selectedPeriod = TimeFormatter.formatPeriod(period);
 	};
@@ -130,9 +130,14 @@ var TimeDisplayComponent = function( DOMId ){
 		var hourDisplay = TimeFormatter.convertUnitToDigital(_selectedHours);
 		var minuteDisplay = TimeFormatter.convertUnitToDigital(_selectedMinutes);
 
-		$("#" + _internalDOMIdentifier +  " #hour-alarm").html(hourDisplay);
-		$("#" + _internalDOMIdentifier +  " #minute-alarm").html(minuteDisplay);
-		$("#" + _internalDOMIdentifier +  " #when-alarm").html(" " + _selectedPeriod);
+		if ($("#" + _internalDOMIdentifier)) {
+		    $("#" + _internalDOMIdentifier +  " #hour-alarm").html(hourDisplay);
+		    $("#" + _internalDOMIdentifier +  " #minute-alarm").html(minuteDisplay);
+		    $("#" + _internalDOMIdentifier +  " #when-alarm").html(" " + _selectedPeriod);
+		} else {
+		    // TODO: IMPLEMENT ERROR TYPE
+		    console.log("Could not find selector: " + "#" + _internalDOMIdentifier);
+		}
 	    } else if ( !data ) {
 		console.log( "Error in getting dispatched data: " + data.toString() );
 	    }

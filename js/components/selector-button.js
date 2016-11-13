@@ -86,9 +86,21 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric, ad
 	// Simple internal function to handle events.
 	var _pushActiveNumber = function( number ) {
 	    if ( number !== _number ) {
-		$("#" + _internalDOMIdentifier).removeClass( _className + "-active" );
+		_isActive = false;
+		if ($("#" + _internalDOMIdentifier)) {
+		    $("#" + _internalDOMIdentifier).removeClass( _className + "-active" );
+		} else {
+		    // TODO: IMPLEMENT ERROR TYPE
+		    console.log("Could not find selector: " + "#" + _internalDOMIdentifier);
+		}
 	    } else {
-		$("#" + _internalDOMIdentifier).addClass( _className + "-active" );
+		_isActive = true;
+		if ($("#" + _internalDOMIdentifier)) {
+		    $("#" + _internalDOMIdentifier).addClass( _className + "-active" );
+		} else {
+		    // TODO: IMPLEMENT ERROR TYPE
+		    console.log("Could not find selector: " + "#" + _internalDOMIdentifier);
+		}
 	    }
 	};
 
@@ -124,7 +136,7 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric, ad
 
 	// Debug function: Because this is ES6 syntax, we should disable these on
 	// deployment of the website.
-	/*
+
 	var _display = function ( ) {
 	    console.log( `_className: (${_className})` );
 	    console.log( `_isActive: (${_isActive})` );
@@ -132,7 +144,6 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric, ad
 	    console.log( `_action: (${_actions})` );
 	    console.log( `html: (${_generateTemplate()})` );
 	};
-	*/
 
 	/* 
 	HandlesEvents trait: HandlesEvents makes us implement three functions:
@@ -170,7 +181,12 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric, ad
 	*/
 	var _fireEvent = function( ) {
 	    _isActive = true;
-	    $("#" + _internalDOMIdentifier).addClass(_className + "-active");
+	    if ($("#" + _internalDOMIdentifier)) {
+		$("#" + _internalDOMIdentifier).addClass(_className + "-active");
+	    } else {
+		// TODO: IMPLEMENT ERROR TYPE.
+		console.log("Could not find selector: " + "#" + _internalDOMIdentifier);
+	    }
 
 	    _notify( );
 	};
@@ -206,7 +222,7 @@ var SelectorButtonComponent = function( DOMId, number, className, nonNumeric, ad
 	};
 
 	return {
-	    //__display: _display,
+	    __display: _display,
 	    __isActive: _active,
 	    __pushActiveNumber: _pushActiveNumber,
 	    __number: _number,

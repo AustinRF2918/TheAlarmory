@@ -1,1 +1,0 @@
-* TODO Add proper documentation to various components (Adding documentation to controller is not neccessary because it is a coupled, disposable component.

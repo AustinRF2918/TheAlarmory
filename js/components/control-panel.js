@@ -16,9 +16,9 @@ var ControlPanelComponent = function( DOMId ){
 	var $el = $(_internalDOMIdentifier);
 
 	// CoreComponentFields
-	var _hourActive = false;
-	var _minuteActive = false;
-	var _periodActive = false;
+	var _hourActive = 12;
+	var _minuteActive = 0;
+	var _periodActive = "AM";
 
 	// Handles Events
 	var _actions = [];

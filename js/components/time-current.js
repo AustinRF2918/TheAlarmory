@@ -87,10 +87,10 @@ var TimeCurrentComponent = function( DOMId ){
 	    } else {
 		str = _currentHours;
 	    }
-	    tag +=   '<span id="current-hour-alarm">' + str + '</span>';
+	    tag +=   '<span id="current-hour-alarm">' + TimeFormatter.convertUnitToDigital(TimeFormatter.convertMillitaryToHour(str))+ '</span>';
 	    tag +=   ':';
 	    tag +=   '<span id="current-minute-alarm">' + _currentMinutes + '</span>';
-	    tag +=   '<span id="current-when-alarm"> ' + _currentPeriod + '</span>';
+	    tag +=   '<span id="current-when-alarm">' + _currentPeriod + '</span>';
 	    tag += '</h5>';
 
 	    return( templateWrapper( _internalDOMIdentifier, tag ));

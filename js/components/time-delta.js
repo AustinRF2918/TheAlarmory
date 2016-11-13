@@ -104,7 +104,12 @@ var TimeDeltaComponent = function( DOMId ){
 	// will change time delta.
 	var _refreshTimeDelta = function( ) {
 	    _timeDelta = TimeFormatter.calculateDelta( _currentHours, _currentMinutes, _selectedHours, _selectedMinutes );
-	    $("#" + _internalDOMIdentifier +  " #delta").html(_timeDelta);
+	    if ($("#" + _internalDOMIdentifier)) {
+		$("#" + _internalDOMIdentifier +  " #delta").html(_timeDelta);
+	    } else {
+		// TODO: IMPLEMENT ERROR TYPE
+		console.log("Could not find selector: " + "#" + _internalDOMIdentifier);
+	    }
 	};
 
 	// Refreshes the internal current time.

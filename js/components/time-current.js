@@ -53,19 +53,7 @@ var TimeCurrentComponent = function( DOMId ){
 
 	    $el.append( _generateTemplate( ) );
 
-	    var interval = setInterval(function() {
-
-		var hours = TimeFormatter.convertMillitaryToHour(_currentHours);
-		if (hours === 0) {
-		    hours = 12;
-		}
-
-		_refreshTime();
-
-		$("#" + _internalDOMIdentifier +  " #current-hour-alarm").html(hours);
-		$("#" + _internalDOMIdentifier +  " #current-minute-alarm").html(_currentMinutes);
-		$("#" + _internalDOMIdentifier +  " #current-when-alarm").html(" " + _currentPeriod);
-	    }, 5000);
+	    var interval = setInterval(_refreshTime, 5000);
 
 	};
 
@@ -130,7 +118,17 @@ var TimeCurrentComponent = function( DOMId ){
 		_currentHours = 12;
 	    }
 
+	    var hours = TimeFormatter.convertMillitaryToHour(_currentHours);
+
+	    if (hours === 0) {
+		hours = 12;
+	    }
+
 	    _currentMinutes = TimeFormatter.formatMinute( _newTime.getMinutes() );
+
+	    $("#" + _internalDOMIdentifier +  " #current-hour-alarm").html(hours);
+	    $("#" + _internalDOMIdentifier +  " #current-minute-alarm").html(_currentMinutes);
+	    $("#" + _internalDOMIdentifier +  " #current-when-alarm").html(" " + _currentPeriod);
 	};
 
 	// Refresh to __handle.

@@ -118,7 +118,12 @@ var ApplicationController = function( ) {
 		var elevenThen = (lsNew[0] === 11);
 		lsNew[1] += delta;
 
-		if ( lsNew[1] > 60 - delta ) {
+		console.log(lsNew[1]);
+		console.log(60 - delta);
+		console.log("HI");
+
+		if ( lsNew[1] > 59 ) {
+		    console.log("TRUEEE");
 		    // PRONE TO BUGS: WHAT IF ALARM HAS GONE FOR MORE THAN AN HOUR?
 		    lsNew[1] = lsNew[1] % 60;
 		    lsNew[0] += 1;

@@ -40,11 +40,6 @@ var ModalWindow = function( parent ){
 	var _render = function() {
 
 	    $.when($el.append( _generateTemplate( ) )).then(function() {
-		var player = $("#player").html.toString();
-		if ( $("#video-form").val() === '' || player.indexOf("Cannot GET") === 0)  {
-		    _internalAudio.play();
-		} 
-
 		setTimeout(function() {
 		    $(".modal-overlay").removeClass("modal-transition");
 		    }, 500);
@@ -62,6 +57,7 @@ var ModalWindow = function( parent ){
 		    $("#btn-snooze").click(function() {
 			var now = new Date();
 			var delta = ( (now.getTime() - _then.getTime()) / 60000 ); 
+			console.log("SNOOZING! (MODAL)");
 			console.log(delta);
 
 			_parent.__handle({
@@ -76,16 +72,40 @@ var ModalWindow = function( parent ){
 	    });
 	}
 
+	var youtubeParser = function( url ){
+	    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+	    var match = url.match(regExp);
+	    return (match&&match[7].length==11)? match[7] : false;
+	}
+
+	var videoExists = function( videoID ) {
+	    return true;
+
+	}
+
 	/*
 	  _generateTemplate: Internal function for render: The creates the HTML markup
 	  for our component. Core view trait requires this to be implemented.
 	*/
+
 	var _generateTemplate = function() {
 	    var vidId =  $("#video-form").val().split("=")[1];
+	    var youtubeID = youtubeParser( $("#video-form").val() );
+
+	    if (youtubeID) {
+		var exists = videoExists(youtubeID);
+	    } else {
+		var exists = false;
+	    }
+
+	    if (!exists) {
+		_internalAudio.play();
+	    }
+
 	    var tag = '';
 	    tag += '<div class="lightbox">';
 	    tag += '</div>';
-	    if ( $("#video-form").val() != '' ) {
+	    if ( exists ) {
 		tag += '<div id="video-overlay">';
 		tag += '</div>';
 		tag += '<iframe id="player" frameborder="0" width="640" height="390"';
@@ -95,14 +115,13 @@ var ModalWindow = function( parent ){
 	    tag += '<div class="modal-overlay modal-transition">';
 	    tag +=   '<div class="modal-window">';
 
-	    // WE NEED SANITIZATION THIS IS BUGGY !
-	    if ( $("#video-form").val() != '' ) {
+	    if ( exists ) {
 	      tag +=     '<div class="modal-body-video">';
 	    } else {
 	      tag +=     '<div class="modal-body">';
 	    }
 	    
-	    if ( $("#video-form").val() == '' ) {
+	    if ( exists ) {
 	      tag +=     '<h5 class="modal-header">';
 	      tag +=       _currentText;
 	      tag +=     '</h5>';

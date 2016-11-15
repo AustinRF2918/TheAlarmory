@@ -76,7 +76,6 @@ var ModalWindow = function( parent ){
 	    });
 	}
 
-
 	/*
 	  _generateTemplate: Internal function for render: The creates the HTML markup
 	  for our component. Core view trait requires this to be implemented.

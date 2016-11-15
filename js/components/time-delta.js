@@ -46,20 +46,7 @@ var TimeDeltaComponent = function( DOMId ){
 	    $el.append( _generateTemplate( ) );
 	    _refreshTime();
 
-	    var interval = setInterval(function() {
-		_refreshTime();
-
-		if (_selectedHours.toString() == _currentHours.toString() &&
-		    _selectedMinutes.toString() == _currentMinutes.toString() &&
-		    _selectedPeriod.toString() == _currentPeriod.toString()) {
-
-		    
-		    _parent.__handle({
-			componentName: "TimeDeltaComponent",
-			firing: true
-		    });
-		}
-	    }, 5000);
+	    var interval = setInterval(_refreshTime, 5000);
 	};
 
 	/*
@@ -110,6 +97,17 @@ var TimeDeltaComponent = function( DOMId ){
 		// TODO: IMPLEMENT ERROR TYPE
 		console.log("Could not find selector: " + "#" + _internalDOMIdentifier);
 	    }
+
+	    if (_selectedHours.toString() == _currentHours.toString() &&
+		_selectedMinutes.toString() == _currentMinutes.toString() &&
+		_selectedPeriod.toString() == _currentPeriod.toString()) {
+
+
+		_parent.__handle({
+		    componentName: "TimeDeltaComponent",
+		    firing: true
+		});
+	    }
 	};
 
 	// Refreshes the internal current time.
@@ -117,9 +115,14 @@ var TimeDeltaComponent = function( DOMId ){
 	// with message?
 	var _refreshTime = function( ) {
 	    var _newTime = new Date( );
+	    // Time delta doesn't need formatting here, it is never displayed.
 	    _currentHours = _newTime.getHours();
+
 	    _currentPeriod = TimeFormatter.getPeriod(_currentHours);
+
+	    // Time delta doesn't need formatting here, it is never displayed.
 	    _currentMinutes = _newTime.getMinutes();
+
 	    _refreshTimeDelta( );
 	};
 

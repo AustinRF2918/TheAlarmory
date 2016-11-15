@@ -1,6 +1,3 @@
-// var TimeFormatter = require('../lib/time-formatting.js').TimeFormatter;
-// var templateWrapper = require('../lib/template-helpers.js').templateWrapper;
-
 var TimeCurrentComponent = function( DOMId ){
     if ( typeof DOMId !== "string" ) {
 	throw new ValueError("Invalid data type passed to TimeDisplayComponent constructor: must be a string.");
@@ -52,9 +49,7 @@ var TimeCurrentComponent = function( DOMId ){
 	    }
 
 	    $el.append( _generateTemplate( ) );
-
 	    var interval = setInterval(_refreshTime, 5000);
-
 	};
 
 	/*
@@ -75,9 +70,11 @@ var TimeCurrentComponent = function( DOMId ){
 	    } else {
 		str = _currentHours;
 	    }
+
+
 	    tag +=   '<span id="current-hour-alarm">' + TimeFormatter.convertUnitToDigital(TimeFormatter.convertMillitaryToHour(str))+ '</span>';
 	    tag +=   ':';
-	    tag +=   '<span id="current-minute-alarm">' + _currentMinutes + '</span>';
+	    tag +=   '<span id="current-minute-alarm">' + _currentMinutes + '</span> ';
 	    tag +=   '<span id="current-when-alarm">' + _currentPeriod + '</span>';
 	    tag += '</h5>';
 
@@ -126,7 +123,7 @@ var TimeCurrentComponent = function( DOMId ){
 
 	    _currentMinutes = TimeFormatter.formatMinute( _newTime.getMinutes() );
 
-	    $("#" + _internalDOMIdentifier +  " #current-hour-alarm").html(hours);
+	    $("#" + _internalDOMIdentifier +  " #current-hour-alarm").html(TimeFormatter.convertUnitToDigital(hours));
 	    $("#" + _internalDOMIdentifier +  " #current-minute-alarm").html(_currentMinutes);
 	    $("#" + _internalDOMIdentifier +  " #current-when-alarm").html(" " + _currentPeriod);
 	};

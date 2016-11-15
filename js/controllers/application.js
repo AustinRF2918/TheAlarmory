@@ -120,8 +120,7 @@ var ApplicationController = function( ) {
 
 		if ( lsNew[1] > 60 - delta ) {
 		    // PRONE TO BUGS: WHAT IF ALARM HAS GONE FOR MORE THAN AN HOUR?
-		    newDelta = Math.abs( lsNew[1] - ( 60 - delta ) );
-		    lsNew[1] = newDelta;
+		    lsNew[1] = lsNew[1] % 60;
 		    lsNew[0] += 1;
 		    // PRONE TO BUGS
 		    var elevenNow = (lsNew[0] === 11);

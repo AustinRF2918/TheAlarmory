@@ -42,9 +42,13 @@ var VideoService = function( ) {
 		if ( !_cached ) {
 		    return null;
 		} else {
-		    return _cached;
+		    var r = _cached;
+		    console.log(r);
+		    _cached = undefined;
+		    return r;
 		}
 	    } catch( e ) {
+		_cached = undefined;
 		return null;
 	    }
 	}

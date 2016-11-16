@@ -66,6 +66,25 @@ describe('Video service sends queries.', function() {
 	    }, 2000);
 	});
 
+	it ('Should get Megadeth keyword parameters.', function() {
+	    this.timeout(2000);
+
+	    var videoService = VideoService();
+
+	    function done() {
+		var v = videoService.getPending();
+		expect(v).to.not.equal(null);
+	    }
+
+	    var parameters = ["Megadeth", "Hangar", "18"];
+	    videoService.sendParameters(parameters);
+
+	    setTimeout(function() {
+		done();
+	    }, 2000);
+	});
+
+
 	it ('Should get nothing from garbage keyword parameters.', function() {
 	    this.timeout(900);
 

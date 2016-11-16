@@ -8,6 +8,7 @@ describe('Video service sends queries.', function() {
 	    videoService.sendId("fdsafdsafdas");
 	    this.timeout(500);
 	    setTimeout(done, 500);
+
 	    function done() {
 		console.log(videoService.getPending());
 		expect(videoService.getPending()).to.equal(null);
@@ -20,8 +21,8 @@ describe('Video service sends queries.', function() {
 	    videoService.sendId(vidId);
 	    this.timeout(900);
 	    setTimeout(done, 900);
+
 	    function done() {
-		console.log(videoService.getPending());
 		expect(videoService.getPending()).to.equal(`https://www.youtube.com/watch?v=${vidId}`);
 	    }
 	});
@@ -36,10 +37,11 @@ describe('Video service sends queries.', function() {
 		expect(videoService.getPending()).to.equal(null);
 	    }
 
+	    var vidId = "953PkxFNiko";
+	    videoService.sendId(vidId);
+	    videoService.sendId("fdsafdsafdas");
+
 	    setTimeout(function() {
-		var vidId = "953PkxFNiko";
-		videoService.sendId(vidId);
-		videoService.sendId("fdsafdsafdas");
 		done();
 	    }, 900);
 	});
@@ -53,12 +55,13 @@ describe('Video service sends queries.', function() {
 
 	    function done() {
 		var v = videoService.getPending();
-		expect(v).to.equal(null);
+		expect(v).to.not.equal(null);
 	    }
 
+	    var parameters = ["Primus", "My", "Name"];
+	    videoService.sendParameters(parameters);
+
 	    setTimeout(function() {
-		var parameters = ["Primus", "My", "Name"];
-		videoService.sendParameters(parameters);
 		done();
 	    }, 2000);
 	});
@@ -69,13 +72,13 @@ describe('Video service sends queries.', function() {
 	    var videoService = VideoService();
 
 	    function done() {
-		console.log(videoService.getPending());
 		expect(videoService.getPending()).to.equal(null);
 	    }
 
+	    var parameters = ["adsjkadjskaj", "jafskajfska", "jdksajdks"];
+	    videoService.sendParameters(parameters);
+
 	    setTimeout(function() {
-		var parameters = ["adsjkadjskaj", "jafskajfska", "jdksajdks"];
-		videoService.sendParameters(parameters);
 		done();
 	    }, 900);
 	});

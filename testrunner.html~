@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mocha Tests</title>
+    <link rel="stylesheet" href="node_modules/mocha/mocha.css">
+  </head>
+  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <div id="mocha"></div>
+    <script src="node_modules/mocha/mocha.js"></script>
+    <script src="node_modules/chai/chai.js"></script>
+    <script>mocha.setup('bdd')</script>
+    <script src="js/lib/time-formatting.js"></script>
+    <script src="js/lib/template-helpers.js"></script>
+    <script src="js/components/control-panel.js"></script>
+    <script src="js/components/selector-button.js"></script>
+    <script src="js/components/selector-portion.js"></script>
+    <script src="js/components/time-current.js"></script>
+    <script src="js/components/time-delta.js"></script>
+    <script src="js/components/time-display.js"></script>
+    <script src="js/components/modal-window.js"></script>
+    <script src="js/controllers/application.js"></script>
+    <script src="test/test-formatting.js"></script>
+    <script src="test/test-template-helpers.js"></script>
+    <script src="test/test-selector-button-component.js"></script>
+    <script src="test/test-selector-portion-component.js"></script>
+    <script src="test/test-control-panel-component.js"></script>
+    <script src="test/test-time-current-component.js"></script>
+    <script src="test/test-time-display-component.js"></script>
+    <script src="test/test-time-delta-component.js"></script>
+    <script src="test/test-application-controller.js"></script>
+    <script>
+      mocha.run();
+    </script>
+  </body>
+</html>

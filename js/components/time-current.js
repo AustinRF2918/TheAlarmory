@@ -74,7 +74,7 @@ var TimeCurrentComponent = function( DOMId ){
 
 	    tag +=   '<span id="current-hour-alarm">' + TimeFormatter.convertUnitToDigital(TimeFormatter.convertMillitaryToHour(str))+ '</span>';
 	    tag +=   ':';
-	    tag +=   '<span id="current-minute-alarm">' + _currentMinutes + '</span> ';
+	    tag +=   '<span id="current-minute-alarm">' + _currentMinutes + '</span>';
 	    tag +=   '<span id="current-when-alarm">' + _currentPeriod + '</span>';
 	    tag += '</h5>';
 
@@ -123,9 +123,14 @@ var TimeCurrentComponent = function( DOMId ){
 
 	    _currentMinutes = TimeFormatter.formatMinute( _newTime.getMinutes() );
 
-	    $("#" + _internalDOMIdentifier +  " #current-hour-alarm").html(TimeFormatter.convertUnitToDigital(hours));
-	    $("#" + _internalDOMIdentifier +  " #current-minute-alarm").html(_currentMinutes);
-	    $("#" + _internalDOMIdentifier +  " #current-when-alarm").html(" " + _currentPeriod);
+	    if ($("#" + _internalDOMIdentifier)) {
+		$("#" + _internalDOMIdentifier +  " #current-hour-alarm").html(TimeFormatter.convertUnitToDigital(hours));
+		$("#" + _internalDOMIdentifier +  " #current-minute-alarm").html(_currentMinutes);
+		$("#" + _internalDOMIdentifier +  " #current-when-alarm").html(" " + _currentPeriod);
+	    } else {
+		// TODO: IMPLEMENT ERROR TYPE
+		console.log("Could not find selector: " + "#" + _internalDOMIdentifier);
+	    }
 	};
 
 	// Refresh to __handle.

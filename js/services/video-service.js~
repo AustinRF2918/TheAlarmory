@@ -1,0 +1,4 @@
+var SelectorButtonComponent = function( DOMId, number, className, nonNumeric, addOne ) {
+    return ( function( ) {
+    } )
+}

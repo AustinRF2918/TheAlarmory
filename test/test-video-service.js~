@@ -1,0 +1,7 @@
+var expect = chai.expect;
+
+describe('Video service sends queries.' function() {
+    describe('ID Checking', function() {
+	var videoService = ControlPanelComponent( "control-panel" );
+    }
+});

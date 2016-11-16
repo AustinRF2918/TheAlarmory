@@ -1,3 +1,11 @@
+$(document).on('click', 'video', function(){
+        if (this.paused) {
+            this.play();
+        } else {
+            this.pause();
+        }
+});
+
 function _checkForType( item, type, errorText ) {
     if ( typeof item !== type ) {
 	throw TypeError( errorText );

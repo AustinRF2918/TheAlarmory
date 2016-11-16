@@ -1,7 +1,4 @@
 var expect = chai.expect;
-var $ = function(){};
-$.addClass = function(){};
-
 
 describe('Application Controller (Integration)', function() {
     describe('Properly constructs', function() {

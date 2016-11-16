@@ -22,7 +22,6 @@ var ModalWindow = function( parent ){
 	// TODO: watch out for more than an hour snooze!
 	var _then = new Date();
 
-
 	/*
 	  View components: _render should only be called on initial render and following this
 	  a rerender should be called: JQuery will do this by changing text elements or any 
@@ -98,6 +97,7 @@ var ModalWindow = function( parent ){
 		var exists = false;
 	    }
 
+
 	    if (!exists) {
 		_internalAudio.play();
 	    }
@@ -137,6 +137,10 @@ var ModalWindow = function( parent ){
 	    tag +=     '</div>';
 	    tag +=   '</div>';
 	    tag += '</div>';
+
+	    var title = $('head').filter('title').text();
+	    console.log(title);
+
 	    return tag;
 	};
 

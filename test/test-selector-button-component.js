@@ -54,7 +54,7 @@ describe('Button', function() {
 	it ('Should render an active item.', function() {
 	    var tds = SelectorButtonComponent( "test", 0, "btn-square-hours" );
 	    tds.__pushActiveNumber( 0 );
-	    expect(tds.__generateTemplate() === '<div id="test-0" class="btn-square-hours btn-square-hours-active"><a>0</a></div>').to.be.true;
+	    expect(tds.__generateTemplate()).to.equal('<div id="test-0" class="btn-square-hours btn-square-hours-active"><a>0</a></div>');
 	});
 
 	it ('Should render an inactive item after being passed a non-containing numeric..', function() {

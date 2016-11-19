@@ -1,12 +1,3 @@
-// var TimeFormatter = require('../lib/time-formatting.js').TimeFormatter;
-// var templateWrapper = require('../lib/template-helpers.js').templateWrapper;
-
-function _checkForType( item, type, errorText ) {
-    if ( typeof item !== type ) {
-	throw TypeError( errorText );
-    }
-}
-
 var SelectorPortionComponent = function( DOMId, name, active){
     _checkForType( DOMId, "string", "Invalid data type passed to SelectorPortionComponent parameter 1 (DOMId): must be a string.");
 

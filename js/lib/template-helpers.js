@@ -10,4 +10,8 @@ function templateWrapper( id, html ) {
     return tag;
 }
 
-// module.exports.templateWrapper = templateWrapper;
+function _checkForType( item, type, errorText ) {
+    if ( typeof item !== type ) {
+	throw TypeError( errorText );
+    }
+}

@@ -1,7 +1,5 @@
 var TimeCurrentComponent = function( DOMId ){
-    if ( typeof DOMId !== "string" ) {
-	throw new ValueError("Invalid data type passed to TimeDisplayComponent constructor: must be a string.");
-    }
+    _checkForType( DOMId, "string", "Invalid data type passed to TimeDisplayComponent constructor: must be a string");
 
     return ( function( ) {
 	// CoreComponent

@@ -1,15 +1,3 @@
-// var TimeFormatter = require('../lib/time-formatting.js').TimeFormatter;
-// var templateWrapper = require('../lib/template-helpers.js').templateWrapper;
-
-/*
-  Put into own component, keep DRY
-*/
-function _checkForType( item, type, errorText ) {
-    if ( typeof item !== type ) {
-	throw TypeError( errorText );
-    }
-}
-
 var SelectorButtonComponent = function( DOMId, number, className, nonNumeric, addOne){
     _checkForType( DOMId, "string", "Invalid data type passed to TimeDeltaComponent parameter 1 (DOMId): must be a string.");
 

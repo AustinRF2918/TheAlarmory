@@ -1,9 +1,3 @@
-function _checkForType( item, type, errorText ) {
-    if ( typeof item !== type ) {
-	throw TypeError( errorText );
-    }
-}
-
 var FooterComponent = function( DOMId ){
     _checkForType( DOMId, "string", "Invalid data type passed to TimeDeltaComponent parameter 1 (DOMId): must be a string.");
 

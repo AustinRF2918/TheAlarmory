@@ -2,10 +2,7 @@
 // var templateWrapper = require('../lib/template-helpers.js').templateWrapper;
 
 var TimeDeltaComponent = function( DOMId ){
-    if ( typeof DOMId !== "string" ) {
-	throw new ValueError("Invalid data type passed to TimeDeltaComponent constructor: must be a string.");
-    }
-
+    _checkForType( DOMId, "string", "Invalid data type passed to TimeDelta constructor: must be a string");
     return ( function( ) {
 	// CoreComponent
 	var _internalDOMIdentifier = DOMId;

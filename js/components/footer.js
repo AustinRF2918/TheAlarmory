@@ -12,11 +12,6 @@ var FooterComponent = function( DOMId ){
 	var _internalDOMIdentifier = DOMId;
 	var $el = $(_internalDOMIdentifier);
 
-	// CoreComponentFields
-	var _hourActive = 12;
-	var _minuteActive = 0;
-	var _periodActive = "AM";
-
 	// Handles Events
 	var _actions = [];
 
@@ -47,14 +42,16 @@ var FooterComponent = function( DOMId ){
 	for our component. Core view trait requires this to be implemented.
 	*/
 	var _generateTemplate = function( ) {
+
 	    var tag = '';
-	    tag += '<div class="col-md-8" id="' + _internalDOMIdentifier + '">';
-
-	    for ( var i = 0; i < _children.length; i++) {
-		tag += _children[i].__generateTemplate();
-	    }
-
-	    tag += '</div>';
+	    tag += '<div class="inline-section">'
+	    tag +=   '<div class="col-lg-8">'
+	    tag +=     '<input type="video" class="form-control footer footer-red" id="video-form" placeholder="Paste a video URL here to wake up to it!"/>'
+	    tag +=   '</div>'
+	    tag +=   '<div class="col-lg-4">'
+	    tag +=     '<a class="btn header footer footer-blue" href="http://www.bluebikedesign.com">Created By Blue Bike Web Design</a>'
+	    tag +=   '</div>'
+	    tag += '</div>'
 	    return tag;
 	};
 

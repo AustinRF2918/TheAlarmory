@@ -124,7 +124,7 @@ body, html {
 .footer {
   width: 100%;
   margin-top: 20px;
-  padding: 15px 10px 10px 10%;
+  padding: 15px 10px 10px 10px;
   border-radius: 0px;
   text-decoration: none;
   -webkit-touch-callout: none;

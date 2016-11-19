@@ -36,9 +36,7 @@ var VideoInputComponent = function( DOMId ){
 	*/
 	var _generateTemplate = function( ) {
 	    var tag = '';
-	    tag += '<div class="col-lg-8">';
 	    tag += '<input type="video" class="form-control footer footer-red" id="video-form" placeholder="Paste a video URL here to wake up to it!"/>';
-	    tag += '</div>';
 	    return tag;
 	};
 

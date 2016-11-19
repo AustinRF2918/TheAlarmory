@@ -57,8 +57,11 @@ $(document).ready(function(){
     var timeCurrent = TimeCurrentComponent( "time-current-component" );
     timeCurrent.__render();
 
+    var pageFooter = FooterComponent( "#page-footer" );
+    pageFooter.__render();
 
     controller.pushChild(tds);
+    controller.pushChild(pageFooter);
     controller.pushChild(timeDisplay);
     controller.pushChild(timeDelta);
     controller.pushChild(timeCurrent);

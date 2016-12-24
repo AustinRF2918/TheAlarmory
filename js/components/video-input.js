@@ -20,17 +20,6 @@ var VideoInputComponent = function( DOMId ){
 	*/
 
 	/*
-	_render: Internal function to remove the element that is current hooked to 
-	our component and following this rerender the HTML: Unless there is some 
-	reason to do so, we should in general keep this used only once, otherwise
-	we should hook JQuery functions to our _handle function, implemented by
-	the ComponentMessanger trait.
-	*/
-	var _render = function( ) {
-	    $el.html( _generateTemplate( ) );
-	};
-
-	/*
 	_generateTemplate: Internal function for render: The creates the HTML markup
 	for our component. Core view trait requires this to be implemented.
 	*/
@@ -39,6 +28,14 @@ var VideoInputComponent = function( DOMId ){
 	    tag += '<input type="video" class="form-control footer footer-red" id="video-form" placeholder="Paste a video URL here to wake up to it!"/>';
 	    return tag;
 	};
+
+	var _onChange = function( f ) {
+	    $('body').find('#video-form').on('input', function(event) {
+		if (event.currentTarget.value) {
+		    f(event.currentTarget.value);
+		}
+	    });
+	}
 
 	/*
 	OrderedComponents trait: OrderedComponents will require our object to both
@@ -136,11 +133,11 @@ var VideoInputComponent = function( DOMId ){
 	    __DOMIdentifier: _internalDOMIdentifier,
 	    __generateTemplate: _generateTemplate,
 	    __actions: _actions,
-	    __render: _render,
 	    __this: this,
 	    __handle: _handle,
 	    __notify: _notify,
 	    __componentName: "ControlPanelComponent",
+	    onChange: _onChange,
 	    getActiveTimes: _getActiveTimes,
 	    pushChild: _pushChild,
 	    pushParent: _pushParent

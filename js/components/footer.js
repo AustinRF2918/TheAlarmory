@@ -12,6 +12,8 @@ var FooterComponent = function( DOMId ){
 	// Node
 	var _children = [];
 	var _parent = undefined;
+	var _interval = function(){};
+	var _currentTimeout = function(){};
 
 	/*
 	View components: _render should only be called on initial render and following this
@@ -27,7 +29,25 @@ var FooterComponent = function( DOMId ){
 	the ComponentMessanger trait.
 	*/
 	var _render = function( ) {
-	    $el.html( _generateTemplate( ) );
+	    $el.empty().append( _generateTemplate( ) );
+
+	    _interval = setInterval(function(){
+		_currentTimeout();
+		_currentTimeout = function(){};
+	    }, 1000)
+
+	    _children[0].onChange(function(f) {
+		clearInterval(_interval);
+
+		_currentTimeout = function() {
+		    console.log(f);
+		}
+
+		_interval = setInterval(function(){
+		    _currentTimeout();
+		    _currentTimeout = function(){};
+		}, 1000)
+	    });
 	};
 
 	/*

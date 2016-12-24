@@ -35,27 +35,26 @@ var FooterComponent = function( DOMId ){
 	for our component. Core view trait requires this to be implemented.
 	*/
 	var _generateTemplate = function( ) {
-	    var tag = '';
-	    var genTemplate = _children[0];
+	    var tag = '<div class="inline-section">';
 
-	    tag += '<div class="inline-section">'
 	    if (_children.length > 0) {
-		tag +=   '<div class="col-lg-8">'
+		// Push our first child to our footer, make it 8 columns large.
+		tag +=   '<div class="col-lg-8">';
 		tag +=     _children[0].__generateTemplate();
-		tag +=   '</div>'
+		tag +=   '</div>';
+		tag +=   '<div class="col-lg-4">';
+		tag +=     '<a class="btn header footer footer-blue" href="http://www.bluebikedesign.com">Created By Blue Bike Web Design</a>';
+		tag +=   '</div>';
+		tag += '</div>';
+	    } else {
+		// If we haven't pushed any children to our footer (searchable components)
+		// then we are going to want to make it full sized.
+		tag +=   '<div class="col-lg-12">';
+		tag +=     '<a class="btn header footer footer-blue" href="http://www.bluebikedesign.com">Created By Blue Bike Web Design</a>';
+		tag +=   '</div>';
+		tag += '</div>';
 	    }
 
-	    if (_children.length > 0) {
-		tag +=   '<div class="col-lg-4">'
-		tag +=     '<a class="btn header footer footer-blue" href="http://www.bluebikedesign.com">Created By Blue Bike Web Design</a>'
-		tag +=   '</div>'
-		tag += '</div>'
-	    } else {
-		tag +=   '<div class="col-lg-12">'
-		tag +=     '<a class="btn header footer footer-blue" href="http://www.bluebikedesign.com">Created By Blue Bike Web Design</a>'
-		tag +=   '</div>'
-		tag += '</div>'
-	    }
 	    return tag;
 	};
 

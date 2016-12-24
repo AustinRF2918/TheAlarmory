@@ -51,7 +51,10 @@ $(document).ready(function(){
     var timeCurrent = TimeCurrentComponent( "time-current-component" );
     timeCurrent.__render();
 
+    var videoSearch = VideoInputComponent("#video-search");
+
     var pageFooter = FooterComponent( "#page-footer" );
+    pageFooter.pushChild( videoSearch );
     pageFooter.__render();
 
     controller.pushChild(tds);

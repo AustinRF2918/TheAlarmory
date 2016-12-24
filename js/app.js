@@ -51,10 +51,12 @@ $(document).ready(function(){
     var timeCurrent = TimeCurrentComponent( "time-current-component" );
     timeCurrent.__render();
 
+    var videoService = VideoService();
     var videoSearch = VideoInputComponent("#video-search");
 
     var pageFooter = FooterComponent( "#page-footer" );
     pageFooter.pushChild( videoSearch );
+    pageFooter.setService( videoService );
     pageFooter.__render();
 
     controller.pushChild(tds);

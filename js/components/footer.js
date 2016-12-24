@@ -14,6 +14,11 @@ var FooterComponent = function( DOMId ){
 	var _parent = undefined;
 	var _interval = function(){};
 	var _currentTimeout = function(){};
+	var _service = undefined;
+
+	var _setService = function( s ) {
+	    _service = s;
+	}
 
 	/*
 	View components: _render should only be called on initial render and following this
@@ -31,21 +36,32 @@ var FooterComponent = function( DOMId ){
 	var _render = function( ) {
 	    $el.empty().append( _generateTemplate( ) );
 
+	    // Initialize the interval.
 	    _interval = setInterval(function(){
 		_currentTimeout();
 		_currentTimeout = function(){};
 	    }, 1000)
 
+	    // When we get input from our child
 	    _children[0].onChange(function(f) {
+		// Restart our interval so it doesn't
+		// cut into our current input (this helps
+		// us wait out user changes.)
 		clearInterval(_interval);
 
+		// Perform desired function on our object, closing
+		// over info passed from child.
 		_currentTimeout = function() {
+		    _service.sendParameters(f.split(' '))
 		    console.log(f);
 		}
 
+		// Reset interval.
 		_interval = setInterval(function(){
 		    _currentTimeout();
-		    _currentTimeout = function(){};
+		    _currentTimeout = function(){
+			console.log(_service.getPending());
+		    };
 		}, 1000)
 	    });
 	};
@@ -188,7 +204,8 @@ var FooterComponent = function( DOMId ){
 	    __componentName: "ControlPanelComponent",
 	    getActiveTimes: _getActiveTimes,
 	    pushChild: _pushChild,
-	    pushParent: _pushParent
+	    pushParent: _pushParent,
+	    setService: _setService
 	};
     })( );
 };

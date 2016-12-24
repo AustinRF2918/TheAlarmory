@@ -60,7 +60,10 @@ var FooterComponent = function( DOMId ){
 		_interval = setInterval(function(){
 		    _currentTimeout();
 		    _currentTimeout = function(){
-			console.log(_service.getPending());
+			if ( _service.getPending() !== null ) {
+			    console.log(_service.getPending());
+			    _interval = null;
+			}
 		    };
 		}, 1000)
 	    });

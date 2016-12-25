@@ -13,7 +13,7 @@ var FooterComponent = function( DOMId ){
 	var _children = [];
 	var _parent = undefined;
 	var _interval = function(){};
-	var _currentTimeout = function(){};
+	var _queryTimer = function(){};
 	var _service = undefined;
 
 	var _setService = function( s ) {
@@ -36,36 +36,11 @@ var FooterComponent = function( DOMId ){
 	var _render = function( ) {
 	    $el.empty().append( _generateTemplate( ) );
 
-	    // Initialize the interval.
-	    _interval = setInterval(function(){
-		_currentTimeout();
-		_currentTimeout = function(){};
-	    }, 1000)
-
 	    // When we get input from our child
+	    _service.setMessanger(this);
+
 	    _children[0].onChange(function(f) {
-		// Restart our interval so it doesn't
-		// cut into our current input (this helps
-		// us wait out user changes.)
-		clearInterval(_interval);
-
-		// Perform desired function on our object, closing
-		// over info passed from child.
-		_currentTimeout = function() {
-		    _service.sendParameters(f.split(' '))
-		    console.log(f);
-		}
-
-		// Reset interval.
-		_interval = setInterval(function(){
-		    _currentTimeout();
-		    _currentTimeout = function(){
-			if ( _service.getPending() !== null ) {
-			    console.log(_service.getPending());
-			    _interval = null;
-			}
-		    };
-		}, 1000)
+		_service.sendUnknown(f)
 	    });
 	};
 
@@ -110,6 +85,10 @@ var FooterComponent = function( DOMId ){
 	    component.pushParent( this );
 	    _children.push( component );
 	};
+
+	var _receive = function( data ) {
+	    console.log(data);
+	}
 
 	/*
 	_pushParent: Pushes a parent to the parent component.
@@ -205,6 +184,7 @@ var FooterComponent = function( DOMId ){
 	    __handle: _handle,
 	    __notify: _notify,
 	    __componentName: "ControlPanelComponent",
+	    receive: _receive,
 	    getActiveTimes: _getActiveTimes,
 	    pushChild: _pushChild,
 	    pushParent: _pushParent,

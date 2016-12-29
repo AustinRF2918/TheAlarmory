@@ -115,13 +115,28 @@ var FooterComponent = function( DOMId ){
 	    console.log("videoName: " + videoName);
 	    console.log("videoUrl: " + videoUrl);
 
-	    // UI logic goes here.
+	    var goodMarkup = '';
+	    goodMarkup += '<div class="notification-tooltip tooltip-good">';
+	    goodMarkup += '<p class="tooltip-content">We got the video: ';
+	    goodMarkup += videoUrl
+	    goodMarkup += ' and set it as your wake up item.';
+	    goodMarkup += '</p>';
+	    goodMarkup += '</div>';
+
+	    $("body").append(goodMarkup)
+	    console.log(goodMarkup);
 	}
 
 	var _displayBadTooltip = function( status ) {
 	    console.log("_displayBadTooltip receieved: ");
 	    console.log("status: " + status);
 
+	    var badMarkup = '';
+	    goodMarkup += '<div class="notification-tooltip tooltip-bad">';
+	    goodMarkup += "<p class=" + '"tooltip-content"' + ">We didn't find anything for your input!</p>";
+	    goodMarkup += '</div>';
+
+	    $("body").append(badMarkup)
 	    // UI logic goes here.
 	}
 

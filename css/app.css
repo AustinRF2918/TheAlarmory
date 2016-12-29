@@ -348,6 +348,38 @@ body, html {
   .btn-square-lock * {
     color: white; }
 
+.notification-tooltip {
+  background: black;
+  position: absolute;
+  color: white;
+  transition-duration: 0.2s;
+  z-index: 9999; }
+  @media screen and (min-width: 768px) {
+    .notification-tooltip {
+      top: 50%;
+      left: 50%;
+      width: 50%;
+      transform: translateY(-50%) translateX(-50%); } }
+  @media screen and (max-width: 767px) {
+    .notification-tooltip {
+      top: 50%;
+      left: 5%;
+      width: 90%;
+      transform: translateY(-50%); } }
+
+.tooltip-content {
+  font-size: 20px;
+  position: relative;
+  text-align: center;
+  margin: 0px;
+  padding: 30px; }
+
+.tooltip-good {
+  border: 2px solid #03A9F4; }
+
+.tooltip-bad {
+  border: 2px solid #e81f0c; }
+
 #modal-generator {
   position: absolute; }
 

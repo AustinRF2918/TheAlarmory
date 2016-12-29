@@ -44,7 +44,7 @@ var VideoService = function( ) {
 		_messanger.handle({
 		    videoName: null,
 		    videoUrl: data,
-		    status: null
+		    status: 400 // for now
 		});
 	    });
 	}
@@ -55,7 +55,7 @@ var VideoService = function( ) {
 		    componentName: "VideoService",
 		    videoName: null,
 		    url: data,
-		    status: null
+		    status: 400 //for now
 		});
 	    });
 	}

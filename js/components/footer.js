@@ -86,10 +86,61 @@ var FooterComponent = function( DOMId ){
 	    _children.push( component );
 	};
 
-	var _handleResponse = function( videoName, videoUrl, status ) {
-	    console.log("_handleResponse receieved: " + videoUrl);
+	var _processServiceResponse = function( videoName, videoUrl, status ) {
+	    console.log("_processServiceResponse receieved: ");
+	    console.log("videoName: " + videoName);
+	    console.log("videoUrl: " + videoUrl);
+	    console.log("status: " + status);
+
+	    _notifyUI( videoName, videoUrl, status );
+	    _notifyApplication( videoName, videoUrl, status );
 	}
 
+
+	var _notifyUI = function( videoName, videoUrl, status ) {
+	    console.log("_notifyUI receieved: ");
+	    console.log("videoName: " + videoName);
+	    console.log("videoUrl: " + videoUrl);
+	    console.log("status: " + status);
+
+	    if ( status === 400 ) {
+		_displayGoodTooltip( videoName, videoUrl );
+	    } else {
+		_displayBadTooltip( status );
+	    }
+	}
+
+	var _displayGoodTooltip = function( videoName, videoUrl ) {
+	    console.log("_displayGoodTooltip receieved: ");
+	    console.log("videoName: " + videoName);
+	    console.log("videoUrl: " + videoUrl);
+
+	    // UI logic goes here.
+	}
+
+	var _displayBadTooltip = function( status ) {
+	    console.log("_displayBadTooltip receieved: ");
+	    console.log("status: " + status);
+
+	    // UI logic goes here.
+	}
+
+	var _notifyApplication = function( videoName, videoUrl, status ) {
+	    console.log("_notifyApplication receieved: ");
+	    console.log("videoName: " + videoName);
+	    console.log("videoUrl: " + videoUrl);
+	    console.log("status: " + status);
+
+	    if ( status === 400 ) {
+		console.log("_notifyApplication branching good.");
+		// implement logic in the modal window portion.
+		// depends on previous state!
+	    } else {
+		console.log("_notifyApplication branching bad.");
+		// implement logic in the modal window portion.
+		// depends on previous state!
+	    }
+	}
 
 	/*
 	_pushParent: Pushes a parent to the parent component.
@@ -138,7 +189,7 @@ var FooterComponent = function( DOMId ){
 
 		_notify();
 	    } else if (data && data.componentName === "VideoService" ) {
-		_handleResponse(data.videoName, data.url, data.status);
+		_processServiceResponse(data.videoName, data.url, data.status);
 	    } else if ( data && data.componentName === "ApplicationController" ) {
 		for (var item = 0; item < _children.length; item++) {
 		    _children[item].__handle( {

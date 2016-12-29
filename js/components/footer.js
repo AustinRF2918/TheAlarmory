@@ -86,9 +86,10 @@ var FooterComponent = function( DOMId ){
 	    _children.push( component );
 	};
 
-	var _receive = function( data ) {
-	    console.log(data);
+	var _handleResponse = function( videoName, videoUrl, status ) {
+	    console.log("_handleResponse receieved: " + videoUrl);
 	}
+
 
 	/*
 	_pushParent: Pushes a parent to the parent component.
@@ -136,6 +137,8 @@ var FooterComponent = function( DOMId ){
 		}
 
 		_notify();
+	    } else if (data && data.componentName === "VideoService" ) {
+		_handleResponse(data.videoName, data.url, data.status);
 	    } else if ( data && data.componentName === "ApplicationController" ) {
 		for (var item = 0; item < _children.length; item++) {
 		    _children[item].__handle( {
@@ -184,7 +187,7 @@ var FooterComponent = function( DOMId ){
 	    __handle: _handle,
 	    __notify: _notify,
 	    __componentName: "ControlPanelComponent",
-	    receive: _receive,
+	    handle: _handle,
 	    getActiveTimes: _getActiveTimes,
 	    pushChild: _pushChild,
 	    pushParent: _pushParent,

@@ -22,40 +22,41 @@ var VideoService = function( ) {
 	}
 
 	var _sendUnknown = function( data ) {
-	    if (_currentRequest) {
+	    if ( _currentRequest ) {
 	      _currentRequest.abort();
 	    }
 
-	    if (_ct) {
+	    if ( _ct ) {
 		clearTimeout(_ct);
 	    }
 
 	    _ct = setTimeout(function() {
-		var videoID = _pullID(data);
-
-		if ( videoID === null ) {
+		if ( !_pullID(data) ) {
 		    _sendParameters(data.split(' '));
-		    clearTimeout(_ct);
 		} else {
 		    _sendID( data );
-		    clearTimeout(_ct);
 		}
 	    }, 1000);
 	}
 
 	var _sendId = function( id ) {
-	    var cr = _currentRequest;
-
-	    cr = jQuery.get('http://127.0.0.1:5000/v1/id/' + id).done(function(data) {
-		_messanger.receive(data);
+	    _currentRequest = jQuery.get('http://127.0.0.1:5000/v1/id/' + id).done(function(data) {
+		_messanger.handle({
+		    videoName: null,
+		    videoUrl: data,
+		    status: null
+		});
 	    });
 	}
 
 	var _sendParameters = function( parameters ) {
-	    var cr = _currentRequest;
-
-	    cr = jQuery.get('http://127.0.0.1:5000/v1/video/' + parameters.join('+')).done(function(data) {
-		_messanger.receive(data);
+	    _currentRequest = jQuery.get('http://127.0.0.1:5000/v1/video/' + parameters.join('+')).done(function(data) {
+		_messanger.handle({
+		    componentName: "VideoService",
+		    videoName: null,
+		    url: data,
+		    status: null
+		});
 	    });
 	}
 

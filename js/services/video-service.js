@@ -26,10 +26,11 @@ var VideoService = function( ) {
 	      _currentRequest.abort();
 	    }
 
-	    clearTimeout(_ct);
+	    if (_ct) {
+		clearTimeout(_ct);
+	    }
 
 	    _ct = setTimeout(function() {
-		console.log("Performing timeout.");
 		var videoID = _pullID(data);
 
 		if ( videoID === null ) {
@@ -44,34 +45,17 @@ var VideoService = function( ) {
 
 	var _sendId = function( id ) {
 	    var cr = _currentRequest;
-	    _currentRequest = jQuery.ajax({
-		async: false,
-		url: 'http://127.0.0.1:5000/v1/id/' + id,
-		dataType: 'json',
-		beforeSend: function() {
-		    if ( cr != null) {
-			cr.abort();
-		    }
-		},
-		success: function( json ) {
-		    if ( json.toString() ) {
-			_cached = json.toString();
-			_messanger.receive(_cached);
-		    }
-		},
 
-		failure: function( json ) {
-		    _cached = null;
-		}
+	    cr = jQuery.get('http://127.0.0.1:5000/v1/id/' + id).done(function(data) {
+		_messanger.receive(data);
 	    });
 	}
 
 	var _sendParameters = function( parameters ) {
-	    console.log("Sending ID.");
 	    var cr = _currentRequest;
 
 	    cr = jQuery.get('http://127.0.0.1:5000/v1/video/' + parameters.join('+')).done(function(data) {
-		alert(data);
+		_messanger.receive(data);
 	    });
 	}
 

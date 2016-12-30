@@ -469,7 +469,7 @@ body, html {
 .lightbox {
   position: fixed;
   width: 100vw;
-  height: 100vw;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.95);
   z-index: 1; }
 

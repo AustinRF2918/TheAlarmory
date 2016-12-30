@@ -115,16 +115,44 @@ var FooterComponent = function( DOMId ){
 	    console.log("videoName: " + videoName);
 	    console.log("videoUrl: " + videoUrl);
 
-	    var goodMarkup = '';
-	    goodMarkup += '<div class="notification-tooltip tooltip-good">';
-	    goodMarkup += '<p class="tooltip-content">We got the video: ';
-	    goodMarkup += videoUrl
-	    goodMarkup += ' and set it as your wake up item.';
-	    goodMarkup += '</p>';
-	    goodMarkup += '</div>';
+	    // Pulled from stack overflow.
+	    var _pullID = function( data ) {
+		var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+		var match = data.match(regExp);
 
-	    $("body").append(goodMarkup)
-	    console.log(goodMarkup);
+		if (match && match[2].length == 11) {
+		    return match[2];
+		} else {
+		    return null;
+		}
+	    }
+
+	    var tag = '';
+	    tag += '<div class="lightbox">';
+	    tag += '</div>';
+	    tag += '<div class="modal-overlay">';
+	    tag +=   '<div class="modal-window">';
+	    tag +=     '<div style="border: 2px solid #03A9F4;" class="modal-body-video">';
+	    tag +=     '<h5 class="modal-header">';
+	    tag +=       'We Found Your Video!';
+	    tag +=     '</h5>';
+	    tag += '<iframe style="max-height: 30vh; width: 75% !important; border: 2px solid #F44333;" frameborder="0" width="640" height="390"';
+	    tag += ( 'src="' + videoUrl.replace("watch?v=", "embed/") + '?autoplay=0&html5=true&loop=true&playlist=' + _pullID(videoUrl)  + '">' );
+	    tag += '</iframe>';
+	    tag +=     '<p style="margin-top: 20px; margin-bottom: 5px; color: white;">';
+	    tag +=       'This video has been set as your alarm tone.';
+	    tag +=     '</p>';
+	    tag +=       '<div class="btn-container">';
+	    tag +=       '<a id="btn-okay" class="btn btn-modal">';
+	    tag +=         'Alright';
+	    tag +=       '</a>';
+	    tag +=       '</div>';
+	    tag +=     '</div>';
+	    tag +=   '</div>';
+	    tag += '</div>';
+	    $("body").append(tag)
+
+	    _fadeTooltipsIn();
 	}
 
 	var _displayBadTooltip = function( status ) {
@@ -137,7 +165,10 @@ var FooterComponent = function( DOMId ){
 	    goodMarkup += '</div>';
 
 	    $("body").append(badMarkup)
-	    // UI logic goes here.
+	    _fadeTooltipsIn();
+	}
+
+	var _fadeTooltipsIn = function( ) {
 	}
 
 	var _notifyApplication = function( videoName, videoUrl, status ) {

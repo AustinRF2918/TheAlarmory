@@ -167,6 +167,17 @@ var FooterComponent = function( DOMId ){
 	    }
 
 	    $("body").append(tag)
+
+	    $("#btn-okay").on('click', function( ) {
+		// potentially add animation here.
+
+		// MAKE SURE SNOOZE HAS BEEN FIRED!
+		// ADD CODE HERE
+		$(".alarm-notification-modal").remove();
+		$(".video-notification-modal").remove();
+
+		$(".lightbox").remove();
+	    })
 	}
 
 	var _displayBadTooltip = function( status ) {

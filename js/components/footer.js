@@ -128,9 +128,14 @@ var FooterComponent = function( DOMId ){
 	    }
 
 	    var tag = '';
-	    tag += '<div class="lightbox">';
-	    tag += '</div>';
-	    tag += '<div class="modal-overlay">';
+
+	    if ($("body").has(".lightbox").length === 0) {
+		tag += '<div class="lightbox">';
+		tag += '</div>';
+		// TODO: ADD TO OTHER MODALS!
+	    }
+
+	    tag += '<div class="modal-overlay video-notification-modal">';
 	    tag +=   '<div class="modal-window">';
 	    tag +=     '<div style="border: 2px solid #03A9F4;" class="modal-body-video">';
 	    tag +=     '<h5 class="modal-header">';
@@ -150,9 +155,18 @@ var FooterComponent = function( DOMId ){
 	    tag +=     '</div>';
 	    tag +=   '</div>';
 	    tag += '</div>';
-	    $("body").append(tag)
 
-	    _fadeTooltipsIn();
+	    if ($("body").has(".video-notification-modal").length !== 0) {
+		$(".video-notification-modal").remove();
+	    }
+
+	    if ($("body").has(".alarm-notification-modal").length !== 0) {
+		// TODO
+		// Send a message to the alarm notification component to snooze.
+		// also add the additional class to the component!
+	    }
+
+	    $("body").append(tag)
 	}
 
 	var _displayBadTooltip = function( status ) {
@@ -165,10 +179,6 @@ var FooterComponent = function( DOMId ){
 	    goodMarkup += '</div>';
 
 	    $("body").append(badMarkup)
-	    _fadeTooltipsIn();
-	}
-
-	var _fadeTooltipsIn = function( ) {
 	}
 
 	var _notifyApplication = function( videoName, videoUrl, status ) {

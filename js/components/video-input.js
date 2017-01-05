@@ -30,8 +30,9 @@ var VideoInputComponent = function( DOMId ){
 	};
 
 	var _onChange = function( f ) {
-	    $('body').find('#video-form').on('input', function(event) {
-		if (event.currentTarget.value) {
+	    $('body').find('#video-form').on('keydown', function(event) {
+		if (event.keyCode === 13 && event.currentTarget.value) {
+		    console.log("firing.");
 		    f(event.currentTarget.value);
 		}
 	    });

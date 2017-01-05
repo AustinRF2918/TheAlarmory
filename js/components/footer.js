@@ -103,14 +103,14 @@ var FooterComponent = function( DOMId ){
 	    console.log("videoUrl: " + videoUrl);
 	    console.log("status: " + status);
 
-	    if ( status === 400 ) {
-		_displayGoodTooltip( videoName, videoUrl );
+	    if ( status === 200 ) {
+		_displayGoodMarkup( videoName, videoUrl );
 	    } else {
-		_displayBadTooltip( status );
+		_displayBadMarkup( status );
 	    }
 	}
 
-	var _displayGoodTooltip = function( videoName, videoUrl ) {
+	var _displayGoodMarkup = function( videoName, videoUrl ) {
 	    console.log("_displayGoodTooltip receieved: ");
 	    console.log("videoName: " + videoName);
 	    console.log("videoUrl: " + videoUrl);
@@ -118,7 +118,7 @@ var FooterComponent = function( DOMId ){
 	    // Pulled from stack overflow.
 	    var _pullID = function( data ) {
 		var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-		var match = data.match(regExp);
+		var match = data.url.match(regExp);
 
 		if (match && match[2].length == 11) {
 		    return match[2];
@@ -142,7 +142,7 @@ var FooterComponent = function( DOMId ){
 	    tag +=       'We Found Your Video!';
 	    tag +=     '</h5>';
 	    tag += '<iframe style="max-height: 30vh; width: 75% !important; border: 2px solid #F44333;" frameborder="0" width="640" height="390"';
-	    tag += ( 'src="' + videoUrl.replace("watch?v=", "embed/") + '?autoplay=0&html5=true&loop=true&playlist=' + _pullID(videoUrl)  + '">' );
+	    tag += ( 'src="' + videoUrl.url.replace("watch?v=", "embed/") + '?autoplay=0&html5=true&loop=true&playlist=' + _pullID(videoUrl)  + '">' );
 	    tag += '</iframe>';
 	    tag +=     '<p style="margin-top: 20px; margin-bottom: 5px; color: white;">';
 	    tag +=       'This video has been set as your alarm tone.';
@@ -180,14 +180,14 @@ var FooterComponent = function( DOMId ){
 	    })
 	}
 
-	var _displayBadTooltip = function( status ) {
+	var _displayBadMarkup = function( status ) {
 	    console.log("_displayBadTooltip receieved: ");
 	    console.log("status: " + status);
 
 	    var badMarkup = '';
-	    goodMarkup += '<div class="notification-tooltip tooltip-bad">';
-	    goodMarkup += "<p class=" + '"tooltip-content"' + ">We didn't find anything for your input!</p>";
-	    goodMarkup += '</div>';
+	    badMarkup += '<div class="notification-tooltip tooltip-bad">';
+	    badMarkup += "<p class=" + '"tooltip-content"' + ">We didn't find anything for your input!</p>";
+	    badMarkup += '</div>';
 
 	    $("body").append(badMarkup)
 	}

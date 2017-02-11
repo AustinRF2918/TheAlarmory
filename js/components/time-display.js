@@ -45,10 +45,10 @@ var TimeDisplayComponent = function( DOMId ){
 	    var tag = '';
 	    tag += '<h3 class="text-body text-extra">';
 	    tag +=   '<strong>';
-	    tag +=     'At ';
-	    tag +=     '<span id="hour-alarm">' + _selectedHours + '</span>';
-	    tag +=     '<span id="exxtra">' + ':' + '</span>';
-	    tag +=     '<span id="minute-alarm">' + _selectedMinutes + '</span>';
+	    tag +=     'AT ';
+	    tag +=     '<span style="color: white !important;" id="hour-alarm">' + _selectedHours + '</span>';
+	    tag +=     '<span style="color: white !important;" id="exxtra">' + ':' + '</span>';
+	    tag +=     '<span style="color: white !important;" id="minute-alarm">' + _selectedMinutes + '</span>';
 	    tag +=     '<span id="when-alarm"> ' + _selectedPeriod + '</span>';
 	    tag +=   '</strong>';
 	    tag += '</h3>';

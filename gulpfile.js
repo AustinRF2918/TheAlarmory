@@ -32,7 +32,6 @@ var getNetworkInformation = function(){
 function startExpress(){
     var express = require('express');
     var app = express();
-    app.use(require('connect-livereload')());
     app.use(express.static(EXPRESS_ROOT));
     app.listen(EXPRESS_PORT);
 }
@@ -40,8 +39,6 @@ function startExpress(){
 var lr;
 
 function startLiveReload(){
-    lr = require('tiny-lr')();
-    lr.listen(LIVERELOAD_PORT);
 }
 
 function notifyLivereload(event){

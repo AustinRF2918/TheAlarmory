@@ -47,6 +47,21 @@ a {
 #hour-alarm, #minute-alarm, #exxtra {
   color: #e81f0c !important; }
 
+#delta, #hour-alarm, #minute-alarm, #when-alarm {
+  font-size: 50px !important;
+  font-weight: bold; }
+
+#delta {
+  color: #03A9F4; }
+
+#current-hour-alarm, #current-minute-alarm, #current-when-alarm {
+  font-size: 50px !important;
+  font-weight: bold;
+  color: #673AB7; }
+
+#current-when-alarm {
+  color: #e81f0c; }
+
 .interactive-element {
   transition-duration: .5s; }
 
@@ -509,3 +524,6 @@ body, html {
       margin-left: 5%;
       margin-right: 5%;
       transform: translateY(-50%); } }
+
+#btn-at {
+  display: none; }

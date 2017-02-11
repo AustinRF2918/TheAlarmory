@@ -52,11 +52,12 @@ var TimeDeltaComponent = function( DOMId ){
 	*/
 	var _generateTemplate = function() {
 	    var tag = '';
-	    tag += '<h5 class="text-body">';
-	    tag +=     'In: ';
-	    tag +=     '<span id="delta">' + _timeDelta + '</span>';
-	    tag +=     ' Hours.';
-	    tag += '</h5>';
+	    tag += '<h3 class="text-body text-extra">';
+	    tag += '<strong>';
+	    tag +=     '<span style="color: white" id="delta">' + _timeDelta + '</span>';
+	    tag +=     '<span style="color: #e81f0c">' + ' HOURS' + '</span>';
+	    tag += '</strong>';
+	    tag += '</h3>';
 
 	    return( templateWrapper( _internalDOMIdentifier, tag ));
 	};

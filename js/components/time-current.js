@@ -59,10 +59,6 @@ var TimeCurrentComponent = function( DOMId ){
 	    var tag = '';
 	    var str = "";
 
-	    tag += '<h5 class="text-body">';
-	    tag +=   'Current Time: ';
-
-
 	    if (_currentHours === "00") {
 		str = "12";
 	    } else {
@@ -70,11 +66,15 @@ var TimeCurrentComponent = function( DOMId ){
 	    }
 
 
-	    tag +=   '<span id="current-hour-alarm">' + TimeFormatter.convertUnitToDigital(TimeFormatter.convertMillitaryToHour(str))+ '</span>';
-	    tag +=   ':';
-	    tag +=   '<span id="current-minute-alarm">' + _currentMinutes + '</span>';
-	    tag +=   '<span id="current-when-alarm">' + _currentPeriod + '</span>';
-	    tag += '</h5>';
+	    tag += '<h3 class="text-body text-extra">';
+	    tag +=     '<strong>';
+	    tag +=     '<span style="color: #0275d8">' + 'NOW ' + '</span>';
+	    tag +=     '<span style="color: white" id="current-hour-alarm">' + TimeFormatter.convertUnitToDigital(TimeFormatter.convertMillitaryToHour(str))+ '</span>';
+	    tag +=     '<span style="color: white;" id="">:</span>';
+	    tag +=     '<span style="color: white;" id="current-minute-alarm">' + _currentMinutes + '</span>';
+	    tag +=     '<span style="color: #0275d8;" "id="current-when-alarm">' + _currentPeriod + '</span>';
+	    tag +=   '</strong>';
+	    tag += '</h3>';
 
 	    return( templateWrapper( _internalDOMIdentifier, tag ));
 	};
@@ -152,6 +152,5 @@ var TimeCurrentComponent = function( DOMId ){
     })( );
 };
 
-console.log("hi");
 
 // module.exports.TimeCurrentComponent = TimeCurrentComponent;

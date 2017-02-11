@@ -134,6 +134,7 @@ var TimeCurrentComponent = function( DOMId ){
 	// Refresh to __handle.
 	// (Implement node trait)
 	var _update = function( ) {
+	    console.log("Hi.");
 	    _refreshTime( );
 	    _render( );
 	};
@@ -150,5 +151,7 @@ var TimeCurrentComponent = function( DOMId ){
 	};
     })( );
 };
+
+console.log("hi");
 
 // module.exports.TimeCurrentComponent = TimeCurrentComponent;

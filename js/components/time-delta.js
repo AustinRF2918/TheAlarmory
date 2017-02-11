@@ -87,11 +87,14 @@ var TimeDeltaComponent = function( DOMId ){
 	// In the case that internal components change,
 	// will change time delta.
 	var _refreshTimeDelta = function( ) {
+	    console.log("...");
+	    console.log(_selectedPeriod);
+	    console.log(_currentPeriod);
+	    console.log("...");
 	    _timeDelta = TimeFormatter.calculateDelta( _currentHours, _currentMinutes, _selectedHours, _selectedMinutes );
 	    if ($("#" + _internalDOMIdentifier)) {
 		$("#" + _internalDOMIdentifier +  " #delta").html(_timeDelta);
 	    } else {
-		// TODO: IMPLEMENT ERROR TYPE
 		console.log("Could not find selector: " + "#" + _internalDOMIdentifier);
 	    }
 

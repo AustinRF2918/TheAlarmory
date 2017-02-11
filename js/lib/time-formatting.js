@@ -188,7 +188,7 @@ var TimeFormatter = (function() {
     var _getPeriod = function( hour ) {
 	_validateNumeric( hour,  "Bad value passed to getPeriod." );
 	hour = _check24HourRange( hour, "Invalid range passed to getPeriod." );
-	hour = hour > 12 ? 'PM' : 'AM';
+	hour = hour > 11 ? 'PM' : 'AM';
 
 	return hour;
     };

@@ -72,7 +72,7 @@ var TimeCurrentComponent = function( DOMId ){
 	    tag +=     '<span style="color: white" id="current-hour-alarm">' + TimeFormatter.convertUnitToDigital(TimeFormatter.convertMillitaryToHour(str))+ '</span>';
 	    tag +=     '<span style="color: white;" id="">:</span>';
 	    tag +=     '<span style="color: white;" id="current-minute-alarm">' + _currentMinutes + '</span>';
-	    tag +=     '<span style="color: #0275d8;" "id="current-when-alarm">' + _currentPeriod + '</span>';
+	    tag +=     '<span style="color: #0275d8;" "id="current-when-alarm"> ' + _currentPeriod + '</span>';
 	    tag +=   '</strong>';
 	    tag += '</h3>';
 

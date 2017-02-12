@@ -86,112 +86,6 @@ var FooterComponent = function( DOMId ){
 	    _children.push( component );
 	};
 
-	var _processServiceResponse = function( videoName, videoUrl, status ) {
-	    console.log("_processServiceResponse receieved: ");
-	    console.log("videoName: " + videoName);
-	    console.log("videoUrl: " + videoUrl);
-	    console.log("status: " + status);
-
-	    _notifyUI( videoName, videoUrl, status );
-	    _notifyApplication( videoName, videoUrl, status );
-	}
-
-
-	var _notifyUI = function( videoName, videoUrl, status ) {
-	    console.log("_notifyUI receieved: ");
-	    console.log("videoName: " + videoName);
-	    console.log("videoUrl: " + videoUrl);
-	    console.log("status: " + status);
-
-	    if ( status === 200 ) {
-		_displayGoodMarkup( videoName, videoUrl );
-	    } else {
-		_displayBadMarkup( status );
-	    }
-	}
-
-	var _displayGoodMarkup = function( videoName, videoUrl ) {
-	    console.log("_displayGoodTooltip receieved: ");
-	    console.log("videoName: " + videoName);
-	    console.log("videoUrl: " + videoUrl);
-
-	    // Pulled from stack overflow.
-	    var _pullID = function( data ) {
-		var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-		var match = data.url.match(regExp);
-
-		if (match && match[2].length == 11) {
-		    return match[2];
-		} else {
-		    return null;
-		}
-	    }
-
-	    var tag = '';
-
-	    if ($("body").has(".lightbox").length === 0) {
-		tag += '<div class="lightbox">';
-		tag += '</div>';
-		// TODO: ADD TO OTHER MODALS!
-	    }
-
-	    tag += '<div class="modal-overlay video-notification-modal">';
-	    tag +=   '<div class="modal-window">';
-	    tag +=     '<div style="border: 2px solid #03A9F4;" class="modal-body-video">';
-	    tag +=     '<h5 class="modal-header">';
-	    tag +=       'We Found Your Video!';
-	    tag +=     '</h5>';
-	    tag += '<iframe style="max-height: 30vh; width: 75% !important; border: 2px solid #F44333;" frameborder="0" width="640" height="390"';
-	    tag += ( 'src="' + videoUrl.url.replace("watch?v=", "embed/") + '?autoplay=0&html5=true&loop=true&playlist=' + _pullID(videoUrl)  + '">' );
-	    tag += '</iframe>';
-	    tag +=     '<p style="margin-top: 20px; margin-bottom: 5px; color: white;">';
-	    tag +=       'This video has been set as your alarm tone.';
-	    tag +=     '</p>';
-	    tag +=       '<div class="btn-container">';
-	    tag +=       '<a id="btn-okay" class="btn btn-modal">';
-	    tag +=         'Alright';
-	    tag +=       '</a>';
-	    tag +=       '</div>';
-	    tag +=     '</div>';
-	    tag +=   '</div>';
-	    tag += '</div>';
-
-	    if ($("body").has(".video-notification-modal").length !== 0) {
-		$(".video-notification-modal").remove();
-	    }
-
-	    if ($("body").has(".alarm-notification-modal").length !== 0) {
-		// TODO
-		// Send a message to the alarm notification component to snooze.
-		// also add the additional class to the component!
-	    }
-
-	    $("body").append(tag)
-
-	    $("#btn-okay").on('click', function( ) {
-		// potentially add animation here.
-
-		// MAKE SURE SNOOZE HAS BEEN FIRED!
-		// ADD CODE HERE
-		$(".alarm-notification-modal").remove();
-		$(".video-notification-modal").remove();
-
-		$(".lightbox").remove();
-	    })
-	}
-
-	var _displayBadMarkup = function( status ) {
-	    console.log("_displayBadTooltip receieved: ");
-	    console.log("status: " + status);
-
-	    var badMarkup = '';
-	    badMarkup += '<div class="notification-tooltip tooltip-bad">';
-	    badMarkup += "<p class=" + '"tooltip-content"' + ">We didn't find anything for your input!</p>";
-	    badMarkup += '</div>';
-
-	    $("body").append(badMarkup)
-	}
-
 	var _notifyApplication = function( videoName, videoUrl, status ) {
 	    console.log("_notifyApplication receieved: ");
 	    console.log("videoName: " + videoName);
@@ -232,9 +126,9 @@ var FooterComponent = function( DOMId ){
 	var _notify = function( ) {
 	    if ( _parent ) {
 		_parent.__handle( {
-		    hourActive: _hourActive,
-		    minuteActive: _minuteActive,
-		    periodActive: _periodActive,
+		    //hourActive: _hourActive,
+		    //minuteActive: _minuteActive,
+		    //periodActive: _periodActive,
 		    componentName: "ControlPanelComponent"
 		} );
 	    }
@@ -292,7 +186,7 @@ var FooterComponent = function( DOMId ){
 	};
 
 	var _getActiveTimes = function( ) {
-	    return [ _hourActive,_minuteActive, _periodActive ];
+	    //return [ _hourActive,_minuteActive, _periodActive ];
 	};
 
 	return {

@@ -21,10 +21,22 @@ var VideoService = function( ) {
 	    }
 	}
 
+	var _sendId = function( id ) {
+	    _currentRequest = jQuery.get('http://127.0.0.1:5000/v1/id/' + id).done(function(data) {
+		_messanger.handle({
+		    videoName: null,
+		    videoUrl: data,
+		    status: 400 // for now
+		});
+	    });
+	}
+
 	var _sendUnknown = function( data ) {
 	    if ( _currentRequest ) {
 	      _currentRequest.abort();
 	    }
+
+	    var s = _sendId;
 
 	    if ( _ct ) {
 		clearTimeout(_ct);
@@ -34,19 +46,9 @@ var VideoService = function( ) {
 		if ( !_pullID(data) ) {
 		    _sendParameters(data.split(' '));
 		} else {
-		    _sendID( data );
+		    s( data );
 		}
 	    }, 1000);
-	}
-
-	var _sendId = function( id ) {
-	    _currentRequest = jQuery.get('http://127.0.0.1:5000/v1/id/' + id).done(function(data) {
-		_messanger.handle({
-		    videoName: null,
-		    videoUrl: data,
-		    status: 400 // for now
-		});
-	    });
 	}
 
 	var _sendParameters = function( parameters ) {

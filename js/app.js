@@ -2,8 +2,8 @@ $(document).ready(function(){
     var controller = ApplicationController();
     var tds = ControlPanelComponent( "#control-panel" );
     var sr = undefined;
-    
     var tdsA = SelectorPortionComponent( "#hour-container", "Hours", 1);
+
     for (var itemNumber = 1; itemNumber < 13; itemNumber++) {
 	var temp = SelectorButtonComponent( "hour", itemNumber, "btn-square-hours", undefined, false ) 
 
@@ -13,9 +13,11 @@ $(document).ready(function(){
 
 	tdsA.pushChild( temp );
     }
+
     tds.pushChild( tdsA );
     tdsA.__render();
     tdsA.__notify();
+
     for (var i of tdsA.children) {
 	i.setEvent("click");
     }
@@ -25,9 +27,11 @@ $(document).ready(function(){
 	var temp =  SelectorButtonComponent( "minute", itemNumber, "btn-square-minutes" );
 	tdsC.pushChild( temp );
     }
+
     tds.pushChild( tdsC );
     tdsC.__render();
     tdsC.__notify();
+
     for (var i of tdsC.children) {
 	i.setEvent("click");
     }

@@ -32,8 +32,7 @@ var VideoInputComponent = function( DOMId ){
 	var _onChange = function( f ) {
 	    $('body').find('#video-form').on('keydown', function(event) {
 		if (event.keyCode === 13 && event.currentTarget.value) {
-		    console.log("firing.");
-		    f(event.currentTarget.value);
+		    console.log("Not implemented. This is why you don't overcomplicate stuff :-/");
 		}
 	    });
 	}

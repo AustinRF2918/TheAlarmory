@@ -36,20 +36,13 @@ function startExpress(){
     app.listen(EXPRESS_PORT);
 }
 
-var lr;
 
 function startLiveReload(){
 }
 
 function notifyLivereload(event){
     var fileName = require('path').relative(EXPRESS_ROOT, event.path);
-    console.log("Change.");
 
-    lr.changed({
-        body: {
-        files: [fileName]
-    }
-    });
 }
 
 gulp.task('pug', function(){

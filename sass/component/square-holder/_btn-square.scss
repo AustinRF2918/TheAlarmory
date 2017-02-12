@@ -1,7 +1,23 @@
+@media screen and (min-width: 768px) {
+    #page-header {
+	display: flex;
+	align-items: center;
+    }
+}
+
 @mixin squareButton($color){
-    width: 22px;
-    height: 22px;
-    margin: 6px;
+    @media screen and (min-width: 1001px) {
+	width: 2vw * 1.1;
+	height: 3vh * 1.2;
+    }
+
+    @media screen and (max-width: 1000px) {
+	width: 26px;
+	height: 26px;
+    }
+
+    margin: 7.5px;
+
     background: desaturate(darken($color, 10%), 20%);
     display: flex;
     align-items: center;

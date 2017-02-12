@@ -203,15 +203,18 @@ body, html {
   flex-wrap: wrap; }
   @media screen and (min-width: 768px) {
     .square-container {
-      width: 70%; } }
+      width: 100%; } }
   @media screen and (max-width: 767px) {
     .square-container {
       width: 100%; } }
 
+@media screen and (min-width: 768px) {
+  #page-header {
+    display: flex;
+    align-items: center; } }
+
 .btn-square-hours {
-  width: 22px;
-  height: 22px;
-  margin: 6px;
+  margin: 7.5px;
   background: #cf3325;
   display: flex;
   align-items: center;
@@ -224,6 +227,14 @@ body, html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
+  @media screen and (min-width: 1001px) {
+    .btn-square-hours {
+      width: 2.2vw;
+      height: 3.6vh; } }
+  @media screen and (max-width: 1000px) {
+    .btn-square-hours {
+      width: 26px;
+      height: 26px; } }
   .btn-square-hours:hover {
     transform: scale(1.4, 1.4);
     cursor: pointer;
@@ -240,9 +251,7 @@ body, html {
     color: white; }
 
 .btn-square-minutes {
-  width: 22px;
-  height: 22px;
-  margin: 6px;
+  margin: 7.5px;
   background: #57417d;
   display: flex;
   align-items: center;
@@ -255,6 +264,14 @@ body, html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
+  @media screen and (min-width: 1001px) {
+    .btn-square-minutes {
+      width: 2.2vw;
+      height: 3.6vh; } }
+  @media screen and (max-width: 1000px) {
+    .btn-square-minutes {
+      width: 26px;
+      height: 26px; } }
   .btn-square-minutes:hover {
     transform: scale(1.4, 1.4);
     cursor: pointer;
@@ -271,9 +288,7 @@ body, html {
     color: white; }
 
 .btn-square-when {
-  width: 22px;
-  height: 22px;
-  margin: 6px;
+  margin: 7.5px;
   background: #167fae;
   display: flex;
   align-items: center;
@@ -286,6 +301,14 @@ body, html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
+  @media screen and (min-width: 1001px) {
+    .btn-square-when {
+      width: 2.2vw;
+      height: 3.6vh; } }
+  @media screen and (max-width: 1000px) {
+    .btn-square-when {
+      width: 26px;
+      height: 26px; } }
   .btn-square-when:hover {
     transform: scale(1.4, 1.4);
     cursor: pointer;
@@ -302,9 +325,7 @@ body, html {
     color: white; }
 
 .btn-square-types {
-  width: 22px;
-  height: 22px;
-  margin: 6px;
+  margin: 7.5px;
   background: #167fae;
   display: flex;
   align-items: center;
@@ -317,6 +338,14 @@ body, html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
+  @media screen and (min-width: 1001px) {
+    .btn-square-types {
+      width: 2.2vw;
+      height: 3.6vh; } }
+  @media screen and (max-width: 1000px) {
+    .btn-square-types {
+      width: 26px;
+      height: 26px; } }
   .btn-square-types:hover {
     transform: scale(1.4, 1.4);
     cursor: pointer;
@@ -333,9 +362,7 @@ body, html {
     color: white; }
 
 .btn-square-lock {
-  width: 22px;
-  height: 22px;
-  margin: 6px;
+  margin: 7.5px;
   background: #167fae;
   display: flex;
   align-items: center;
@@ -348,6 +375,14 @@ body, html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
+  @media screen and (min-width: 1001px) {
+    .btn-square-lock {
+      width: 2.2vw;
+      height: 3.6vh; } }
+  @media screen and (max-width: 1000px) {
+    .btn-square-lock {
+      width: 26px;
+      height: 26px; } }
   .btn-square-lock:hover {
     transform: scale(1.4, 1.4);
     cursor: pointer;
